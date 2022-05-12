@@ -6,7 +6,8 @@ import set from "lodash/set";
 
 import { defaultAppSettings } from "./defaultSettings";
 import { ipc_settingsUpdatedEvent } from "./ipc";
-import type { AppSettings, StoredConnection } from "./types";
+import type { AppSettings, StoredConnection, Mod } from "./types";
+import type { PaletteMode } from "@mui/material";
 
 electronSettings.configure({
   fileName: "Settings",
@@ -53,6 +54,10 @@ export class SettingsManager {
     return this.get().settings.useMonthlySubfolders;
   }
 
+  public getModList(): Mod[] {
+    return this.get().mods;
+  }
+
   public async setIsoPath(isoPath: string | null): Promise<void> {
     await this._set("settings.isoPath", isoPath);
   }
@@ -87,6 +92,10 @@ export class SettingsManager {
 
   public async setAutoUpdateLauncher(autoUpdateLauncher: boolean): Promise<void> {
     await this._set("settings.autoUpdateLauncher", autoUpdateLauncher);
+  }
+
+  public async setThemeMode(mode: PaletteMode): Promise<void> {
+    await this._set("settings.theme", mode);
   }
 
   public async addConsoleConnection(conn: Omit<StoredConnection, "id">): Promise<void> {

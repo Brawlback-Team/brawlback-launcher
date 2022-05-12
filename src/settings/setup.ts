@@ -5,6 +5,7 @@ import { autoUpdater } from "electron-updater";
 import path from "path";
 
 import {
+  ipc_getModList,
   ipc_addNewConnection,
   ipc_deleteConnection,
   ipc_editConnection,
@@ -16,6 +17,7 @@ import {
   ipc_setPlaybackDolphinPath,
   ipc_setRootSlpPath,
   ipc_setSpectateSlpPath,
+  ipc_setThemeMode,
   ipc_setUseMonthlySubfolders,
 } from "./ipc";
 import type { SettingsManager } from "./settingsManager";
@@ -36,6 +38,15 @@ export default function setupSettingsIpc({
     const settings = settingsManager.get();
     event.returnValue = settings;
   });
+
+  ipc_getModList.main!.handle(async () => {
+    return settingsManager.getModList();
+  })
+
+  ipc_setThemeMode.main!.handle(async ({ mode }) => {
+    await settingsManager.setThemeMode(mode);
+    return { success: true };
+  })
 
   ipc_setIsoPath.main!.handle(async ({ isoPath }) => {
     await settingsManager.setIsoPath(isoPath);

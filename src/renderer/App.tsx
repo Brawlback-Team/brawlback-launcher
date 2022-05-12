@@ -1,22 +1,23 @@
 import "./styles/styles.scss";
+import { createTheme, StyledEngineProvider, ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
 
-import { ThemeProvider } from "@emotion/react";
-import { StyledEngineProvider, ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
-import React from "react";
+import CssBaseline from '@mui/material/CssBaseline';
+import React, { useMemo } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { HashRouter as Router, Navigate, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Navigate, useRoutes } from "react-router-dom";
 
 import { useAppStore } from "@/lib/hooks/useApp";
+import { useThemeMode } from "./lib/hooks/useSettings";
 
 import { ToastProvider } from "./components/ToastProvider";
 import { useAppListeners } from "./lib/hooks/useAppListeners";
 import { ServiceProvider } from "./services";
-import { slippiTheme } from "./styles/theme";
-import { LandingView } from "./views/LandingView";
+import getThemeOptions from "./styles/theme";
+
 import { LoadingView } from "./views/LoadingView";
-import { MainView } from "./views/MainView";
-import { NotFoundView } from "./views/NotFoundView";
 import { SettingsView } from "./views/SettingsView";
+
+import { AppBase } from "./pages";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,7 +32,53 @@ const queryClient = new QueryClient({
   },
 });
 
+function Home() {
+  return (
+    <h3>Home</h3>
+  )
+}
+
+function Replay() {
+  return (
+    <h3>Replay</h3>
+  )
+}
+
+const routesObj = [
+  {
+    path: '/',
+    element: <AppBase />,
+    name: 'base',
+    children: [
+      {
+        index: true,
+        element: <Home />,
+        name: 'home'
+      },
+      {
+        path: 'replays',
+        element: <Replay />,
+        name: 'replays'
+      },
+      {
+        path: 'settings/*',
+        element: <SettingsView />,
+        name: 'settings'
+      }
+    ]
+  },
+  {
+    path: '/main/*',
+    element: <Navigate replace to="/" />
+  }
+];
+
 const App = () => {
+  const routes = useRoutes(routesObj);
+
+  const [themeMode, _] = useThemeMode();
+  const theme = useMemo(() => createTheme(getThemeOptions(themeMode)), [themeMode]);
+
   const initialized = useAppStore((state) => state.initialized);
 
   // Then add the rest of the app listeners
@@ -42,13 +89,12 @@ const App = () => {
   }
 
   return (
-    <Routes>
-      <Route path="/main/*" element={<MainView />} />
-      <Route path="/landing" element={<LandingView />} />
-      <Route path="/settings/*" element={<SettingsView />} />
-      <Route path="/" element={<Navigate replace to="/landing" />} />
-      <Route element={<NotFoundView />} />
-    </Routes>
+    <MuiThemeProvider theme={theme}>
+      {/* <ThemeProvider theme={theme as any}> */}
+        <CssBaseline />
+        {routes}
+      {/* </ThemeProvider> */}
+    </MuiThemeProvider>
   );
 };
 
@@ -56,19 +102,19 @@ const App = () => {
 const withProviders = (Component: React.ComponentType) => {
   return () => (
     <StyledEngineProvider injectFirst>
-      <MuiThemeProvider theme={slippiTheme}>
-        <ThemeProvider theme={slippiTheme as any}>
-          <QueryClientProvider client={queryClient}>
-            <ToastProvider>
-              <ServiceProvider>
-                <Router>
-                  <Component />
-                </Router>
-              </ServiceProvider>
-            </ToastProvider>
-          </QueryClientProvider>
-        </ThemeProvider>
-      </MuiThemeProvider>
+      {/* <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme as any}> */}
+      <QueryClientProvider client={queryClient}>
+        <ToastProvider>
+          <ServiceProvider>
+            <Router>
+              <Component />
+            </Router>
+          </ServiceProvider>
+        </ToastProvider>
+      </QueryClientProvider>
+      {/* </ThemeProvider>
+      </MuiThemeProvider> */}
     </StyledEngineProvider>
   );
 };

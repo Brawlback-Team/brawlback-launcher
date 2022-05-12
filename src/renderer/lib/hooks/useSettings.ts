@@ -1,5 +1,6 @@
 import { DolphinLaunchType } from "@dolphin/types";
 import type { AppSettings } from "@settings/types";
+import type { PaletteMode } from "@mui/material";
 import { useCallback } from "react";
 import create from "zustand";
 import { combine } from "zustand/middleware";
@@ -17,6 +18,14 @@ export const useSettings = create(
     }),
   ),
 );
+
+export const useThemeMode = () => {
+  const themeMode = useSettings((store) => store.settings.theme);
+  const setThemeMode = async (mode: PaletteMode) => {
+    await window.electron.settings.setThemeMode(mode);
+  };
+  return [themeMode, setThemeMode] as const;
+}
 
 export const useIsoPath = () => {
   const isoPath = useSettings((store) => store.settings.isoPath);
