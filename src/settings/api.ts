@@ -5,6 +5,7 @@ import {
   ipc_addNewConnection,
   ipc_deleteConnection,
   ipc_editConnection,
+  ipc_getModList,
   ipc_openSettingsModalEvent,
   ipc_setAutoUpdateLauncher,
   ipc_setExtraSlpPaths,
@@ -14,14 +15,20 @@ import {
   ipc_setPlaybackDolphinPath,
   ipc_setRootSlpPath,
   ipc_setSpectateSlpPath,
+  ipc_setThemeMode,
   ipc_settingsUpdatedEvent,
   ipc_setUseMonthlySubfolders,
 } from "./ipc";
-import type { AppSettings, StoredConnection } from "./types";
+import type { AppSettings, StoredConnection, Mod } from "./types";
+import type { PaletteMode } from "@mui/material";
 
 export default {
   getAppSettingsSync() {
     return ipcRenderer.sendSync("getAppSettingsSync") as AppSettings;
+  },
+  async getModsList(): Promise<Mod[]> {
+    const { result } = await ipc_getModList.renderer!.trigger({});
+    return result;
   },
   onSettingsUpdated(handle: (settings: AppSettings) => void) {
     const { destroy } = ipc_settingsUpdatedEvent.renderer!.handle(async (settings) => {
@@ -34,6 +41,9 @@ export default {
       handle();
     });
     return destroy;
+  },
+  async setThemeMode(mode: PaletteMode): Promise<void> {
+    await ipc_setThemeMode.renderer!.trigger({ mode });
   },
   async setIsoPath(isoPath: string | null): Promise<void> {
     await ipc_setIsoPath.renderer!.trigger({ isoPath });

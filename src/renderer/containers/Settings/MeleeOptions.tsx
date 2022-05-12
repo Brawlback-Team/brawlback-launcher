@@ -13,9 +13,10 @@ import React from "react";
 import { PathInput } from "@/components/PathInput";
 import { useDolphinStore } from "@/lib/dolphin/useDolphinStore";
 import { useIsoVerification } from "@/lib/hooks/useIsoVerification";
-import { useIsoPath, useLaunchMeleeOnPlay } from "@/lib/hooks/useSettings";
+import { useIsoPath, useLaunchMeleeOnPlay, useThemeMode } from "@/lib/hooks/useSettings";
 
 import { SettingItem } from "./SettingItem";
+import { PaletteMode } from "@mui/material";
 
 const renderValidityStatus = (isoValidity: IsoValidity) => {
   switch (isoValidity) {
@@ -37,6 +38,7 @@ export const MeleeOptions: React.FC = () => {
   const isoValidity = useIsoVerification((state) => state.validity);
   const [isoPath, setIsoPath] = useIsoPath();
   const [launchMeleeOnPlay, setLaunchMelee] = useLaunchMeleeOnPlay();
+  const [themeMode, setThemeMode] = useThemeMode();
   const netplayDolphinOpen = useDolphinStore((store) => store.netplayOpened);
   const playbackDolphinOpen = useDolphinStore((store) => store.playbackOpened);
 
@@ -47,6 +49,12 @@ export const MeleeOptions: React.FC = () => {
 
   return (
     <div>
+      <SettingItem name="Theme" description="Whether launcher should use light or dark mode">
+        <RadioGroup value={themeMode} onChange={(_event, value) => setThemeMode(value as PaletteMode)}>
+          <FormControlLabel value="dark" label="Dark" control={<Radio />} />
+          <FormControlLabel value="light" label="Light" control={<Radio />} />
+        </RadioGroup>
+      </SettingItem>
       <SettingItem name="Melee ISO File" description="The path to an NTSC Melee 1.02 ISO.">
         <PathInput
           tooltipText={netplayDolphinOpen || playbackDolphinOpen ? "Close Dolphin to change this setting" : ""}
