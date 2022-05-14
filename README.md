@@ -1,11 +1,8 @@
-# ![Launcher icon](assets/icons/48x48.png) Slippi Launcher
+# Brawlback Launcher
 
-[![Build Status](https://github.com/project-slippi/slippi-launcher/workflows/build/badge.svg)](https://github.com/project-slippi/slippi-launcher/actions?workflow=build)
-[![License](https://img.shields.io/badge/license-GPLv3-blue)](https://github.com/project-slippi/slippi-launcher/blob/master/LICENSE)
+The Brawlback Launcher is a desktop application for Brawlback built on the Electron framework with a React frontend in Typescript. It is being built to handle updating Brawlback's Dolphin Build, playing Brawlback Online with major Brawl mods through [Lylat](https://lylat.gg/), launching and analyzing replays, and more. This repository is part of the Brawlback ecosystem handled by the Brawlback Team. To see all of the Brawlback projects repos, visit https://github.com/Brawlback-Team.
 
-The Slippi Launcher acts as a one stop shop for everything Slippi related. It handles updating Slippi Dolphin, playing Slippi Online, launching and analyzing replays, and more.
-
-This repository is part of the Project Slippi ecosystem. For more information about all of the Project Slippi projects, visit https://github.com/project-slippi/project-slippi.
+This launcher is built on a fork of the Slippi Launcher from the Project Slippi team from commit [15db4bd](https://github.com/project-slippi/slippi-launcher/commit/15db4bd2a041d2e78132983cca199eb681c3ac6c)
 
 ## Build Instructions
 
@@ -41,9 +38,9 @@ These extensions will provide automatic formatting and warnings about code quali
 - `main`
   - Code for the main process. e.g. electron config, menubars etc.
 - `renderer`
-  - Code for the all the visual components
+  - Code for the React frontend
 - `<module>`
-  - Modules for the main process that handles specfic tasks should be kept in their own folder with a clear name.
+  - Modules for the main process that handles specfic tasks should be kept in their own folder with a clear name e.g. settings, dolphin etc.
 
 ### The `renderer` folder is organised as follows:
 
@@ -52,15 +49,30 @@ These extensions will provide automatic formatting and warnings about code quali
 - `containers`
   - Components that piece multiple dumb components together into a single "container". These can modify state and bind logic to the components but make sure most complex logic is in `lib`.
 - `lib`
-  - Reusable logic goes here to keep the components mainly representative and visual.
+  - Reusable logic, such as hooks, goes here to keep the components mainly representative and visual.
 - `styles`
   - Code for app styles and theming.
 - `views`
   - The root pages of the app. Give a starting point for finding components.
 
+### The `<modules>` folders and IPC:
+
+While not required most `<modules>` will use Electron's IPC to facilitate communication between the main and renderer processes of the application. In order to ensure proper type safety these folders are structured in a specific way as well. To add onto an existing IPC api endpoint or create a new one, follow this structure:
+
+- `types.ts`
+  - Interfaces and Types used throughout the `<module>`.
+- `api.ts`
+  - Functions that are exposed to the renderer process as api endpoints or events via `window.electron.<module>.<function>`. Events are subscribed to in the `useAppListeners.ts` file at `renderer/lib/hooks`. Each api is exposed to the renderer process in `main/preload.ts`
+- `ipc.ts`
+  - Event and Handler signatures for main and renderer processes using the design pattern described in `utils/ipc`. Writing the signature using the `makeEndpoint` function from `utils/ipc` allows us to ensure proper type safety in both the main and renderer processes while also using Electron's `contextBridge` and `ipcRenderer`. 
+- `setup.ts`
+  - Implements all handlers from the `api` and `ipc` files for the main process in one exported function that is called in `main/installModules.ts`.
+
+Modules will have other files that are more specific to how they are organized, but this is the general structure for using Electron's IPC in a type safe manner.
+
 ## Contributing
 
-Contributions are welcome! The [issues section](https://github.com/project-slippi/slippi-launcher/issues) contains some good first ideas. When making a PR, ensure you are not PRing your `main` branch and always describe the feature and what testing you've done so far.
+Contributions are welcome! Check the [Discord](http://discord.gg/dzYRN32k4D) under the `webdev-general` channel for what's currently being worked on. To ensure dev channels don't get crowded we ask everyone to get verification first from the `dev-role-verification` channel before being allowed to write in them. When making a PR, ensure you are not PRing your `main` branch and always describe the feature and what testing you've done so far.
 
 ## Acknowledgements
 
@@ -68,4 +80,4 @@ This application uses [Electron React Boilerplate](https://github.com/electron-r
 
 ## License
 
-Slippi Launcher is released as open source software under the [GPL v3](https://opensource.org/licenses/gpl-3.0.html) license. See the [LICENSE](./LICENSE) file in the project root for the full license text.
+Brawlback Launcher is released as open source software under the [GPL v3](https://opensource.org/licenses/gpl-3.0.html) license. See the [LICENSE](./LICENSE) file in the project root for the full license text.
