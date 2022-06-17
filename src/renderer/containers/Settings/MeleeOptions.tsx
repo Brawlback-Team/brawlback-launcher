@@ -49,13 +49,7 @@ export const MeleeOptions: React.FC = () => {
 
   return (
     <div>
-      <SettingItem name="Theme" description="Whether launcher should use light or dark mode">
-        <RadioGroup value={themeMode} onChange={(_event, value) => setThemeMode(value as PaletteMode)}>
-          <FormControlLabel value="dark" label="Dark" control={<Radio />} />
-          <FormControlLabel value="light" label="Light" control={<Radio />} />
-        </RadioGroup>
-      </SettingItem>
-      <SettingItem name="Melee ISO File" description="The path to an NTSC Melee 1.02 ISO.">
+      <SettingItem name="Brawl ISO File" description="The path to a valid Brawl ISO.">
         <PathInput
           tooltipText={netplayDolphinOpen || playbackDolphinOpen ? "Close Dolphin to change this setting" : ""}
           value={isoPath !== null ? isoPath : ""}
@@ -81,8 +75,16 @@ export const MeleeOptions: React.FC = () => {
           }
         />
       </SettingItem>
+
+      <SettingItem name="Theme" description="Whether launcher should use light or dark mode">
+        <RadioGroup row value={themeMode} onChange={(_event, value) => setThemeMode(value as PaletteMode)}>
+          <FormControlLabel value="dark" label="Dark" control={<Radio />} />
+          <FormControlLabel value="light" label="Light" control={<Radio />} />
+        </RadioGroup>
+      </SettingItem>
+
       <SettingItem name="Play Button Action" description="Choose what happens when the Play button is pressed.">
-        <RadioGroup value={launchMeleeOnPlay} onChange={(_event, value) => onLaunchMeleeChange(value)}>
+        <RadioGroup row value={launchMeleeOnPlay} onChange={(_event, value) => onLaunchMeleeChange(value)}>
           <FormControlLabel value={true} label="Launch Melee" control={<Radio />} />
           <FormControlLabel value={false} label="Launch Dolphin" control={<Radio />} />
         </RadioGroup>

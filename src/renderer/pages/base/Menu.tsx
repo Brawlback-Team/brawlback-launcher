@@ -70,12 +70,12 @@ export default function Menu() {
           selected={currentUrl.pathname === "/"}
           onClick={(ev) => handleButtonClick(ev, menuOption.Home)}
         >
-          <ListItemText primary="Home" />
+          <ListItemText sx={{fontWeight: "bold"}} primary="Home" />
         </ListItem>
         <Divider />
 
         <ListItem button onClick={() => handleOpenReplayMenu(!openReplayMenu)}>
-          <ListItemText primary="Replays" />
+          <ListItemText sx={{fontWeight: "bold"}} primary="Replays" />
           {openReplayMenu ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Divider />
@@ -87,7 +87,7 @@ export default function Menu() {
               selected={currentUrl.pathname === "/replays" && currentUrl.search === "?P+"}
               onClick={(ev) => handleButtonClick(ev, menuOption.ReplaysPPlus)}
             >
-              <ListItemText sx={{ paddingLeft: 1 }} primary="P+" />
+              <ListItemText sx={{ paddingLeft: 1, fontWeight: "bold" }} primary="P+" />
             </ListItem>
             <ListItem
               button
@@ -95,7 +95,7 @@ export default function Menu() {
               selected={currentUrl.pathname === "/replays" && currentUrl.search === "?vBrawl"}
               onClick={(ev) => handleButtonClick(ev, menuOption.ReplaysBrawl)}
             >
-              <ListItemText sx={{ paddingLeft: 1 }} primary="vBrawl" />
+              <ListItemText sx={{ paddingLeft: 1, fontWeight: "bold" }} primary="vBrawl" />
             </ListItem>
           </List>
           <Divider />
@@ -106,7 +106,7 @@ export default function Menu() {
           selected={currentUrl.pathname === "/settings"}
           onClick={(ev) => handleButtonClick(ev, menuOption.Settings)}
         >
-          <ListItemText primary="Settings" />
+          <ListItemText sx={{fontWeight: "bold"}} primary="Settings" />
         </ListItem>
       </List>
     </Drawer>

@@ -1,4 +1,7 @@
-import { css } from "@emotion/react";
+import InfoIcon from "@mui/icons-material/Info";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import React from "react";
 
@@ -9,27 +12,18 @@ export interface SettingItemProps {
 
 export const SettingItem: React.FC<SettingItemProps> = (props) => {
   return (
-    <div
-      css={css`
-        margin: 20px 0;
-      `}
-    >
-      <div
-        css={css`
-          padding-bottom: 10px;
-        `}
-      >
-        <Typography
-          variant="subtitle1"
-          css={css`
-            text-transform: capitalize;
-          `}
-        >
+    <Paper sx={{ margin: "20px 0", padding: "15px" }}>
+      <Box sx={{ paddingBottom: "10px", display: "flex", alignItems: "center" }}>
+        <Typography variant="subtitle1" sx={{ textTransform: "capitalize", fontWeight: "bold" }}>
           {props.name}
         </Typography>
-        {props.description && <Typography variant="caption">{props.description}</Typography>}
-      </div>
+        {props.description && (
+          <Tooltip title={props.description}>
+            <InfoIcon sx={{ marginLeft: "5px", fontSize: "20px" }} />
+          </Tooltip>
+        )}
+      </Box>
       {props.children}
-    </div>
+    </Paper>
   );
 };

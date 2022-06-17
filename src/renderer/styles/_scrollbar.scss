@@ -5,9 +5,9 @@
  */
 
 $scrolltrack-width: 10px;
-$scrolltrack-background-color: #221130;
-$scrollbar-color: #8665a0;
-$scrollbar-color-hover: #9f74c0;
+$scrolltrack-background-color: rgba(0, 0, 0, .25);
+$scrollbar-color: #4CEBB4;
+$scrollbar-color-hover: #4CEBB4;
 $scrollbar-min-height: 50px;
 
 /* total width */
@@ -16,6 +16,7 @@ $scrollbar-min-height: 50px;
   width: $scrolltrack-width;
   height: $scrolltrack-width;
   border-radius: $scrolltrack-width;
+  background-clip: padding-box;
 }
 
 /* background of the scrollbar except button or resizer */

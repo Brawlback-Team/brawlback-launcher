@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import React from "react";
 import { useQuery } from "react-query";
@@ -50,7 +51,7 @@ export const NewsFeed = React.memo(function NewsFeedContainer() {
   }
 
   return (
-    <div>
+    <Box sx={{ overflowY: "scroll", height: "100%", paddingRight: "5px" }}>
       {posts.map((post) => (
         <NewsArticle key={post.id} item={post} />
       ))}
@@ -65,6 +66,6 @@ export const NewsFeed = React.memo(function NewsFeedContainer() {
           </Button>
         </div>
       )}
-    </div>
+    </Box>
   );
 });

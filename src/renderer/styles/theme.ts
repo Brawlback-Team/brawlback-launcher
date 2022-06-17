@@ -66,6 +66,16 @@ const getThemeOptions = (mode: PaletteMode) => ({
         },
       },
     },
+    // MuiAppBar: {
+    //   variants: [
+    //     {
+    //       props: { variant: "rounded" },
+    //       style: {
+    //         borderRadius: '10px'
+    //       }
+    //     }
+    //   ]
+    // }
   },
 });
 

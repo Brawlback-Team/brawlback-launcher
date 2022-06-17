@@ -1,29 +1,31 @@
-import React from 'react'
+import Button from "@mui/material/Button";
 import { Box } from "@mui/system";
-import { Typography } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-//import BrawlbackTitle from '../../assets/BrawlbackCover-transparent.png';
 
+import { UserMenu } from "@/containers/Header/UserMenu";
+import { useAccount } from "@/lib/hooks/useAccount";
+import { useToasts } from "@/lib/hooks/useToasts";
+import TitleLogo from "@/styles/images/brawlback_textraw.png";
 
 const UserHeader = () => {
-  const username = 'Hellhaus';
-  const connectCode = 'Hell#533';
+  const currentUser = useAccount((store) => store.user);
+  const { showError } = useToasts();
   return (
-      <Box sx={{ display: 'flex', width: '100%', justifyContent: 'space-between'}}>
-          <Box>
-            {/* <img src={BrawlbackTitle} width={315} height={77}/> */}
-          </Box>
-
-          <Box sx={{display: 'inline-flex', marginRight: '30px'}}>
-            <Avatar sx={{ bgcolor: 'primary.main', marginTop: '15px', marginRight: '15px' }}>N</Avatar>
-            <Box>
-              <Typography variant='h6'>{username}</Typography>
-              <Typography variant='caption' sx={{color: 'text.secondary'}}>{connectCode}</Typography>
-            </Box>
-          </Box>
-
+    <Box sx={{ display: "flex", width: "100%", justifyContent: "space-between", alignItems: "center", height: "90px" }}>
+      <Box sx={{ marginLeft: "15px", marginTop: "20px" }}>
+        <img src={TitleLogo} height={60} />
       </Box>
-  )
-}
 
-export default UserHeader
+      <Box sx={{ marginRight: "30px" }}>
+        {currentUser ? (
+          <UserMenu user={currentUser} handleError={showError} />
+        ) : (
+          <Button variant="outlined" onClick={() => console.log("login")}>
+            Log in
+          </Button>
+        )}
+      </Box>
+    </Box>
+  );
+};
+
+export default UserHeader;
