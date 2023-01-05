@@ -1,10 +1,16 @@
+Relevant channel in the Brawlback Discord: https://discordapp.com/channels/911420495126233149/973366324430508102
+
 ## What is Rollback?
 
 Rollback is a superior netcode implementation to the delay based netcode that everyone is used to. It provides smooth gameplay for a larger variety of situations. It also allows for playing with people much further away.
 
-## What versions of Melee does Slippi support?
+## What games does Brawlback support?
 
-We only support NTSC-U/J 1.02.
+We aim to support Vanilla Brawl, the latest versions of Project +, and other popular mods of brawl such as { ... }.
+
+# The below information is misleading and an artifact of this repo being a fork of Slippi's launcher
+______________________________________________________________________________
+
 
 ## It says "Required DLLs/libraries are missing" when I hit Play!
 
@@ -24,7 +30,7 @@ Set your adapter to Wii U/Switch mode and then follow the section for your OS.
 
 ### Windows
 
-When installing Slippi Launcher you would have seen an option to also "install Gamecube adapter drivers". If you selected this, your adapter should already work once plugged into your computer. If you didn't select this option, you can just reinstall the latest version of the Slippi Launcher by downloading the installer from the [official Slippi website](https://slippi.gg). Make sure to select the "install Gamecube adapter drivers" option once the installer is run.
+When installing Brawlback Launcher you would have seen an option to also "install Gamecube adapter drivers". If you selected this, your adapter should already work once plugged into your computer. If you didn't select this option, you can just reinstall the latest version of the Slippi Launcher by downloading the installer from the [official Slippi website](https://slippi.gg). Make sure to select the "install Gamecube adapter drivers" option once the installer is run.
 
 You can confirm your controller adapters work by doing the following:
 
