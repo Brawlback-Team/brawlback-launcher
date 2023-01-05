@@ -16,7 +16,7 @@ These are the applications you will need to install in order to build this proje
 
 ### Build Steps
 
-- Clone the repo via: `git clone https://github.com/project-slippi/slippi-launcher.git`
+- Clone the repo via: `git clone https://github.com/Brawlback-Team/brawlback-launcher.git`
 - Navigate into the directory and run: `yarn install` to install all dependencies
 - Use `yarn run start` to run the app in develop mode
 - Use `yarn run package` to build a release
