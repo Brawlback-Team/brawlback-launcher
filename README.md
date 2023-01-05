@@ -4,6 +4,9 @@ The Brawlback Launcher is a desktop application for Brawlback built on the Elect
 
 This launcher is built on a fork of the Slippi Launcher from the Project Slippi team from commit [15db4bd](https://github.com/project-slippi/slippi-launcher/commit/15db4bd2a041d2e78132983cca199eb681c3ac6c)
 
+# This fork is under construction. Much of it still refers to Slippi-specific data. All the hidden files (the ones with "." preceding a name, such as ".hidden.txt") refer to Slippi-specific infrastructure that does not carry over to Brawlback. These need to be either edited to refer to real Brawlback-related infrastructure or removed. #
+
+
 ## Build Instructions
 
 ### Prerequisites
