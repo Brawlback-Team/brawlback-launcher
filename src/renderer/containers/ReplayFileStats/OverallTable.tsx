@@ -1,5 +1,5 @@
 import type { FileResult } from "@replays/types";
-import type { RatioType, StatsType } from "@slippi/slippi-js";
+// import type { RatioType, StatsType } from "@slippi/slippi-js";
 import _ from "lodash";
 import React from "react";
 

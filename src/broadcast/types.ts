@@ -1,4 +1,4 @@
-import type { DolphinMessageType } from "@slippi/slippi-js";
+//import type { DolphinMessageType } from "@slippi/slippi-js";
 
 export interface BroadcasterItem {
   broadcaster: {
@@ -18,7 +18,7 @@ export interface StartBroadcastConfig {
 }
 
 export enum BroadcastEvent {
-  SLIPPI_STATUS_CHANGE = "SLIPPI_STATUS_CHANGE",
+  BRAWLBACK_STATUS_CHANGE = "BRAWLBACK_STATUS_CHANGE",
   DOLPHIN_STATUS_CHANGE = "DOLPHIN_STATUS_CHANGE",
   ERROR = "ERROR",
   LOG = "LOG",
@@ -43,25 +43,25 @@ type TypeMap<M extends { [index: string]: any }> = {
       } & M[Key];
 };
 
-interface SlippiPlayload {
+interface BrawlbackPlayload {
   payload: string;
   cursor: number;
   nextCursor: number;
 }
 
-type SlippiBroadcastEventPayload = {
+type BrawlbackBroadcastEventPayload = {
   [DolphinMessageType.CONNECT_REPLY]: {
     version: number;
     nick: string;
     cursor: number;
   };
-  [DolphinMessageType.GAME_EVENT]: SlippiPlayload;
-  [DolphinMessageType.END_GAME]: SlippiPlayload;
-  [DolphinMessageType.START_GAME]: SlippiPlayload;
+  [DolphinMessageType.GAME_EVENT]: BrawlbackPlayload;
+  [DolphinMessageType.END_GAME]: BrawlbackPlayload;
+  [DolphinMessageType.START_GAME]: BrawlbackPlayload;
 };
 
-export type SlippiBroadcastPayloadEvent =
-  TypeMap<SlippiBroadcastEventPayload>[keyof TypeMap<SlippiBroadcastEventPayload>];
+export type BrawlbackBroadcastPayloadEvent =
+  TypeMap<BrawlbackBroadcastEventPayload>[keyof TypeMap<BrawlbackBroadcastEventPayload>];
 
 export interface BroadcastService {
   onSpectateReconnect(handle: () => void): () => void;
@@ -69,7 +69,7 @@ export interface BroadcastService {
   onBroadcastErrorMessage(handle: (message: string | null) => void): () => void;
   onBroadcastListUpdated(handle: (items: BroadcasterItem[]) => void): () => void;
   onDolphinStatusChanged(handle: (status: number) => void): () => void;
-  onSlippiStatusChanged(handle: (status: number) => void): () => void;
+  onBrawlbackStatusChanged(handle: (status: number) => void): () => void;
   onSpectateErrorMessage(handle: (message: string | null) => void): () => void;
   refreshBroadcastList(authToken: string): Promise<void>;
   watchBroadcast(broadcasterId: string): Promise<void>;

@@ -10,7 +10,7 @@ import TimerOutlinedIcon from "@mui/icons-material/TimerOutlined";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
 import type { FileResult } from "@replays/types";
-import { stages as stageUtils } from "@slippi/slippi-js";
+// import { stages as stageUtils } from "@slippi/slippi-js";
 import _ from "lodash";
 import moment from "moment";
 import React from "react";

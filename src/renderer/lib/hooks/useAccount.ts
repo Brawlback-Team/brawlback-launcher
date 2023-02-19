@@ -34,7 +34,7 @@ export const useAccount = create(
 );
 
 export const usePlayKey = () => {
-  const { slippiBackendService } = useServices();
+  const { brawlbackBackendService } = useServices();
   const loading = useAccount((store) => store.loading);
   const setLoading = useAccount((store) => store.setLoading);
   const setPlayKey = useAccount((store) => store.setPlayKey);
@@ -47,7 +47,7 @@ export const usePlayKey = () => {
     }
 
     setLoading(true);
-    await slippiBackendService
+    await brawlbackBackendService
       .fetchPlayKey()
       .then((playKey) => {
         setPlayKey(playKey);
@@ -59,7 +59,7 @@ export const usePlayKey = () => {
         setServerError(true);
       })
       .finally(() => setLoading(false));
-  }, [loading, setLoading, setPlayKey, setServerError, slippiBackendService]);
+  }, [loading, setLoading, setPlayKey, setServerError, brawlbackBackendService]);
 
   return refreshPlayKey;
 };

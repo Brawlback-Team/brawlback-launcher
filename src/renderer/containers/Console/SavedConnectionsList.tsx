@@ -4,7 +4,7 @@ import CreateIcon from "@mui/icons-material/Create";
 import DeleteIcon from "@mui/icons-material/Delete";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import type { StoredConnection } from "@settings/types";
-import { ConnectionStatus } from "@slippi/slippi-js";
+// import { ConnectionStatus } from "@slippi/slippi-js";
 import React from "react";
 
 import { IconMenu } from "@/components/IconMenu";
@@ -70,7 +70,7 @@ export const SavedConnectionsList: React.FC<SavedConnectionsListProps> = ({ avai
 
   React.useEffect(() => {
     window.electron.common
-      .getLatestGithubReleaseVersion("project-slippi", "Nintendont")
+      .getLatestGithubReleaseVersion("brawlback-team", "Nintendont")
       .then((version) => {
         setNintendontVersion(version);
       })

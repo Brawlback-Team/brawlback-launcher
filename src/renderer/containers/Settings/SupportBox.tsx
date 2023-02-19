@@ -50,7 +50,7 @@ export const SupportBox = () => {
             text-decoration: underline;
           `}
         >
-          join the Slippi Discord
+          join the Brawlback Discord
         </A>
         , then read the information in the <b>#support-portal</b> channel before posting your issue in the appropriate
         support channel for your operating system. Our support volunteers will try their best to assist you with your

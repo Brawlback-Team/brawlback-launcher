@@ -10,7 +10,7 @@ export async function addGamePath(iniFile: IniFile, gameDir: string): Promise<vo
   await iniFile.save();
 }
 
-export async function setSlippiSettings(
+export async function setBrawlbackSettings(
   iniFile: IniFile,
   options: Partial<{
     useMonthlySubfolders: boolean;
@@ -20,10 +20,10 @@ export async function setSlippiSettings(
   const useMonthlySubfolders = options.useMonthlySubfolders ? "True" : "False";
   const coreSection = iniFile.getOrCreateSection("Core");
   if (options.replayPath !== undefined) {
-    coreSection.set("SlippiReplayDir", options.replayPath);
+    coreSection.set("BrawlbackReplayDir", options.replayPath);
   }
   if (options.useMonthlySubfolders !== undefined) {
-    coreSection.set("SlippiReplayMonthFolders", useMonthlySubfolders);
+    coreSection.set("BrawlbackReplayMonthFolders", useMonthlySubfolders);
   }
   await iniFile.save();
 }

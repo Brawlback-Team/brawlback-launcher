@@ -102,7 +102,7 @@ export const ModsOptions = () => {
           placeholder="No file set"
           disabled={verifying || netplayDolphinOpen || playbackDolphinOpen}
           options={{
-            filters: [{ name: "Melee ISO", extensions: ["iso", "gcm", "gcz"] }],
+            filters: [{ name: "Brawl ISO", extensions: ["iso", "gcm", "gcz"] }],
           }}
           endAdornment={
             <Box

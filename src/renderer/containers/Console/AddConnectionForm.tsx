@@ -7,7 +7,7 @@ import Collapse from "@mui/material/Collapse";
 import FormHelperText from "@mui/material/FormHelperText";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { Ports } from "@slippi/slippi-js";
+// import { Ports } from "@slippi/slippi-js";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 

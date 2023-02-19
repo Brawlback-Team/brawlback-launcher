@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { BuildInfo } from "@/containers/Settings/BuildInfo";
-import { withSlippiBackground } from "@/styles/withSlippiBackground";
+import { withBrawlbackBackground } from "@/styles/withBrawlbackBackground";
 
 export const LoadingView = () => {
   return (
@@ -12,7 +12,7 @@ export const LoadingView = () => {
         width: 100%;
       `}
     >
-      <LoadingScreen css={withSlippiBackground} message="Just a sec..." />
+      <LoadingScreen css={withBrawlbackBackground} message="Just a sec..." />
       <div
         css={css`
           position: fixed;

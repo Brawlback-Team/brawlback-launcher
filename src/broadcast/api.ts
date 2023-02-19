@@ -1,12 +1,12 @@
 /* eslint-disable import/no-default-export */
 
 import {
+  ipc_brawlbackStatusChangedEvent,
   ipc_broadcastErrorOccurredEvent,
   ipc_broadcastListUpdatedEvent,
   ipc_broadcastReconnectEvent,
   ipc_dolphinStatusChangedEvent,
   ipc_refreshBroadcastList,
-  ipc_slippiStatusChangedEvent,
   ipc_spectateErrorOccurredEvent,
   ipc_spectateReconnectEvent,
   ipc_startBroadcast,
@@ -46,8 +46,8 @@ const broadcastApi: BroadcastService = {
     });
     return destroy;
   },
-  onSlippiStatusChanged(handle: (status: number) => void) {
-    const { destroy } = ipc_slippiStatusChangedEvent.renderer!.handle(async ({ status }) => {
+  onBrawlbackStatusChanged(handle: (status: number) => void) {
+    const { destroy } = ipc_brawlbackStatusChangedEvent.renderer!.handle(async ({ status }) => {
       handle(status);
     });
     return destroy;

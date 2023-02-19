@@ -1,4 +1,4 @@
-import { SlpFileWriter, SlpFileWriterEvent } from "@slippi/slippi-js";
+//import { SlpFileWriter, SlpFileWriterEvent } from "@slippi/slippi-js";
 import { EventEmitter } from "events";
 import * as fs from "fs-extra";
 import _ from "lodash";
@@ -8,7 +8,7 @@ import { client as WebSocketClient } from "websocket";
 import type { BroadcasterItem } from "./types";
 import { SpectateEvent } from "./types";
 
-const SLIPPI_WS_SERVER = process.env.SLIPPI_WS_SERVER;
+const BRAWLBACK_WS_SERVER = process.env.BRAWLBACK_WS_SERVER;
 
 const DOLPHIN_INSTANCE_ID = "spectate";
 
@@ -24,7 +24,7 @@ const generatePlaybackId = (broadcastId: string) => `spectate-${broadcastId}`;
 
 /**
  * Responsible for retrieving Dolphin game data over enet and sending the data
- * to the Slippi server over websockets.
+ * to the Brawlback server over websockets.
  * TODO: Have SpectateManager only care about reading the data stream and writing it to a file.
  * Dealing with dolphin related details should be handled elsewhere.
  */
@@ -85,7 +85,7 @@ export class SpectateManager extends EventEmitter {
   }
 
   /**
-   * Connects to the Slippi server and the local Dolphin instance
+   * Connects to the Brawlback server and the local Dolphin instance
    */
   public async connect(authToken: string) {
     if (this.wsConnection) {
@@ -173,9 +173,9 @@ export class SpectateManager extends EventEmitter {
 
         resolve();
       });
-      if (SLIPPI_WS_SERVER) {
+      if (BRAWLBACK_WS_SERVER) {
         this.emit(SpectateEvent.LOG, "Connecting to spectate server");
-        socket.connect(SLIPPI_WS_SERVER, "spectate-protocol", undefined, headers);
+        socket.connect(BRAWLBACK_WS_SERVER, "spectate-protocol", undefined, headers);
       }
     });
   }

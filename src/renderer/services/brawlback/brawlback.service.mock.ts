@@ -2,7 +2,7 @@ import type { PlayKey } from "@dolphin/types";
 
 import type { AuthService } from "../auth/types";
 import { delayAndMaybeError } from "../utils";
-import type { SlippiBackendService } from "./types";
+import type { BrawlbackBackendService } from "./types";
 
 const SHOULD_ERROR = false;
 
@@ -15,7 +15,7 @@ const fakeUsers: PlayKey[] = [
   },
 ];
 
-class MockSlippiBackendClient implements SlippiBackendService {
+class MockBrawlbackBackendClient implements BrawlbackBackendService {
   constructor(private authService: AuthService) {}
 
   @delayAndMaybeError(SHOULD_ERROR)
@@ -62,6 +62,6 @@ class MockSlippiBackendClient implements SlippiBackendService {
   }
 }
 
-export default function createMockSlippiClient(authService: AuthService): SlippiBackendService {
-  return new MockSlippiBackendClient(authService);
+export default function createMockBrawlbackClient(authService: AuthService): BrawlbackBackendService {
+  return new MockBrawlbackBackendClient(authService);
 }

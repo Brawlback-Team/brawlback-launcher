@@ -2,7 +2,7 @@ import { colors } from "@common/colors";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Button from "@mui/material/Button";
-import { ConnectionStatus } from "@slippi/slippi-js";
+// import { ConnectionStatus } from "@slippi/slippi-js";
 import moment from "moment";
 import React from "react";
 import TimeAgo from "react-timeago";
@@ -11,7 +11,7 @@ import { StartBroadcastDialog } from "./StartBroadcastDialog";
 
 export interface BroadcastPanelProps {
   dolphinStatus: ConnectionStatus;
-  slippiServerStatus: ConnectionStatus;
+  brawlbackServerStatus: ConnectionStatus;
   startTime: Date | null;
   endTime: Date | null;
   onStartBroadcast: (viewerId: string) => void;
@@ -19,7 +19,7 @@ export interface BroadcastPanelProps {
 }
 
 export const BroadcastPanel: React.FC<BroadcastPanelProps> = ({
-  slippiServerStatus,
+  brawlbackServerStatus,
   dolphinStatus,
   startTime,
   endTime,
@@ -28,8 +28,9 @@ export const BroadcastPanel: React.FC<BroadcastPanelProps> = ({
 }) => {
   const [modalOpen, setModalOpen] = React.useState(false);
   const isDisconnected =
-    slippiServerStatus === ConnectionStatus.DISCONNECTED && dolphinStatus === ConnectionStatus.DISCONNECTED;
-  const isConnected = slippiServerStatus === ConnectionStatus.CONNECTED && dolphinStatus === ConnectionStatus.CONNECTED;
+    brawlbackServerStatus === ConnectionStatus.DISCONNECTED && dolphinStatus === ConnectionStatus.DISCONNECTED;
+  const isConnected =
+    brawlbackServerStatus === ConnectionStatus.CONNECTED && dolphinStatus === ConnectionStatus.CONNECTED;
 
   const broadcastDuration = startTime && endTime ? moment.duration(moment(endTime).diff(moment(startTime))) : null;
 

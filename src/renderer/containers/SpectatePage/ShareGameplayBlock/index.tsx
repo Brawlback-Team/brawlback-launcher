@@ -1,4 +1,4 @@
-import { Ports } from "@slippi/slippi-js";
+// import { Ports } from "@slippi/slippi-js";
 import React from "react";
 
 import { InfoBlock } from "@/components/InfoBlock";
@@ -19,7 +19,7 @@ export const ShareGameplayBlock: React.FC<{ className?: string }> = ({ className
   const playKey = useAccount((store) => store.playKey);
   const startTime = useConsole((store) => store.startTime);
   const endTime = useConsole((store) => store.endTime);
-  const slippiStatus = useConsole((store) => store.slippiConnectionStatus);
+  const brawlbackStatus = useConsole((store) => store.brawlbackConnectionStatus);
   const dolphinStatus = useConsole((store) => store.dolphinConnectionStatus);
   const [start, stop] = useBroadcast();
   const { showError } = useToasts();
@@ -27,7 +27,7 @@ export const ShareGameplayBlock: React.FC<{ className?: string }> = ({ className
   return (
     <InfoBlock title="Share your gameplay" className={className}>
       <BroadcastPanel
-        slippiServerStatus={slippiStatus}
+        brawlbackServerStatus={brawlbackStatus}
         dolphinStatus={dolphinStatus}
         startTime={startTime}
         endTime={endTime}

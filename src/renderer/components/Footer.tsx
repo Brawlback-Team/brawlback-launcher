@@ -29,7 +29,7 @@ export const BasicFooter = styled.div`
 export const Footer: React.FC = () => {
   return (
     <Outer>
-      <Social title="Follow Project Slippi on Twitter" url={`https://twitter.com/${socials.twitterId}`}>
+      <Social title="Follow Project Brawlback on Twitter" url={`https://twitter.com/${socials.twitterId}`}>
         <TwitterIcon />
       </Social>
       <Social title="Join the Discord" url={socials.discordUrl}>
@@ -44,7 +44,7 @@ export const Footer: React.FC = () => {
           margin-left: 20px;
         `}
       >
-        <Social url={socials.patreonUrl} title="Support Project Slippi on Patreon">
+        <Social url={socials.patreonUrl} title="Support Project Brawlback on Patreon">
           <div
             css={css`
               text-transform: uppercase;
@@ -52,7 +52,7 @@ export const Footer: React.FC = () => {
               margin-right: 20px;
             `}
           >
-            Support Slippi
+            Support Brawlback
           </div>
           <PatreonIcon fill={colors.purpleLight} />
         </Social>

@@ -1,6 +1,6 @@
 import type { PlayKey } from "@dolphin/types";
 
-export interface SlippiBackendService {
+export interface BrawlbackBackendService {
   validateUserId(userId: string): Promise<{ displayName: string; connectCode: string }>;
   fetchPlayKey(): Promise<PlayKey | null>;
   assertPlayKey(playKey: PlayKey): Promise<void>;

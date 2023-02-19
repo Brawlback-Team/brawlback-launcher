@@ -1,9 +1,9 @@
 import { DolphinLaunchType } from "@dolphin/types";
 
 import { AdvancedAppSettings } from "./AdvancedAppSettings";
+import { BrawlOptions } from "./BrawlOptions";
 import { DolphinSettings } from "./DolphinSettings";
 import { HelpPage } from "./HelpPage";
-import { MeleeOptions } from "./MeleeOptions";
 import { ReplayOptions } from "./ReplayOptions";
 import type { SettingSection } from "./types";
 
@@ -13,8 +13,8 @@ export const settings: SettingSection[] = [
     items: [
       {
         name: "Game",
-        path: "melee-options",
-        component: <MeleeOptions />,
+        path: "brawl-options",
+        component: <BrawlOptions />,
       },
       {
         name: "Replays",

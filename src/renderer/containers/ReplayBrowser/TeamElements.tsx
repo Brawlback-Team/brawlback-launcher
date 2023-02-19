@@ -1,6 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import type { GameStartType, MetadataType } from "@slippi/slippi-js";
+// import type { GameStartType, MetadataType } from "@slippi/slippi-js";
 import _ from "lodash";
 import React from "react";
 

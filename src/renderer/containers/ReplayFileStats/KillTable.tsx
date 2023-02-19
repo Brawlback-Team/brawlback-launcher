@@ -5,8 +5,8 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import Tooltip from "@mui/material/Tooltip";
 import type { FileResult } from "@replays/types";
-import type { PlayerType, StatsType, StockType } from "@slippi/slippi-js";
-import { animations as animationUtils, Frames, moves as moveUtils } from "@slippi/slippi-js";
+// import type { PlayerType, StatsType, StockType } from "@slippi/slippi-js";
+// import { animations as animationUtils, Frames, moves as moveUtils } from "@slippi/slippi-js";
 import _ from "lodash";
 import React from "react";
 

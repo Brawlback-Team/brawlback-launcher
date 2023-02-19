@@ -1,24 +1,24 @@
 {
-  "productName": "Slippi Launcher",
-  "appId": "com.github.projectslippi.slippidesktopapp",
+  "productName": "Brawlback Launcher",
+  "appId": "com.github.brawlbackteam.brawlbacklauncher",
   "asar": true,
   "asarUnpack": ["**\\*.{node,dll}", "./dist/main/*.js", "./node_modules/**/*"],
   "files": ["dist", "node_modules", "package.json"],
   "afterSign": ".erb/scripts/notarize.js",
   "fileAssociations": {
-    "ext": "slp",
-    "name": "slp",
-    "description": "Slippi File Format",
+    "ext": "brba",
+    "name": "brba",
+    "description": "Brawlback File Format",
     "icon": "./assets/file.ico"
   },
-  "artifactName": "Slippi-Launcher-${version}-${os}.${ext}",
+  "artifactName": "Brawlback-Launcher-${version}-${os}.${ext}",
   "mac": {
     "target": {
       "target": "default",
       "arch": "universal"
     },
     "fileAssociations": {
-      "ext": "slp",
+      "ext": "brba",
       "role": "Viewer"
     },
     "type": "distribution",
@@ -35,7 +35,7 @@
     "minimumSystemVersion": "10.13.6"
   },
   "dmg": {
-    "artifactName": "Slippi-Launcher-${version}.${ext}",
+    "artifactName": "Brawlback-Launcher-${version}.${ext}",
     "icon": "assets/icon.icns",
     "contents": [
       {
@@ -55,7 +55,7 @@
     "icon": "assets/icon.ico"
   },
   "nsis": {
-    "artifactName": "Slippi-Launcher-Setup-${version}.${ext}",
+    "artifactName": "Brawlback-Launcher-Setup-${version}.${ext}",
     "include": ".erb/scripts/installer.nsh",
     "warningsAsErrors": false,
     "allowElevation": true,
@@ -67,13 +67,13 @@
     "category": "Development"
   },
   "appImage": {
-    "artifactName": "Slippi-Launcher-${version}-x86_64.${ext}"
+    "artifactName": "Brawlback-Launcher-${version}-x86_64.${ext}"
   },
   "protocols": [
     {
-      "name": "slippi",
+      "name": "brawlback",
       "role": "Viewer",
-      "schemes": ["slippi"]
+      "schemes": ["brawlback"]
     }
   ],
   "directories": {
@@ -84,7 +84,7 @@
   "extraResources": ["./assets/include/**"],
   "publish": {
     "provider": "github",
-    "owner": "project-slippi",
-    "repo": "slippi-launcher"
+    "owner": "Brawlback-Team",
+    "repo": "brawlback-launcher"
   }
 }

@@ -13,4 +13,6 @@ export const colors = {
   purpleDarker: "#1B0B28",
   offGray: "#2D313A",
   offWhite: "#E0E0E0",
+  seafoam: "#4EEEB7",
+  specialGrey: "#404040",
 };

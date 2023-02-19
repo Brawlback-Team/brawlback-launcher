@@ -21,7 +21,7 @@ export const UserInfo = ({
   const showError = serverError || !playKey;
   let subtext = "";
   if (serverError) {
-    subtext = "Slippi server error";
+    subtext = "Brawlback server error";
   } else if (!playKey) {
     subtext = "Online activation required";
   } else {

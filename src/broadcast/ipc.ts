@@ -41,8 +41,8 @@ export const ipc_broadcastReconnectEvent = makeEndpoint.renderer(
   <{ config: StartBroadcastConfig }>_,
 );
 
-export const ipc_slippiStatusChangedEvent = makeEndpoint.renderer(
-  "broadcast_slippiStatusChanged",
+export const ipc_brawlbackStatusChangedEvent = makeEndpoint.renderer(
+  "broadcast_brawlbackStatusChanged",
   <{ status: number }>_,
 );
 

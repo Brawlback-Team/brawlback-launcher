@@ -5,7 +5,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import type { StoredConnection } from "@settings/types";
-import { Ports } from "@slippi/slippi-js";
+// import { Ports } from "@slippi/slippi-js";
 import merge from "lodash/merge";
 import React from "react";
 

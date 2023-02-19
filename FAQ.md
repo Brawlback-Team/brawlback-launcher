@@ -2,9 +2,9 @@
 
 Rollback is a superior netcode implementation to the delay based netcode that everyone is used to. It provides smooth gameplay for a larger variety of situations. It also allows for playing with people much further away.
 
-## What versions of Melee does Slippi support?
+## What versions of Brawl does Brawlback support?
 
-We only support NTSC-U/J 1.02.
+We reqire a working version of Brawl. We will support P+ and possibly 3.6 as well as other mods as time permits.
 
 ## It says "Required DLLs/libraries are missing" when I hit Play!
 
@@ -24,7 +24,9 @@ Set your adapter to Wii U/Switch mode and then follow the section for your OS.
 
 ### Windows
 
-When installing Slippi Launcher you would have seen an option to also "install Gamecube adapter drivers". If you selected this, your adapter should already work once plugged into your computer. If you didn't select this option, you can just reinstall the latest version of the Slippi Launcher by downloading the installer from the [official Slippi website](https://slippi.gg). Make sure to select the "install Gamecube adapter drivers" option once the installer is run.
+When installing Brawlback Launcher you would have seen an option to also "install Gamecube adapter drivers". If you selected this, your adapter should already work once plugged into your computer. If you didn't select this option, you can just reinstall the latest version of the Brawlback Launcher by downloading the installer from the 
+
+[official Slippi website](https://slippi.gg). Make sure to select the "install Gamecube adapter drivers" option once the installer is run.
 
 You can confirm your controller adapters work by doing the following:
 
@@ -72,21 +74,17 @@ Game music breaks because of the changes required to support rollback so it isn'
 You can however play your own music for netplay with m'overlay which supports playing music based on the game state (like if you are on a specific stage or on the menus).
 Instructions can be found [here](https://github.com/bkacjios/m-overlay/wiki/Stage-music-for-Project-Slippi).
 
-Game music can be removed from replays by opening Dolphin (if using the Launcher go to Settings -> Netplay -> Configure Dolphin), right clicking Melee -> Properties -> Gecko Codes, and enabling the "Game Music OFF" gecko code.
+Game music can be removed from replays by opening Dolphin (if using the Launcher go to Settings -> Netplay -> Configure Dolphin), right clicking Brawl -> Properties -> Gecko Codes, and enabling the "Game Music OFF" gecko code.
 
 ## Can I use Widescreen when playing Slippi Online?
 
-Yes. To enable Widescreen for Slippi Online follow these steps. Open Dolphin (if using the Launcher go to Settings -> Netplay -> Configure Dolphin), right click on your Melee in the games list, go to Properties -> Gecko Codes. Then enable the Widescreen gecko code and set the Dolphin aspect ratio to 16:9 under the Graphics settings. Do not use the dolphin widescreen hack, it does not have the same effect as the gecko code.
+Yes. To enable Widescreen for Slippi Online follow these steps. Open Dolphin (if using the Launcher go to Settings -> Netplay -> Configure Dolphin), right click on your Brawl in the games list, go to Properties -> Gecko Codes. Then enable the Widescreen gecko code and set the Dolphin aspect ratio to 16:9 under the Graphics settings. Do not use the dolphin widescreen hack, it does not have the same effect as the gecko code.
 
-## Is UCF included in Slippi Online?
+## Where can I find a Brawl ISO?
 
-Yes, we currently ship with UCF 0.8 and it is applied everywhere by default.
+We do not provide a Brawl ISO and we cannot help you find one, you will need to acquire one yourself. You can look into this: (https://wiki.dolphin-emu.org/index.php?title=Ripping_Games).
 
-## Where can I find a Melee ISO?
-
-We do not provide a Melee NTSC 1.02 ISO and we cannot help you find one, you will need to acquire one yourself. You can look into this: (https://wiki.dolphin-emu.org/index.php?title=Ripping_Games).
-
-## Can I play Free For All with Slippi Online?
+## Can I play Free For All with Brawlback Online?
 
 No, only singles (1v1) and teams (2v2, 3v1, 2v1v1) are supported at this time. Free For All is not currently on our roadmap, but is not off the table entirely.
 
@@ -96,4 +94,4 @@ Some computers will have issues polling the adapter at the correct rate on some 
 
 ## Where are my replays?
 
-Replays are stored by default in `Documents/Slippi` on Windows and `~/Slippi` on macOS and Linux. The replay directory is configurable in the Replays settings of the Launcher.
+Replays are stored by default in `Documents/Brawlback` on Windows and `~/Brawlback` on macOS and Linux. The replay directory is configurable in the Replays settings of the Launcher.

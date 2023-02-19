@@ -2,7 +2,7 @@
 // fails to obtain the paths required for file transport to work
 // when in Node worker context.
 
-import type { ConnectionStatus } from "@slippi/slippi-js";
+//import type { ConnectionStatus } from "@slippi/slippi-js";
 import type { ModuleMethods } from "threads/dist/types/master";
 import { Observable, Subject } from "threads/observable";
 import { expose } from "threads/worker";
@@ -17,7 +17,7 @@ interface Methods {
   stopBroadcast(): Promise<void>;
   getLogObservable(): Observable<string>;
   getErrorObservable(): Observable<Error | string>;
-  getSlippiStatusObservable(): Observable<{ status: ConnectionStatus }>;
+  getBrawlbackStatusObservable(): Observable<{ status: ConnectionStatus }>;
   getDolphinStatusObservable(): Observable<{ status: ConnectionStatus }>;
   getReconnectObservable(): Observable<{ config: StartBroadcastConfig }>;
 }
@@ -28,7 +28,7 @@ const broadcastManager = new BroadcastManager();
 
 const logSubject = new Subject<string>();
 const errorSubject = new Subject<Error | string>();
-const slippiStatusSubject = new Subject<{ status: ConnectionStatus }>();
+const brawlbackStatusSubject = new Subject<{ status: ConnectionStatus }>();
 const dolphinStatusSubject = new Subject<{ status: ConnectionStatus }>();
 const reconnectSubject = new Subject<{ config: StartBroadcastConfig }>();
 
@@ -38,8 +38,8 @@ broadcastManager.on(BroadcastEvent.LOG, (msg: string) => {
 broadcastManager.on(BroadcastEvent.ERROR, (err: Error | string) => {
   errorSubject.next(err);
 });
-broadcastManager.on(BroadcastEvent.SLIPPI_STATUS_CHANGE, (status: ConnectionStatus) => {
-  slippiStatusSubject.next({ status });
+broadcastManager.on(BroadcastEvent.BRAWLBACK_STATUS_CHANGE, (status: ConnectionStatus) => {
+  brawlbackStatusSubject.next({ status });
 });
 broadcastManager.on(BroadcastEvent.DOLPHIN_STATUS_CHANGE, (status: ConnectionStatus) => {
   dolphinStatusSubject.next({ status });
@@ -53,7 +53,7 @@ const methods: WorkerSpec = {
     // Clean up worker
     logSubject.complete();
     errorSubject.complete();
-    slippiStatusSubject.complete();
+    brawlbackStatusSubject.complete();
     dolphinStatusSubject.complete();
     reconnectSubject.complete();
 
@@ -71,8 +71,8 @@ const methods: WorkerSpec = {
   getErrorObservable(): Observable<Error | string> {
     return Observable.from(errorSubject);
   },
-  getSlippiStatusObservable(): Observable<{ status: ConnectionStatus }> {
-    return Observable.from(slippiStatusSubject);
+  getBrawlbackStatusObservable(): Observable<{ status: ConnectionStatus }> {
+    return Observable.from(brawlbackStatusSubject);
   },
   getDolphinStatusObservable(): Observable<{ status: ConnectionStatus }> {
     return Observable.from(dolphinStatusSubject);

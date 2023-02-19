@@ -1,4 +1,4 @@
-import { addGamePath, setSlippiSettings } from "@dolphin/config/config";
+import { addGamePath, setBrawlbackSettings } from "@dolphin/config/config";
 import { IniFile } from "@dolphin/config/iniFile";
 import { findDolphinExecutable } from "@dolphin/util";
 import { spawnSync } from "child_process";
@@ -25,11 +25,12 @@ export class DolphinInstallation {
         return path.join(this.installationFolder, "User");
       }
       case "darwin": {
-        return path.join(this.installationFolder, "Slippi Dolphin.app", "Contents", "Resources", "User");
+        return path.join(this.installationFolder, "Brawlback Dolphin.app", "Contents", "Resources", "User");
       }
       case "linux": {
         const configPath = path.join(os.homedir(), ".config");
-        const userFolderName = this.dolphinLaunchType === DolphinLaunchType.NETPLAY ? "SlippiOnline" : "SlippiPlayback";
+        const userFolderName =
+          this.dolphinLaunchType === DolphinLaunchType.NETPLAY ? "BrawlbackOnline" : "BrawlbackPlayback";
         return path.join(configPath, userFolderName);
       }
       default:
@@ -45,7 +46,7 @@ export class DolphinInstallation {
         return path.join(dolphinPath, "Sys");
       }
       case "darwin": {
-        return path.join(dolphinPath, "Slippi Dolphin.app", "Contents", "Resources", "Sys");
+        return path.join(dolphinPath, "Brawlback Dolphin.app", "Contents", "Resources", "Sys");
       }
       case "linux": {
         return path.join(app.getPath("userData"), type, "Sys");
@@ -156,7 +157,7 @@ export class DolphinInstallation {
   public async updateSettings(options: Partial<{ useMonthlySubfolders: boolean; replayPath: string }>): Promise<void> {
     const iniPath = path.join(this.userFolder, "Config", "Dolphin.ini");
     const iniFile = await IniFile.init(iniPath);
-    await setSlippiSettings(iniFile, options);
+    await setBrawlbackSettings(iniFile, options);
   }
 
   private async _isOutOfDate(latestVersion: string): Promise<boolean> {

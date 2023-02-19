@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
 import Help from "@mui/icons-material/Help";
+import type { PaletteMode } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
@@ -13,10 +14,9 @@ import React from "react";
 import { PathInput } from "@/components/PathInput";
 import { useDolphinStore } from "@/lib/dolphin/useDolphinStore";
 import { useIsoVerification } from "@/lib/hooks/useIsoVerification";
-import { useIsoPath, useLaunchMeleeOnPlay, useThemeMode } from "@/lib/hooks/useSettings";
+import { useIsoPath, useLaunchBrawlOnPlay, useThemeMode } from "@/lib/hooks/useSettings";
 
 import { SettingItem } from "./SettingItem";
-import { PaletteMode } from "@mui/material";
 
 const renderValidityStatus = (isoValidity: IsoValidity) => {
   switch (isoValidity) {
@@ -33,18 +33,18 @@ const renderValidityStatus = (isoValidity: IsoValidity) => {
   }
 };
 
-export const MeleeOptions: React.FC = () => {
+export const BrawlOptions: React.FC = () => {
   const verifying = useIsoVerification((state) => state.isValidating);
   const isoValidity = useIsoVerification((state) => state.validity);
   const [isoPath, setIsoPath] = useIsoPath();
-  const [launchMeleeOnPlay, setLaunchMelee] = useLaunchMeleeOnPlay();
+  const [launchBrawlOnPlay, setLaunchBrawl] = useLaunchBrawlOnPlay();
   const [themeMode, setThemeMode] = useThemeMode();
   const netplayDolphinOpen = useDolphinStore((store) => store.netplayOpened);
   const playbackDolphinOpen = useDolphinStore((store) => store.playbackOpened);
 
-  const onLaunchMeleeChange = async (value: string) => {
-    const launchMelee = value === "true";
-    await setLaunchMelee(launchMelee);
+  const onLaunchBrawlChange = async (value: string) => {
+    const launchBrawl = value === "true";
+    await setLaunchBrawl(launchBrawl);
   };
 
   return (
@@ -57,7 +57,7 @@ export const MeleeOptions: React.FC = () => {
           placeholder="No file set"
           disabled={verifying || netplayDolphinOpen || playbackDolphinOpen}
           options={{
-            filters: [{ name: "Melee ISO", extensions: ["iso", "gcm", "gcz"] }],
+            filters: [{ name: "Brawl ISO", extensions: ["iso", "gcm", "gcz"] }],
           }}
           endAdornment={
             <ValidationContainer className={verifying ? undefined : isoValidity.toLowerCase()}>
@@ -84,8 +84,8 @@ export const MeleeOptions: React.FC = () => {
       </SettingItem>
 
       <SettingItem name="Play Button Action" description="Choose what happens when the Play button is pressed.">
-        <RadioGroup row value={launchMeleeOnPlay} onChange={(_event, value) => onLaunchMeleeChange(value)}>
-          <FormControlLabel value={true} label="Launch Melee" control={<Radio />} />
+        <RadioGroup row value={launchBrawlOnPlay} onChange={(_event, value) => onLaunchBrawlChange(value)}>
+          <FormControlLabel value={true} label="Launch Brawl" control={<Radio />} />
           <FormControlLabel value={false} label="Launch Dolphin" control={<Radio />} />
         </RadioGroup>
       </SettingItem>

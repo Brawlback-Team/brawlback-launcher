@@ -14,7 +14,7 @@ export async function installDolphinOnMac({
   log?: (message: string) => void;
 }) {
   const backupLocation = destinationFolder + "_old";
-  const dolphinResourcesPath = path.join(destinationFolder, "Slippi Dolphin.app", "Contents", "Resources");
+  const dolphinResourcesPath = path.join(destinationFolder, "Brawlback Dolphin.app", "Contents", "Resources");
 
   const alreadyInstalled = await fs.pathExists(dolphinResourcesPath);
   if (alreadyInstalled) {
@@ -27,23 +27,29 @@ export async function installDolphinOnMac({
   const files = await fs.readdir(destinationFolder);
   await Promise.all(
     files
-      .filter((file) => file !== "Slippi Dolphin.app")
+      .filter((file) => file !== "Brawlback Dolphin.app")
       .map(async (file) => {
         await fs.remove(path.join(destinationFolder, file));
       }),
   );
 
   // sometimes permissions aren't set properly after the extraction so we will forcibly set them on install
-  const binaryLocation = path.join(destinationFolder, "Slippi Dolphin.app", "Contents", "MacOS", "Slippi Dolphin");
+  const binaryLocation = path.join(
+    destinationFolder,
+    "Brawlback Dolphin.app",
+    "Contents",
+    "MacOS",
+    "Brawlback Dolphin",
+  );
   const userInfo = os.userInfo();
-  await fs.chmod(path.join(destinationFolder, "Slippi Dolphin.app"), "777");
-  await fs.chown(path.join(destinationFolder, "Slippi Dolphin.app"), userInfo.uid, userInfo.gid);
+  await fs.chmod(path.join(destinationFolder, "Brawlback Dolphin.app"), "777");
+  await fs.chown(path.join(destinationFolder, "Brawlback Dolphin.app"), userInfo.uid, userInfo.gid);
   await fs.chmod(binaryLocation, "777");
   await fs.chown(binaryLocation, userInfo.uid, userInfo.gid);
 
   // move backed up User folder and user.json
   if (alreadyInstalled) {
-    const oldUserFolder = path.join(backupLocation, "Slippi Dolphin.app", "Contents", "Resources", "User");
+    const oldUserFolder = path.join(backupLocation, "Brawlback Dolphin.app", "Contents", "Resources", "User");
     const newUserFolder = path.join(dolphinResourcesPath, "User");
     log("moving User folder...");
     await fs.move(oldUserFolder, newUserFolder);

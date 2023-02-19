@@ -167,7 +167,7 @@ export async function verifyIsoMD5(isoPath: string): Promise<IsoValidity> {
       const data: Buffer = input.read();
 
       if (data) {
-        /* This seems to be specific to the sha1 hashing algorithm that slippi uses:
+        /* This seems to be specific to the sha1 hashing algorithm that //slippi uses:
         The idea seems to read in an integer from the first 8 bytes of data. 
         That's the revision, and if it is not equal to the number 2, then it's invalid.
         But we don't need this so we throw it out. 

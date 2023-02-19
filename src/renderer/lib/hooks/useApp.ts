@@ -31,7 +31,7 @@ export const useAppStore = create(
 );
 
 export const useAppInitialization = () => {
-  const { authService, slippiBackendService, dolphinService } = useServices();
+  const { authService, brawlbackBackendService, dolphinService } = useServices();
   const { showError } = useToasts();
   const initializing = useAppStore((store) => store.initializing);
   const initialized = useAppStore((store) => store.initialized);
@@ -67,15 +67,15 @@ export const useAppInitialization = () => {
 
         if (user) {
           try {
-            const key = await slippiBackendService.fetchPlayKey();
+            const key = await brawlbackBackendService.fetchPlayKey();
             setServerError(false);
             setPlayKey(key);
           } catch (err) {
             setServerError(true);
             log.warn(err);
 
-            const message = `Failed to communicate with Slippi servers. You either have no internet
-              connection or Slippi is experiencing some downtime. Playing online may or may not work.`;
+            const message = `Failed to communicate with Brawlback servers. You either have no internet
+              connection or Brawlback is experiencing some downtime. Playing online may or may not work.`;
             showError(message);
           }
         }

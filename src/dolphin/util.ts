@@ -19,7 +19,7 @@ export async function findDolphinExecutable(type: DolphinLaunchType, dolphinPath
       case "darwin":
         return filename.endsWith("Dolphin.app");
       case "linux": {
-        const appimagePrefix = type === DolphinLaunchType.NETPLAY ? "Slippi_Online" : "Slippi_Playback";
+        const appimagePrefix = type === DolphinLaunchType.NETPLAY ? "Brawlback_Online" : "Brawlback_Playback";
         return filename.startsWith(appimagePrefix) || filename.endsWith("dolphin-emu");
       }
       default:
@@ -29,12 +29,12 @@ export async function findDolphinExecutable(type: DolphinLaunchType, dolphinPath
 
   if (!result) {
     throw new Error(
-      `No ${type} Dolphin found in: ${dolphinPath}, try restarting the launcher. Ask in the Slippi Discord's support channels for further help`,
+      `No ${type} Dolphin found in: ${dolphinPath}, try restarting the launcher. Ask in the Brawlback Discord's support channels for further help`,
     );
   }
 
   if (process.platform === "darwin") {
-    const dolphinBinaryPath = path.join(dolphinPath, result, "Contents", "MacOS", "Slippi Dolphin");
+    const dolphinBinaryPath = path.join(dolphinPath, result, "Contents", "MacOS", "Brawlback Dolphin");
     const dolphinExists = await fs.pathExists(dolphinBinaryPath);
     if (!dolphinExists) {
       throw new Error(`No ${type} Dolphin found in: ${dolphinPath}, try resetting dolphin`);
