@@ -10,9 +10,9 @@ import {
   QUERY_GET_USER_KEY,
   QUERY_VALIDATE_USER_ID,
 } from "./graphqlEndpoints";
-import type { BrawlbackBackendService } from "./types";
+import type { SlippiBackendService } from "./types";
 
-const BRAWLBACK_BACKEND_URL = process.env.BRAWLBACK_GRAPHQL_ENDPOINT;
+const SLIPPI_BACKEND_URL = process.env.SLIPPI_GRAPHQL_ENDPOINT;
 
 const handleErrors = (errors: readonly GraphQLError[] | undefined) => {
   if (errors) {
@@ -24,7 +24,7 @@ const handleErrors = (errors: readonly GraphQLError[] | undefined) => {
   }
 };
 
-class BrawlbackBackendClient implements BrawlbackBackendService {
+class SlippiBackendClient implements SlippiBackendService {
   private httpLink: HttpLink;
   private client: ApolloClient<NormalizedCacheObject>;
 
@@ -33,11 +33,11 @@ class BrawlbackBackendClient implements BrawlbackBackendService {
     private readonly dolphinService: DolphinService,
     clientVersion?: string,
   ) {
-    this.httpLink = new HttpLink({ uri: BRAWLBACK_BACKEND_URL });
+    this.httpLink = new HttpLink({ uri: SLIPPI_BACKEND_URL });
     this.client = new ApolloClient({
       link: this.httpLink,
       cache: new InMemoryCache(),
-      name: "brawlback-launcher",
+      name: "slippi-launcher",
       version: clientVersion,
     });
   }
@@ -156,10 +156,10 @@ class BrawlbackBackendClient implements BrawlbackBackendService {
   }
 }
 
-export default function createBrawlbackClient(
+export default function createSlippiClient(
   authService: AuthService,
   dolphinService: DolphinService,
   clientVersion?: string,
-): BrawlbackBackendService {
-  return new BrawlbackBackendClient(authService, dolphinService, clientVersion);
+): SlippiBackendService {
+  return new SlippiBackendClient(authService, dolphinService, clientVersion);
 }

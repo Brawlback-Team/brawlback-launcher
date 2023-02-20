@@ -6,13 +6,13 @@ import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import { useState } from "react";
 
-import { BrawlOptions } from "@/containers/Settings/BrawlOptions";
+import { MeleeOptions } from "@/containers/Settings/MeleeOptions";
 import { ModsOptions } from "@/containers/Settings/ModsOptions";
 
 const tabSwitch = (index: number) => {
   switch (index) {
     case 0:
-      return <BrawlOptions />;
+      return <MeleeOptions />;
     case 1:
       return <ModsOptions />;
     default:

@@ -29,7 +29,6 @@ export const NewsFeed = React.memo(function NewsFeedContainer() {
   }
 
   if (error) {
-    console.error(error, "HELLO");
     return (
       <div
         css={css`

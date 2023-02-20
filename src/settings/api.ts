@@ -1,5 +1,4 @@
 /* eslint-disable import/no-default-export */
-import type { PaletteMode } from "@mui/material";
 import { ipcRenderer } from "electron";
 
 import {
@@ -11,7 +10,7 @@ import {
   ipc_setAutoUpdateLauncher,
   ipc_setExtraSlpPaths,
   ipc_setIsoPath,
-  ipc_setLaunchBrawlOnPlay,
+  ipc_setLaunchMeleeOnPlay,
   ipc_setNetplayDolphinPath,
   ipc_setPlaybackDolphinPath,
   ipc_setRootSlpPath,
@@ -20,7 +19,8 @@ import {
   ipc_settingsUpdatedEvent,
   ipc_setUseMonthlySubfolders,
 } from "./ipc";
-import type { AppSettings, Mod, StoredConnection } from "./types";
+import type { AppSettings, StoredConnection, Mod } from "./types";
+import type { PaletteMode } from "@mui/material";
 
 export default {
   getAppSettingsSync() {
@@ -66,8 +66,8 @@ export default {
   async setPlaybackDolphinPath(playbackDolphinPath: string): Promise<void> {
     await ipc_setPlaybackDolphinPath.renderer!.trigger({ path: playbackDolphinPath });
   },
-  async setLaunchBrawlOnPlay(launchBrawl: boolean): Promise<void> {
-    await ipc_setLaunchBrawlOnPlay.renderer!.trigger({ launchBrawl });
+  async setLaunchMeleeOnPlay(launchMelee: boolean): Promise<void> {
+    await ipc_setLaunchMeleeOnPlay.renderer!.trigger({ launchMelee });
   },
   async setAutoUpdateLauncher(autoUpdateLauncher: boolean): Promise<void> {
     await ipc_setAutoUpdateLauncher.renderer!.trigger({ autoUpdateLauncher });

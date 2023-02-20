@@ -1,5 +1,4 @@
 import { DolphinLaunchType } from "@dolphin/types";
-import type { PaletteMode } from "@mui/material";
 import electronSettings from "electron-settings";
 import fs from "fs";
 import merge from "lodash/merge";
@@ -7,7 +6,8 @@ import set from "lodash/set";
 
 import { defaultAppSettings } from "./defaultSettings";
 import { ipc_settingsUpdatedEvent } from "./ipc";
-import type { AppSettings, Mod, StoredConnection } from "./types";
+import type { AppSettings, StoredConnection, Mod } from "./types";
+import type { PaletteMode } from "@mui/material";
 
 electronSettings.configure({
   fileName: "Settings",
@@ -86,8 +86,8 @@ export class SettingsManager {
     await this._set("settings.playbackDolphinPath", dolphinPath);
   }
 
-  public async setLaunchBrawlOnPlay(launchBrawl: boolean): Promise<void> {
-    await this._set("settings.launchBrawlOnPlay", launchBrawl);
+  public async setLaunchMeleeOnPlay(launchMelee: boolean): Promise<void> {
+    await this._set("settings.launchMeleeOnPlay", launchMelee);
   }
 
   public async setAutoUpdateLauncher(autoUpdateLauncher: boolean): Promise<void> {

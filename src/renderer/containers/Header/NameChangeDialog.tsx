@@ -16,7 +16,7 @@ export const NameChangeDialog: React.FC<{
   open: boolean;
   handleClose: () => void;
 }> = ({ displayName, open, handleClose }) => {
-  const { brawlbackBackendService } = useServices();
+  const { slippiBackendService } = useServices();
   const { handleSubmit, watch, control } = useForm<{ displayName: string }>({ defaultValues: { displayName } });
 
   const name = watch("displayName");
@@ -26,7 +26,7 @@ export const NameChangeDialog: React.FC<{
 
   const submitNameChange = useAsync(async () => {
     try {
-      await brawlbackBackendService.changeDisplayName(name);
+      await slippiBackendService.changeDisplayName(name);
       setDisplayName(name);
     } catch (err) {
       console.error(err);

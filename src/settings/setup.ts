@@ -5,14 +5,14 @@ import { autoUpdater } from "electron-updater";
 import path from "path";
 
 import {
+  ipc_getModList,
   ipc_addNewConnection,
   ipc_deleteConnection,
   ipc_editConnection,
-  ipc_getModList,
   ipc_setAutoUpdateLauncher,
   ipc_setExtraSlpPaths,
   ipc_setIsoPath,
-  ipc_setLaunchBrawlOnPlay,
+  ipc_setLaunchMeleeOnPlay,
   ipc_setNetplayDolphinPath,
   ipc_setPlaybackDolphinPath,
   ipc_setRootSlpPath,
@@ -41,12 +41,12 @@ export default function setupSettingsIpc({
 
   ipc_getModList.main!.handle(async () => {
     return settingsManager.getModList();
-  });
+  })
 
   ipc_setThemeMode.main!.handle(async ({ mode }) => {
     await settingsManager.setThemeMode(mode);
     return { success: true };
-  });
+  })
 
   ipc_setIsoPath.main!.handle(async ({ isoPath }) => {
     await settingsManager.setIsoPath(isoPath);
@@ -108,8 +108,8 @@ export default function setupSettingsIpc({
     return { success: true };
   });
 
-  ipc_setLaunchBrawlOnPlay.main!.handle(async ({ launchBrawl }) => {
-    await settingsManager.setLaunchBrawlOnPlay(launchBrawl);
+  ipc_setLaunchMeleeOnPlay.main!.handle(async ({ launchMelee }) => {
+    await settingsManager.setLaunchMeleeOnPlay(launchMelee);
     return { success: true };
   });
 

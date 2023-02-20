@@ -58,10 +58,10 @@ export class MenuBuilder {
 
   private buildDarwinTemplate(): MenuItemConstructorOptions[] {
     const subMenuAbout: DarwinMenuItemConstructorOptions = {
-      label: "Brawlback Launcher",
+      label: "Slippi Launcher",
       submenu: [
         {
-          label: "About Brawlback Launcher",
+          label: "About Slippi Launcher",
           selector: "orderFrontStandardAboutPanel:",
         },
         { type: "separator" },
@@ -78,7 +78,7 @@ export class MenuBuilder {
         { label: "Services", submenu: [] },
         { type: "separator" },
         {
-          label: "Hide Brawlback Launcher",
+          label: "Hide Slippi Launcher",
           accelerator: "Command+H",
           selector: "hide:",
         },
@@ -175,7 +175,7 @@ export class MenuBuilder {
         { label: "Bring All to Front", selector: "arrangeInFront:" },
         {
           id: "macos-window-toggle",
-          label: "Brawlback Launcher",
+          label: "Slippi Launcher",
           accelerator: "Cmd+0",
           visible: false,
           enabled: false,
@@ -191,7 +191,7 @@ export class MenuBuilder {
       label: "Help",
       submenu: [
         {
-          label: "Open Brawlback Discord Server",
+          label: "Open Slippi Discord Server",
           click() {
             void shell.openExternal("http://discord.gg/pPfEaW5");
           },
@@ -268,7 +268,7 @@ export class MenuBuilder {
         label: "Help",
         submenu: [
           {
-            label: "Open Brawlback Discord Server",
+            label: "Open Slippi Discord Server",
             click() {
               void shell.openExternal("http://discord.gg/pPfEaW5");
             },

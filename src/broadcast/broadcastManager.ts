@@ -1,13 +1,13 @@
-//import { ConnectionEvent, ConnectionStatus, DolphinConnection, DolphinMessageType } from "@slippi/slippi-js";
+import { ConnectionEvent, ConnectionStatus, DolphinConnection, DolphinMessageType } from "@slippi/slippi-js";
 import { EventEmitter } from "events";
 import _ from "lodash";
 import type { connection, Message } from "websocket";
 import { client as WebSocketClient } from "websocket";
 
-import type { BrawlbackBroadcastPayloadEvent, StartBroadcastConfig } from "./types";
+import type { SlippiBroadcastPayloadEvent, StartBroadcastConfig } from "./types";
 import { BroadcastEvent } from "./types";
 
-const BRAWLBACK_WS_SERVER = process.env.BRAWLBACK_WS_SERVER;
+const SLIPPI_WS_SERVER = process.env.SLIPPI_WS_SERVER;
 
 // This variable defines the number of events saved in the case of a disconnect. 1800 should
 // support disconnects of 30 seconds at most
@@ -15,15 +15,15 @@ const BACKUP_MAX_LENGTH = 1800;
 
 /**
  * Responsible for retrieving Dolphin game data over enet and sending the data
- * to the Brawlback server over websockets.
+ * to the Slippi server over websockets.
  */
 export class BroadcastManager extends EventEmitter {
   private broadcastId: string | null;
   private isBroadcastReady: boolean;
-  private incomingEvents: BrawlbackBroadcastPayloadEvent[];
-  private backupEvents: BrawlbackBroadcastPayloadEvent[];
+  private incomingEvents: SlippiBroadcastPayloadEvent[];
+  private backupEvents: SlippiBroadcastPayloadEvent[];
   private nextGameCursor: number | null;
-  private brawlbackStatus: ConnectionStatus;
+  private slippiStatus: ConnectionStatus;
 
   private wsConnection: connection | null;
   private dolphinConnection: DolphinConnection;
@@ -34,7 +34,7 @@ export class BroadcastManager extends EventEmitter {
     this.isBroadcastReady = false;
     this.wsConnection = null;
     this.incomingEvents = [];
-    this.brawlbackStatus = ConnectionStatus.DISCONNECTED;
+    this.slippiStatus = ConnectionStatus.DISCONNECTED;
 
     // We need to store events as we process them in the event that we get a disconnect and
     // we need to re-send some events to the server
@@ -47,7 +47,7 @@ export class BroadcastManager extends EventEmitter {
       this.emit(BroadcastEvent.LOG, `Dolphin status change: ${status}`);
       this.emit(BroadcastEvent.DOLPHIN_STATUS_CHANGE, status);
 
-      // Disconnect from Brawlback server when we disconnect from Dolphin
+      // Disconnect from Slippi server when we disconnect from Dolphin
       if (status === ConnectionStatus.DISCONNECTED) {
         // Kind of jank but this will hopefully stop the game on the spectator side when someone
         // kills Dolphin. May no longer be necessary after Dolphin itself sends these messages
@@ -80,7 +80,7 @@ export class BroadcastManager extends EventEmitter {
   }
 
   /**
-   * Connects to the Brawlback server and the local Dolphin instance
+   * Connects to the Slippi server and the local Dolphin instance
    */
   public async start(config: StartBroadcastConfig) {
     // First try to connect to Dolphin if we haven't already
@@ -102,8 +102,8 @@ export class BroadcastManager extends EventEmitter {
       return;
     }
 
-    // Indicate we're connecting to the Brawlback server
-    this._setBrawlbackStatus(ConnectionStatus.CONNECTING);
+    // Indicate we're connecting to the Slippi server
+    this._setSlippiStatus(ConnectionStatus.CONNECTING);
 
     const headers = {
       target: config.viewerId,
@@ -111,8 +111,8 @@ export class BroadcastManager extends EventEmitter {
       authorization: `Bearer ${config.authToken}`,
     };
 
-    if (!BRAWLBACK_WS_SERVER) {
-      throw new Error("Brawlback websocket server is undefined");
+    if (!SLIPPI_WS_SERVER) {
+      throw new Error("Slippi websocket server is undefined");
     }
 
     const socket = new WebSocketClient({ disableNagleAlgorithm: true });
@@ -171,7 +171,7 @@ export class BroadcastManager extends EventEmitter {
         this.isBroadcastReady = true;
 
         this.broadcastId = broadcastId;
-        this._setBrawlbackStatus(ConnectionStatus.CONNECTED);
+        this._setSlippiStatus(ConnectionStatus.CONNECTED);
 
         // Process any events that may have been missed when we disconnected
         this._handleGameData();
@@ -192,12 +192,12 @@ export class BroadcastManager extends EventEmitter {
           // Here we have an abnormal disconnect... try to reconnect?
           // This error seems to occur primarily when the auth token for firebase expires,
           // which lasts 1 hour, so the plan is to get a new token, use the same config, and reconnect.
-          this._setBrawlbackStatus(ConnectionStatus.RECONNECT_WAIT);
+          this._setSlippiStatus(ConnectionStatus.RECONNECT_WAIT);
           this.emit(BroadcastEvent.RECONNECT, config);
         } else {
           // If normal close, disconnect from dolphin
           this.dolphinConnection.disconnect();
-          this._setBrawlbackStatus(ConnectionStatus.DISCONNECTED);
+          this._setSlippiStatus(ConnectionStatus.DISCONNECTED);
         }
       });
 
@@ -308,7 +308,7 @@ export class BroadcastManager extends EventEmitter {
     });
 
     this.emit(BroadcastEvent.LOG, "Connecting to WS service");
-    socket.connect(BRAWLBACK_WS_SERVER, "broadcast-protocol", undefined, headers);
+    socket.connect(SLIPPI_WS_SERVER, "broadcast-protocol", undefined, headers);
   }
 
   public stop() {
@@ -449,11 +449,11 @@ export class BroadcastManager extends EventEmitter {
     }
   }
 
-  private _setBrawlbackStatus(status: ConnectionStatus) {
-    if (this.brawlbackStatus === ConnectionStatus.RECONNECT_WAIT && status === ConnectionStatus.CONNECTING) {
+  private _setSlippiStatus(status: ConnectionStatus) {
+    if (this.slippiStatus === ConnectionStatus.RECONNECT_WAIT && status === ConnectionStatus.CONNECTING) {
       return;
     }
-    this.brawlbackStatus = status;
-    this.emit(BroadcastEvent.BRAWLBACK_STATUS_CHANGE, status);
+    this.slippiStatus = status;
+    this.emit(BroadcastEvent.SLIPPI_STATUS_CHANGE, status);
   }
 }

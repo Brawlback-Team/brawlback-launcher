@@ -1,5 +1,5 @@
 import { colors } from "@common/colors";
-import { brawlbackHomepage } from "@common/constants";
+import { slippiHomepage } from "@common/constants";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
@@ -19,7 +19,7 @@ import { useSettings } from "@/lib/hooks/useSettings";
 import { useSettingsModal } from "@/lib/hooks/useSettingsModal";
 import { useToasts } from "@/lib/hooks/useToasts";
 import { useServices } from "@/services";
-import brawlbackLogo from "@/styles/images/brawlback-logo.svg";
+import slippiLogo from "@/styles/images/slippi-logo.svg";
 import { platformTitleBarStyles } from "@/styles/platformTitleBarStyles";
 
 import { ActivateOnlineDialog } from "./ActivateOnlineDialog";
@@ -40,7 +40,7 @@ export interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
-  const { dolphinService, brawlbackBackendService } = useServices();
+  const { dolphinService, slippiBackendService } = useServices();
   const [startGameModalOpen, setStartGameModalOpen] = React.useState(false);
   const [activateOnlineModal, setActivateOnlineModal] = React.useState(false);
   const openModal = useLoginModal((store) => store.openModal);
@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
   const currentUser = useAccount((store) => store.user);
   const playKey = useAccount((store) => store.playKey);
   const serverError = useAccount((store) => store.serverError);
-  const brawlIsoPath = useSettings((store) => store.settings.isoPath) || undefined;
+  const meleeIsoPath = useSettings((store) => store.settings.isoPath) || undefined;
   const { showError } = useToasts();
   const { launchNetplay } = useDolphinActions(dolphinService);
 
@@ -70,7 +70,7 @@ export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
         if (playKey) {
           // Ensure the play key is saved to disk
           try {
-            await brawlbackBackendService.assertPlayKey(playKey);
+            await slippiBackendService.assertPlayKey(playKey);
           } catch (err) {
             showError(err);
             return;
@@ -78,8 +78,8 @@ export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
         }
       }
 
-      if (!brawlIsoPath) {
-        showError("No Brawl ISO file specified");
+      if (!meleeIsoPath) {
+        showError("No Melee ISO file specified");
         return;
       }
 
@@ -87,7 +87,7 @@ export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
 
       return;
     },
-    [currentUser, launchNetplay, brawlIsoPath, playKey, serverError, showError, brawlbackBackendService],
+    [currentUser, launchNetplay, meleeIsoPath, playKey, serverError, showError, slippiBackendService],
   );
 
   return (
@@ -105,9 +105,9 @@ export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
           padding-left: 5px;
         `}
       >
-        <Tooltip title="Open brawlback.gg">
-          <Button LinkComponent={ExternalLink} href={brawlbackHomepage} style={isMac ? { marginTop: 10 } : undefined}>
-            <img src={brawlbackLogo} width="38px" />
+        <Tooltip title="Open Slippi.gg">
+          <Button LinkComponent={ExternalLink} href={slippiHomepage} style={isMac ? { marginTop: 10 } : undefined}>
+            <img src={slippiLogo} width="38px" />
           </Button>
         </Tooltip>
         <div

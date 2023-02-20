@@ -15,27 +15,27 @@ export interface StoredConnection {
 }
 
 export type Mod = {
-  elfPath: string; // path for launcher of the mod
-  sdCardPath: string; // path for sd card with codes for specific mod
+  elfPath: string;// path for launcher of the mod
+  sdCardPath: string;// path for sd card with codes for specific mod
   name: string;
-};
+}
 
 export type AppSettings = {
   previousVersion?: string;
-  connections: StoredConnection[]; // connections used for console restreaming (legacy code)
+  connections: StoredConnection[];// connections used for console restreaming (from slippi)
   settings: {
-    theme: PaletteMode; // theme used by renderer
-    isoPath: string | null; // path to brawl iso
-    rootSlpPath: string; // path for stored replays (legacy code)
-    useMonthlySubfolders: boolean; // whether to store replays in monthly format (legacy code)
-    spectateSlpPath: string; // replays from spectating (legacy code)
-    extraSlpPaths: string[]; // (legacy code)
-    netplayDolphinPath: string; // (legacy code)
-    playbackDolphinPath: string; // (legacy code)
-    dolphinPath: string; // brawlback uses single dolphin build for netplay and replays
-    launchBrawlOnPlay: boolean; // Whether to launch dolphin app or launch game (legacy code)
-    autoUpdateLauncher: boolean; // (legacy code)
-    selectedMod: number; // index of last played mod to be auto selected
+    theme: PaletteMode;// theme used by renderer
+    isoPath: string | null;// path to brawl iso
+    rootSlpPath: string;// path for stored replays (from slippi)
+    useMonthlySubfolders: boolean;// whether to store replays in monthly format (from slippi)
+    spectateSlpPath: string;// replays from spectating (from slippi)
+    extraSlpPaths: string[];// (from slippi)
+    netplayDolphinPath: string;// (from slippi)
+    playbackDolphinPath: string;// (from slippi)
+    dolphinPath: string;// brawlback uses single dolphin build for netplay and replays
+    launchMeleeOnPlay: boolean;// Whether to launch dolphin app or launch game (from slippi)
+    autoUpdateLauncher: boolean;// (from slippi)
+    selectedMod: number;// index of last played mod to be auto selected
   };
   mods: Mod[];
 };

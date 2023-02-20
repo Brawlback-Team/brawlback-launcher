@@ -42,7 +42,7 @@ export class DolphinManager {
   public async launchPlaybackDolphin(id: string, replayComm: ReplayCommunication): Promise<void> {
     const playbackInstallation = this.getInstallation(DolphinLaunchType.PLAYBACK);
     const dolphinPath = await playbackInstallation.findDolphinExecutable();
-    const brawlIsoPath = await this._getIsoPath();
+    const meleeIsoPath = await this._getIsoPath();
 
     const configuring = this.playbackDolphinInstances.get("configure");
     if (configuring) {
@@ -50,7 +50,7 @@ export class DolphinManager {
     }
     let playbackInstance = this.playbackDolphinInstances.get(id);
     if (!playbackInstance) {
-      playbackInstance = new PlaybackDolphinInstance(dolphinPath, brawlIsoPath);
+      playbackInstance = new PlaybackDolphinInstance(dolphinPath, meleeIsoPath);
       playbackInstance.on("close", (exitCode) => {
         this.eventSubject.next({
           type: DolphinEventType.CLOSED,
@@ -83,11 +83,11 @@ export class DolphinManager {
     const netplayInstallation = this.getInstallation(DolphinLaunchType.NETPLAY);
     const dolphinPath = await netplayInstallation.findDolphinExecutable();
     log.info(`Launching dolphin at path: ${dolphinPath}`);
-    const launchBrawlOnPlay = this.settingsManager.get().settings.launchBrawlOnPlay;
-    const brawlIsoPath = launchBrawlOnPlay ? await this._getIsoPath() : undefined;
+    const launchMeleeOnPlay = this.settingsManager.get().settings.launchMeleeOnPlay;
+    const meleeIsoPath = launchMeleeOnPlay ? await this._getIsoPath() : undefined;
 
     // Create the Dolphin instance and start it
-    this.netplayDolphinInstance = new DolphinInstance(dolphinPath, brawlIsoPath);
+    this.netplayDolphinInstance = new DolphinInstance(dolphinPath, meleeIsoPath);
     this.netplayDolphinInstance.on("close", (exitCode) => {
       this.eventSubject.next({
         type: DolphinEventType.CLOSED,
@@ -185,14 +185,14 @@ export class DolphinManager {
   }
 
   private async _getIsoPath(): Promise<string | undefined> {
-    const brawlIsoPath = this.settingsManager.get().settings.isoPath ?? undefined;
-    if (brawlIsoPath) {
+    const meleeIsoPath = this.settingsManager.get().settings.isoPath ?? undefined;
+    if (meleeIsoPath) {
       // Make sure the file actually exists
-      if (!(await fileExists(brawlIsoPath))) {
-        throw new Error(`Could not find ISO file: ${brawlIsoPath}`);
+      if (!(await fileExists(meleeIsoPath))) {
+        throw new Error(`Could not find ISO file: ${meleeIsoPath}`);
       }
     }
-    return brawlIsoPath;
+    return meleeIsoPath;
   }
 
   private async _updateDolphinSettings(launchType: DolphinLaunchType) {

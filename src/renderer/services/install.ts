@@ -2,8 +2,8 @@
 import { appVersion } from "@common/constants";
 
 import createAuthClient from "./auth/auth.service";
-import createBrawlbackClient from "./brawlback/brawlback.service";
 import createDolphinClient from "./dolphin/dolphin.service";
+import createSlippiClient from "./slippi/slippi.service";
 import type { Services } from "./types";
 
 const isDevelopment = window.electron.common.isDevelopment;
@@ -11,7 +11,7 @@ const isDevelopment = window.electron.common.isDevelopment;
 export async function installServices(): Promise<Services> {
   const dolphinService = createDolphinClient();
   const authService = createAuthClient();
-  const brawlbackBackendService = createBrawlbackClient(
+  const slippiBackendService = createSlippiClient(
     authService,
     dolphinService,
     `${appVersion}${isDevelopment ? "-dev" : ""}`,
@@ -22,7 +22,7 @@ export async function installServices(): Promise<Services> {
 
   return {
     authService,
-    brawlbackBackendService,
+    slippiBackendService,
     dolphinService,
     broadcastService,
     consoleService,

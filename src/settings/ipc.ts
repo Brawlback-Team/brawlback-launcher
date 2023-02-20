@@ -1,8 +1,8 @@
-import type { PaletteMode } from "@mui/material";
 import type { EmptyPayload, SuccessPayload } from "utils/ipc";
 import { _, makeEndpoint } from "utils/ipc";
 
-import type { AppSettings, Mod, StoredConnection } from "./types";
+import type { PaletteMode } from "@mui/material";
+import type { AppSettings, StoredConnection, Mod } from "./types";
 
 // Handlers
 export const ipc_getModList = makeEndpoint.main("getModList", <EmptyPayload>_, <Mod[]>_);
@@ -35,9 +35,9 @@ export const ipc_setPlaybackDolphinPath = makeEndpoint.main(
   <SuccessPayload>_,
 );
 
-export const ipc_setLaunchBrawlOnPlay = makeEndpoint.main(
-  "setLaunchBrawlOnPlay",
-  <{ launchBrawl: boolean }>_,
+export const ipc_setLaunchMeleeOnPlay = makeEndpoint.main(
+  "setLaunchMeleeOnPlay",
+  <{ launchMelee: boolean }>_,
   <SuccessPayload>_,
 );
 

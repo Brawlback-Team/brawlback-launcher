@@ -5,10 +5,10 @@ import { registerWorker } from "utils/registerWorker";
 
 import type { WorkerSpec as BroadcastWorkerSpec } from "./broadcast.worker";
 import {
-  ipc_brawlbackStatusChangedEvent,
   ipc_broadcastErrorOccurredEvent,
   ipc_broadcastReconnectEvent,
   ipc_dolphinStatusChangedEvent,
+  ipc_slippiStatusChangedEvent,
 } from "./ipc";
 
 const log = electronLog.scope("broadcast.worker");
@@ -24,8 +24,8 @@ export async function createBroadcastWorker(): Promise<BroadcastWorker> {
   worker.getDolphinStatusObservable().subscribe(({ status }) => {
     ipc_dolphinStatusChangedEvent.main!.trigger({ status }).catch(log.error);
   });
-  worker.getBrawlbackStatusObservable().subscribe(({ status }) => {
-    ipc_brawlbackStatusChangedEvent.main!.trigger({ status }).catch(log.error);
+  worker.getSlippiStatusObservable().subscribe(({ status }) => {
+    ipc_slippiStatusChangedEvent.main!.trigger({ status }).catch(log.error);
   });
   worker.getLogObservable().subscribe((logMessage) => {
     log.info(logMessage);

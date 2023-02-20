@@ -100,7 +100,7 @@ export const IsoSelectionStep: React.FC = () => {
 
   React.useEffect(() => {
     if (invalidIso) {
-      showError("Provided ISO will not work with Brawl Online. Please provide a vanilla Brawl ISO.");
+      showError("Provided ISO will not work with Slippi Online. Please provide an NTSC 1.02 ISO.");
     }
   }, [showError, invalidIso]);
 
@@ -118,8 +118,8 @@ export const IsoSelectionStep: React.FC = () => {
           margin-bottom: 20px;
         `}
       >
-        <QuickStartHeader>Select Brawl ISO</QuickStartHeader>
-        <div>This application uses ~no particular version of brawl~ game backup.</div>
+        <QuickStartHeader>Select Melee ISO</QuickStartHeader>
+        <div>This application uses an NTSC 1.02 game backup.</div>
       </div>
       <Container {...getRootProps({ isDragActive, isDragAccept, isDragReject })}>
         <input {...getInputProps()} />

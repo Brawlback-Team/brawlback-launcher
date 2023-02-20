@@ -34,7 +34,7 @@ const handleWindowsExitCode = (exitCode: number): string | null => {
     }
     default: {
       return `Dolphin exited with error code: 0x${exitCode.toString(16)}.
-      Please screenshot this and post it in a support channel in the Brawlback Discord for assistance.`;
+      Please screenshot this and post it in a support channel in the Slippi Discord for assistance.`;
     }
   }
 };
@@ -42,11 +42,11 @@ const handleWindowsExitCode = (exitCode: number): string | null => {
 const handleLinuxExitCode = (exitCode: number): string => {
   switch (exitCode) {
     case 0x7f: {
-      return "Required libraries for launching Dolphin may be missing. Check the Help section in the settings page for guidance. Post in the Brawlback Discord's linux-support channel for further assistance if needed.";
+      return "Required libraries for launching Dolphin may be missing. Check the Help section in the settings page for guidance. Post in the Slippi Discord's linux-support channel for further assistance if needed.";
     }
     default: {
       return `Dolphin exited with error code: 0x${exitCode.toString(16)}.
-      Please screenshot this and post it in a support channel in the Brawlback Discord for assistance.`;
+      Please screenshot this and post it in a support channel in the Slippi Discord for assistance.`;
     }
   }
 };

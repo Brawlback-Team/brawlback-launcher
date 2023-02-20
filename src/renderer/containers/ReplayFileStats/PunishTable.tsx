@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import Tooltip from "@mui/material/Tooltip";
 import type { FileResult } from "@replays/types";
-// import type { ConversionType, PlayerType, StatsType, StockType } from "@slippi/slippi-js";
+import type { ConversionType, PlayerType, StatsType, StockType } from "@slippi/slippi-js";
 import _ from "lodash";
 import React from "react";
 

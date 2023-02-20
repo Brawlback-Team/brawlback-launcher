@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import LinearProgress from "@mui/material/LinearProgress";
 import React from "react";
 
-import { BouncingBrawlbackLogo } from "@/components/BouncingBrawlbackLogo";
+import { BouncingSlippiLogo } from "@/components/BouncingSlippiLogo";
 
 import { Message } from "./Message";
 
@@ -12,7 +12,7 @@ export const LoadingScreen: React.FC<{
   style?: React.CSSProperties;
 }> = ({ message, style, className }) => {
   return (
-    <Message className={className} style={style} icon={<BouncingBrawlbackLogo />}>
+    <Message className={className} style={style} icon={<BouncingSlippiLogo />}>
       <p
         css={css`
           text-align: center;
@@ -30,7 +30,7 @@ export const LoadingScreen: React.FC<{
 
 export function LoadingScreenWithProgress({ current = 0, total = 100 }: { current?: number; total?: number }) {
   return (
-    <Message icon={<BouncingBrawlbackLogo />}>
+    <Message icon={<BouncingSlippiLogo />}>
       <div
         style={{
           color: "white",

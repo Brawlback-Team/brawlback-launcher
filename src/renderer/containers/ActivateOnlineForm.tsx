@@ -32,7 +32,7 @@ interface ConnectCodeSetterProps {
 }
 
 const ConnectCodeSetter: React.FC<ConnectCodeSetterProps> = ({ displayName, onSuccess }) => {
-  const { brawlbackBackendService } = useServices();
+  const { slippiBackendService } = useServices();
   const { showError } = useToasts();
   const getStartTag = () => {
     const safeName = displayName ?? "";
@@ -49,7 +49,7 @@ const ConnectCodeSetter: React.FC<ConnectCodeSetterProps> = ({ displayName, onSu
   const onFormSubmit = handleSubmit(({ tag }) => {
     setIsLoading(true);
 
-    brawlbackBackendService
+    slippiBackendService
       .initializeNetplay(tag)
       .then(
         () => {

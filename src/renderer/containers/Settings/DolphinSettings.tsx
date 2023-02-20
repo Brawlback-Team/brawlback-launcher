@@ -158,7 +158,7 @@ const ImportDolphinConfigForm: React.FC<{
 
   const onImportClick = async () => {
     const result = await window.electron.common.showOpenDialog({
-      filters: [{ name: "Brawlback Dolphin", extensions: [isMac ? "app" : "exe"] }],
+      filters: [{ name: "Slippi Dolphin", extensions: [isMac ? "app" : "exe"] }],
     });
     const res = result.filePaths;
     if (result.canceled || res.length === 0) {

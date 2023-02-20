@@ -119,7 +119,7 @@ export const ImportDolphinSettingsStep: React.FC = () => {
                       onSelect={(newPath) => setValue("netplayPath", newPath)}
                       placeholder="No Netplay Dolphin selected"
                       options={{
-                        filters: [{ name: "Brawlback Dolphin", extensions: [isMac ? "app" : "exe"] }],
+                        filters: [{ name: "Slippi Dolphin", extensions: [isMac ? "app" : "exe"] }],
                       }}
                     />
                   )}

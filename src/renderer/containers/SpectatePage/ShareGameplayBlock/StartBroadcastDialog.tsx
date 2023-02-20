@@ -30,7 +30,7 @@ export interface StartBroadcastDialogProps {
 }
 
 export const StartBroadcastDialog: React.FC<StartBroadcastDialogProps> = ({ open, onClose, onSubmit }) => {
-  const { brawlbackBackendService } = useServices();
+  const { slippiBackendService } = useServices();
   const [value, setValue] = React.useState("");
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -43,7 +43,7 @@ export const StartBroadcastDialog: React.FC<StartBroadcastDialogProps> = ({ open
         throw new Error("Invalid user ID format");
       }
       console.log("starting fetch: ", JSON.stringify(new Date()));
-      const result = await brawlbackBackendService.validateUserId(value);
+      const result = await slippiBackendService.validateUserId(value);
       console.log("finished fetch: ", JSON.stringify(new Date()));
       return result;
     },

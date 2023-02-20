@@ -5,14 +5,14 @@ type StoreState = {
   isBroadcasting: boolean;
   startTime: Date | null;
   endTime: Date | null;
-  brawlbackConnectionStatus: ConnectionStatus;
+  slippiConnectionStatus: ConnectionStatus;
   dolphinConnectionStatus: ConnectionStatus;
   broadcastError: string | null;
 };
 
 type StoreReducers = {
   setIsBroadcasting: (isBroadcasting: boolean) => void;
-  setBrawlbackConnectionStatus: (connectionStatus: number) => void;
+  setSlippiConnectionStatus: (connectionStatus: number) => void;
   setDolphinConnectionStatus: (connectionStatus: number) => void;
   setBroadcastError: (error: string | null) => void;
 };
@@ -21,7 +21,7 @@ const initialState: StoreState = {
   isBroadcasting: false,
   startTime: null,
   endTime: null,
-  brawlbackConnectionStatus: ConnectionStatus.DISCONNECTED,
+  slippiConnectionStatus: ConnectionStatus.DISCONNECTED,
   dolphinConnectionStatus: ConnectionStatus.DISCONNECTED,
   broadcastError: null,
 };
@@ -50,20 +50,20 @@ export const useConsole = create<StoreState & StoreReducers>((set, get) => ({
       isBroadcasting,
     });
   },
-  setBrawlbackConnectionStatus: (connectionStatus) => {
+  setSlippiConnectionStatus: (connectionStatus) => {
     const { dolphinConnectionStatus, setIsBroadcasting } = get();
     const dolphinConnected = dolphinConnectionStatus === ConnectionStatus.CONNECTED;
     const isBroadcasting = dolphinConnected && connectionStatus !== ConnectionStatus.DISCONNECTED;
     set({
-      brawlbackConnectionStatus: connectionStatus,
+      slippiConnectionStatus: connectionStatus,
     });
     setIsBroadcasting(isBroadcasting);
   },
 
   setDolphinConnectionStatus: (connectionStatus) => {
-    const { brawlbackConnectionStatus, setIsBroadcasting } = get();
-    const brawlbackConnected = brawlbackConnectionStatus === ConnectionStatus.CONNECTED;
-    const isBroadcasting = brawlbackConnected && connectionStatus !== ConnectionStatus.DISCONNECTED;
+    const { slippiConnectionStatus, setIsBroadcasting } = get();
+    const slippiConnected = slippiConnectionStatus === ConnectionStatus.CONNECTED;
+    const isBroadcasting = slippiConnected && connectionStatus !== ConnectionStatus.DISCONNECTED;
     set({
       dolphinConnectionStatus: connectionStatus,
     });

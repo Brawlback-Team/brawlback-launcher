@@ -10,7 +10,7 @@ import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
 import type { StoredConnection } from "@settings/types";
-// import { ConnectionStatus, Ports } from "@slippi/slippi-js";
+import { ConnectionStatus, Ports } from "@slippi/slippi-js";
 import React from "react";
 import { lt } from "semver";
 
@@ -213,7 +213,7 @@ const OutdatedNintendontWarning: React.FC = () => {
       <WarningIcon />
       <span>
         Your Nintendont is out of date and no longer supported. Download the latest version from{" "}
-        <A href="https://brawlback.gg/downloads">the Brawlback website</A>.
+        <A href="https://slippi.gg/downloads">the Slippi website</A>.
       </span>
     </div>
   );

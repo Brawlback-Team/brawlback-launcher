@@ -1,4 +1,4 @@
-//import { characters as charUtils, stages as stageUtils } from "@slippi/slippi-js";
+import { characters as charUtils, stages as stageUtils } from "@slippi/slippi-js";
 
 import unknownCharacterIcon from "@/styles/images/unknown.png";
 

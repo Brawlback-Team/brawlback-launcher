@@ -1,7 +1,7 @@
 import { css, keyframes } from "@emotion/react";
 import React from "react";
 
-import brawlbackLogo from "@/styles/images/brawlback-logo.svg";
+import slippiLogo from "@/styles/images/slippi-logo.svg";
 
 const bounceAnimation = keyframes`
   0%  { bottom: 0px; }
@@ -22,7 +22,7 @@ const bouncePlusSpin = css`
     ${barrelRollAnimation} 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) alternate forwards;
 `;
 
-export const BouncingBrawlbackLogo = ({ size = "80px" }: { size?: string }) => {
+export const BouncingSlippiLogo = ({ size = "80px" }: { size?: string }) => {
   const ref = React.createRef<HTMLDivElement>();
   const [animationState, setAnimationState] = React.useState<"running" | "ready">("ready");
 
@@ -57,7 +57,7 @@ export const BouncingBrawlbackLogo = ({ size = "80px" }: { size?: string }) => {
     >
       <div
         css={css`
-          background-image: url("${brawlbackLogo}");
+          background-image: url("${slippiLogo}");
           background-size: contain;
           background-repeat: no-repeat;
           ${animationState === "ready" ? onlyBounce : bouncePlusSpin}

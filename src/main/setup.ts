@@ -89,7 +89,7 @@ export default function setupMainIpc() {
 
   ipc_deleteDesktopAppPath.main!.handle(async () => {
     // get the path and remove
-    const desktopAppPath = path.join(app.getPath("appData"), "Brawlback Desktop App");
+    const desktopAppPath = path.join(app.getPath("appData"), "Slippi Desktop App");
     await fs.remove(desktopAppPath);
 
     return { success: true };
@@ -100,9 +100,9 @@ export default function setupMainIpc() {
     // why does macOS decide it needs to be difficult?
     if (isDevelopment) {
       if (isMac) {
-        logsFolder = path.join(logsFolder, "..", "Brawlback Launcher");
+        logsFolder = path.join(logsFolder, "..", "Slippi Launcher");
       } else {
-        logsFolder = path.join(logsFolder, "../../", "Brawlback Launcher", "logs");
+        logsFolder = path.join(logsFolder, "../../", "Slippi Launcher", "logs");
       }
     }
 

@@ -14,13 +14,13 @@ export type DolphinVersionResponse = {
   };
 };
 
-const httpLink = new HttpLink({ uri: process.env.BRAWLBACK_GRAPHQL_ENDPOINT, fetch });
+const httpLink = new HttpLink({ uri: process.env.SLIPPI_GRAPHQL_ENDPOINT, fetch });
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 const client = new ApolloClient({
   link: httpLink,
   cache: new InMemoryCache(),
-  name: "brawlback-launcher",
+  name: "slippi-launcher",
   version: `${appVersion}${isDevelopment ? "-dev" : ""}`,
 });
 

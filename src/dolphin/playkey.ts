@@ -21,17 +21,11 @@ export async function findPlayKey(installation: DolphinInstallation): Promise<st
       break;
     }
     case "darwin": {
-      dolphinDir = path.join(
-        os.homedir(),
-        "Library",
-        "Application Support",
-        "com.project-brawlback.dolphin",
-        "Brawlback",
-      );
+      dolphinDir = path.join(os.homedir(), "Library", "Application Support", "com.project-slippi.dolphin", "Slippi");
       break;
     }
     case "linux": {
-      dolphinDir = path.join(os.homedir(), ".config", "BrawlbackOnline");
+      dolphinDir = path.join(os.homedir(), ".config", "SlippiOnline");
       break;
     }
     default: {

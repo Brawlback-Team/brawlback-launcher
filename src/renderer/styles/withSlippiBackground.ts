@@ -1,11 +1,11 @@
 import { css } from "@emotion/react";
 
-import brawlbackLogo from "@/styles/images/brawlback-logo.svg";
+import slippiLogo from "@/styles/images/slippi-logo.svg";
 
-export const withBrawlbackBackground = css`
+export const withSlippiBackground = css`
   &::before {
     content: "";
-    background-image: url("${brawlbackLogo}");
+    background-image: url("${slippiLogo}");
     background-size: 50%;
     background-position: 110% 120%;
     background-repeat: no-repeat;

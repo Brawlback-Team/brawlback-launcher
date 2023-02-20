@@ -17,7 +17,7 @@ export const AdvancedAppSettings = React.memo(() => {
           value={autoUpdateLauncher}
           onChange={(checked) => setAutoUpdateLauncher(checked)}
           label="Enable Auto Updates"
-          description="Automatically install Brawlback Launcher updates when they become available."
+          description="Automatically install Slippi Launcher updates when they become available."
         />
       </SettingItem>
       <ClearTempFilesForm />
@@ -38,7 +38,7 @@ const ClearTempFilesForm = React.memo(() => {
   return (
     <SettingItem
       name="Clear Temporary Files"
-      description="Removes temporary downloads, files used for Dolphin communication, and files streamed from Brawlback.gg."
+      description="Removes temporary downloads, files used for Dolphin communication, and files streamed from Slippi.gg."
     >
       <Button variant="contained" color="secondary" onClick={onClear}>
         Clear files

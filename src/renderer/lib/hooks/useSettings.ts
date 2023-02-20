@@ -1,6 +1,6 @@
 import { DolphinLaunchType } from "@dolphin/types";
-import type { PaletteMode } from "@mui/material";
 import type { AppSettings } from "@settings/types";
+import type { PaletteMode } from "@mui/material";
 import { useCallback } from "react";
 import create from "zustand";
 import { combine } from "zustand/middleware";
@@ -25,7 +25,7 @@ export const useThemeMode = () => {
     await window.electron.settings.setThemeMode(mode);
   };
   return [themeMode, setThemeMode] as const;
-};
+}
 
 export const useIsoPath = () => {
   const isoPath = useSettings((store) => store.settings.isoPath);
@@ -88,13 +88,13 @@ export const useDolphinPath = (dolphinType: DolphinLaunchType) => {
   }
 };
 
-export const useLaunchBrawlOnPlay = () => {
-  const launchBrawlOnPlay = useSettings((store) => store.settings.launchBrawlOnPlay);
-  const setLaunchBrawl = async (launchBrawl: boolean) => {
-    await window.electron.settings.setLaunchBrawlOnPlay(launchBrawl);
+export const useLaunchMeleeOnPlay = () => {
+  const launchMeleeOnPlay = useSettings((store) => store.settings.launchMeleeOnPlay);
+  const setLaunchMelee = async (launchMelee: boolean) => {
+    await window.electron.settings.setLaunchMeleeOnPlay(launchMelee);
   };
 
-  return [launchBrawlOnPlay, setLaunchBrawl] as const;
+  return [launchMeleeOnPlay, setLaunchMelee] as const;
 };
 
 export const useAutoUpdateLauncher = () => {

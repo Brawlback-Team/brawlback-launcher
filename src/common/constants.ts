@@ -2,11 +2,11 @@ import pkg from "../../release/app/package.json";
 
 export const appVersion = pkg.version;
 
-export const brawlbackHomepage = "https://patreon.com/brawlback";
-export const brawlbackActivationUrl = "https://brawlback.gg/online/enable";
+export const slippiHomepage = "https://slippi.gg";
+export const slippiActivationUrl = "https://slippi.gg/online/enable";
 
 export const socials = {
-  twitterId: "BrawlbackTeam",
-  discordUrl: "https://brawlback.gg/discord",
-  patreonUrl: "https://www.patreon.com/brawlback",
+  twitterId: "ProjectSlippi",
+  discordUrl: "https://slippi.gg/discord",
+  patreonUrl: "https://www.patreon.com/fizzi36",
 };

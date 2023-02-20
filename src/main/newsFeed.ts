@@ -5,7 +5,7 @@ import { getAllReleases } from "./github";
 
 export async function fetchNewsFeedData(): Promise<NewsItem[]> {
   const mediumNews = fetchMediumNews();
-  const githubNews = fetchGithubReleaseNews(["Ishiiruka", "brawlback-launcher"]);
+  const githubNews = fetchGithubReleaseNews(["Ishiiruka", "slippi-launcher"]);
   const allNews = (await Promise.all([mediumNews, githubNews])).flat();
   return allNews.sort((a, b) => {
     // Sort all news item by reverse chronological order
@@ -16,7 +16,7 @@ export async function fetchNewsFeedData(): Promise<NewsItem[]> {
 }
 
 async function fetchMediumNews(): Promise<NewsItem[]> {
-  const response = await mediumJSONFeed("brawlback-team");
+  const response = await mediumJSONFeed("project-slippi");
   if (!response || response.status !== 200) {
     throw new Error("Error fetching Medium feed");
   }
@@ -30,7 +30,7 @@ async function fetchMediumNews(): Promise<NewsItem[]> {
       title: post.title,
       subtitle: post.virtuals.subtitle,
       publishedAt,
-      permalink: `https://medium.com/project-brawlback/${post.uniqueSlug}`,
+      permalink: `https://medium.com/project-slippi/${post.uniqueSlug}`,
     } as NewsItem;
   });
 }
@@ -38,7 +38,7 @@ async function fetchMediumNews(): Promise<NewsItem[]> {
 async function fetchGithubReleaseNews(repos: string[]): Promise<NewsItem[]> {
   const allReleases = await Promise.all(
     repos.map(async (repo) => {
-      const releases = await getAllReleases("project-brawlback", repo);
+      const releases = await getAllReleases("project-slippi", repo);
       return releases.map((release: any) => {
         return {
           id: `gh-${repo}-${release.id}`,

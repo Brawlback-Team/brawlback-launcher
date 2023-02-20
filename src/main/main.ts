@@ -36,7 +36,7 @@ let menu: CrossProcessExports.Menu | null = null;
 let mainWindow: BrowserWindow | null = null;
 let didFinishLoad = false;
 
-// Only allow a single Brawlback App instance
+// Only allow a single Slippi App instance
 const lockObtained = app.requestSingleInstanceLock();
 if (!lockObtained) {
   app.quit();
@@ -161,7 +161,7 @@ app.on("window-all-closed", () => {
   app.quit();
 });
 
-const brawlbackProtocol = "brawlback";
+const slippiProtocol = "slippi";
 
 const waitForMainWindow = async () => {
   let retryIdx = 0;
@@ -178,7 +178,7 @@ const waitForMainWindow = async () => {
   log.info(`Found mainWindow after ${retryIdx} tries.`);
 };
 
-const handleBrawlbackURIAsync = async (aUrl: string) => {
+const handleSlippiURIAsync = async (aUrl: string) => {
   log.info("Handling URL...");
   log.info(aUrl);
 
@@ -187,7 +187,7 @@ const handleBrawlbackURIAsync = async (aUrl: string) => {
   const myUrl = new url.URL(aUrl, `null://null`);
   let protocol = myUrl.protocol;
   log.info(`protocol: ${myUrl.protocol}, hostname: ${myUrl.hostname}`);
-  if (myUrl.protocol !== `${brawlbackProtocol}:`) {
+  if (myUrl.protocol !== `${slippiProtocol}:`) {
     if (await fileExists(aUrl)) {
       log.info(`File ${aUrl} exists`);
       protocol = "file:";
@@ -196,7 +196,7 @@ const handleBrawlbackURIAsync = async (aUrl: string) => {
     }
   }
 
-  // When handling a Brawlback request, focus the window
+  // When handling a Slippi request, focus the window
   if (mainWindow) {
     if (mainWindow.isMinimized()) {
       mainWindow.restore();
@@ -207,7 +207,7 @@ const handleBrawlbackURIAsync = async (aUrl: string) => {
   }
 
   switch (protocol) {
-    case "brawlback:": {
+    case "slippi:": {
       let replayPath = myUrl.searchParams.get("path");
       if (!replayPath) {
         return;
@@ -245,13 +245,13 @@ const handleBrawlbackURIAsync = async (aUrl: string) => {
   }
 };
 
-const handleBrawlbackURI = (aUrl: string) => {
+const handleSlippiURI = (aUrl: string) => {
   // Filter out command line parameters and invalid urls
   if (aUrl.startsWith("-")) {
     return;
   }
 
-  handleBrawlbackURIAsync(aUrl).catch((err) => {
+  handleSlippiURIAsync(aUrl).catch((err) => {
     log.error("Handling URI encountered error");
     log.error(err);
   });
@@ -259,12 +259,12 @@ const handleBrawlbackURI = (aUrl: string) => {
 
 app.on("open-url", (_, aUrl) => {
   log.info(`Received open-url event: ${aUrl}`);
-  handleBrawlbackURI(aUrl);
+  handleSlippiURI(aUrl);
 });
 
 app.on("open-file", (_, aUrl) => {
   log.info(`Received open-file event: ${aUrl}`);
-  handleBrawlbackURI(aUrl);
+  handleSlippiURI(aUrl);
 });
 
 app.on("second-instance", (_, argv) => {
@@ -276,7 +276,7 @@ app.on("second-instance", (_, argv) => {
     return;
   }
 
-  handleBrawlbackURI(lastItem);
+  handleSlippiURI(lastItem);
 });
 
 const playReplayAndShowStats = async (filePath: string) => {
@@ -305,10 +305,10 @@ app
 
     void createWindow();
 
-    // Handle Brawlback URI if provided
+    // Handle Slippi URI if provided
     const argURI = get(process.argv, 1);
     if (argURI) {
-      handleBrawlbackURI(argURI);
+      handleSlippiURI(argURI);
     }
 
     app.on("activate", () => {

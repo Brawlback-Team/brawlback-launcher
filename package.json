@@ -1,7 +1,7 @@
 {
-  "name": "brawlback-launcher",
-  "productName": "Brawlback Launcher",
-  "description": "Launch Brawlback Online, browse and watch saved replays",
+  "name": "slippi-launcher",
+  "productName": "Slippi Launcher",
+  "description": "Launch Slippi Online, browse and watch saved replays",
   "license": "GPL-3.0",
   "scripts": {
     "build": "concurrently \"yarn run build:main\" \"yarn run build:renderer\"",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Brawlback-Team/brawlback-launcher.git"
+    "url": "git+https://github.com/project-slippi/slippi-launcher.git"
   },
   "author": {
     "name": "Jas Laferriere",
@@ -151,6 +151,7 @@
     "@fontsource/rubik": "^4.4.2",
     "@mui/icons-material": "^5.5.1",
     "@mui/material": "^5.5.1",
+    "@slippi/slippi-js": "^6.2.1",
     "adm-zip": "^0.5.9",
     "compare-func": "^2.0.0",
     "cross-fetch": "^3.1.5",

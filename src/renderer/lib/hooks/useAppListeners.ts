@@ -15,10 +15,10 @@ import { useBroadcast } from "./useBroadcast";
 import { useBroadcastList, useBroadcastListStore } from "./useBroadcastList";
 import { useConsoleDiscoveryStore } from "./useConsoleDiscovery";
 import { useIsoVerification } from "./useIsoVerification";
-import { useMods } from "./useMods";
 import { useReplayBrowserNavigation } from "./useReplayBrowserList";
 import { useSettings } from "./useSettings";
 import { useSettingsModal } from "./useSettingsModal";
+import { useMods } from "./useMods";
 
 const log = window.electron.log;
 
@@ -59,10 +59,10 @@ export const useAppListeners = () => {
     return;
   }, [initialized, refreshPlayKey, setUser, authService]);
 
-  const setBrawlbackConnectionStatus = useConsole((store) => store.setBrawlbackConnectionStatus);
+  const setSlippiConnectionStatus = useConsole((store) => store.setSlippiConnectionStatus);
   React.useEffect(() => {
-    return broadcastService.onBrawlbackStatusChanged(setBrawlbackConnectionStatus);
-  }, [setBrawlbackConnectionStatus, broadcastService]);
+    return broadcastService.onSlippiStatusChanged(setSlippiConnectionStatus);
+  }, [setSlippiConnectionStatus, broadcastService]);
 
   const setDolphinConnectionStatus = useConsole((store) => store.setDolphinConnectionStatus);
   React.useEffect(() => {
