@@ -27,7 +27,7 @@ import {
 } from "./ipc";
 import { fetchNewsFeedData } from "./newsFeed";
 import { getAssetPath, readLastLines } from "./util";
-import { _verifyIsoSHA1, verifyIsoMD5 } from "./verifyIso";
+import { verifyIso } from "./verifyIso";
 
 const log = electronLog.scope("main/listeners");
 const isDevelopment = process.env.NODE_ENV !== "production";
@@ -80,7 +80,7 @@ export default function setupMainIpc() {
     }
 
     try {
-      const result = await verifyIsoMD5(path);
+      const result = await verifyIso(path);
       return { path, valid: result };
     } catch (err) {
       return { path, valid: IsoValidity.INVALID };
