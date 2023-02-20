@@ -1,15 +1,15 @@
-//import type { GameStartType, MetadataType } from "@slippi/slippi-js";
-//import { SlippiGame } from "@slippi/slippi-js";
+import type { GameStartType, MetadataType } from "@slippi/slippi-js";
+import { SlippiGame } from "@slippi/slippi-js";
 import * as fs from "fs-extra";
 import _ from "lodash";
 import moment from "moment";
 import path from "path";
 
 import type { FileResult } from "./types";
-/*
+
 export async function loadFile(fullPath: string): Promise<FileResult> {
   const filename = path.basename(fullPath);
-  const game = new // SlippiGame(fullPath);
+  const game = new SlippiGame(fullPath);
   // Load settings
   const settings: GameStartType | null = game.getSettings();
   if (!settings || _.isEmpty(settings.players)) {
@@ -43,7 +43,6 @@ export async function loadFile(fullPath: string): Promise<FileResult> {
 
   return result;
 }
-*/
 
 function convertToDateAndTime(dateTimeString: moment.MomentInput): moment.Moment | null {
   const asMoment = moment(dateTimeString);
