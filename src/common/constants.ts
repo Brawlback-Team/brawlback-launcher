@@ -7,6 +7,6 @@ export const brawlbackActivationUrl = "https://brawlback.gg/online/enable";
 
 export const socials = {
   twitterId: "BrawlbackTeam",
-  discordUrl: "https://brawlback.gg/discord",
+  discordUrl: "https://discord.gg/dzYRN32k4D",
   patreonUrl: "https://www.patreon.com/brawlback",
 };

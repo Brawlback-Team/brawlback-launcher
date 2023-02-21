@@ -1,12 +1,19 @@
 import type { NewsItem } from "@common/types";
-import mediumJSONFeed from "medium-json-feed";
 
+//import mediumJSONFeed from "medium-json-feed";
 import { getAllReleases } from "./github";
 
 export async function fetchNewsFeedData(): Promise<NewsItem[]> {
-  const mediumNews = fetchMediumNews();
-  const githubNews = fetchGithubReleaseNews(["Ishiiruka", "brawlback-launcher"]);
-  const allNews = (await Promise.all([mediumNews, githubNews])).flat();
+  // const mediumNews = fetchMediumNews();
+  const githubNews = fetchGithubReleaseNews([
+    "vBrawlLauncherReleases",
+    "dolphin",
+    "brawlback-launcher",
+    "brawlback-asm",
+    "brawlback-common",
+    "brawlback-wiki",
+  ]);
+  const allNews = (await Promise.all([githubNews])).flat();
   return allNews.sort((a, b) => {
     // Sort all news item by reverse chronological order
     const aDate = new Date(a.publishedAt).getTime();
@@ -15,8 +22,9 @@ export async function fetchNewsFeedData(): Promise<NewsItem[]> {
   });
 }
 
+/* there is no brawlback medium account at the moment
 async function fetchMediumNews(): Promise<NewsItem[]> {
-  const response = await mediumJSONFeed("brawlback-team");
+  const response = await mediumJSONFeed("Brawlback-Team");
   if (!response || response.status !== 200) {
     throw new Error("Error fetching Medium feed");
   }
@@ -34,11 +42,12 @@ async function fetchMediumNews(): Promise<NewsItem[]> {
     } as NewsItem;
   });
 }
+*/
 
 async function fetchGithubReleaseNews(repos: string[]): Promise<NewsItem[]> {
   const allReleases = await Promise.all(
     repos.map(async (repo) => {
-      const releases = await getAllReleases("project-brawlback", repo);
+      const releases = await getAllReleases("brawlback-team", repo);
       return releases.map((release: any) => {
         return {
           id: `gh-${repo}-${release.id}`,
