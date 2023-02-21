@@ -76,9 +76,9 @@ Instructions can be found [here](https://github.com/bkacjios/m-overlay/wiki/Stag
 
 Game music can be removed from replays by opening Dolphin (if using the Launcher go to Settings -> Netplay -> Configure Dolphin), right clicking Brawl -> Properties -> Gecko Codes, and enabling the "Game Music OFF" gecko code.
 
-## Can I use Widescreen when playing Slippi Online?
+## Can I use Widescreen when playing Brawlback Online?
 
-Yes. To enable Widescreen for Slippi Online follow these steps. Open Dolphin (if using the Launcher go to Settings -> Netplay -> Configure Dolphin), right click on your Brawl in the games list, go to Properties -> Gecko Codes. Then enable the Widescreen gecko code and set the Dolphin aspect ratio to 16:9 under the Graphics settings. Do not use the dolphin widescreen hack, it does not have the same effect as the gecko code.
+Yes. To enable Widescreen for Brawlback Online follow these steps. Open Dolphin (if using the Launcher go to Settings -> Netplay -> Configure Dolphin), right click on your Brawl in the games list, go to Properties -> Gecko Codes. Then enable the Widescreen gecko code and set the Dolphin aspect ratio to 16:9 under the Graphics settings. Do not use the dolphin widescreen hack, it does not have the same effect as the gecko code.
 
 ## Where can I find a Brawl ISO?
 
