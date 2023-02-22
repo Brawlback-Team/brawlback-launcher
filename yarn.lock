@@ -2299,11 +2299,6 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
-"@shelacek/ubjson@^1.0.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@shelacek/ubjson/-/ubjson-1.1.1.tgz#949d9e6fb5cf2ada4197de6f8430fa7894d61ed4"
-  integrity sha512-2Vi46ct3IWzh8eAz9IZ0NulIRtJbGgJDppatJvufB0fHwasRSfklBoQrVrCutF24fSuRvTvZVebjtcIHOxvzWw==
-
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
@@ -5221,7 +5216,7 @@ babel-preset-jest@^27.5.1:
 backoff@~2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/backoff/-/backoff-2.5.0.tgz#f616eda9d3e4b66b8ca7fca79f695722c5f8e26f"
-  integrity sha1-9hbtqdPktmuMp/ynn2lXIsX44m8=
+  integrity sha512-wC5ihrnUXmR2douXmXLCe5O3zg3GKIyvRi/hi58a/XyRxVI+3/yM0PYueQOZXPXQ9pxBislYkw+sF9b7C/RuMA==
   dependencies:
     precond "0.2"
 
@@ -7453,7 +7448,7 @@ endent@^2.0.1:
 enet@^0.2.9:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/enet/-/enet-0.2.9.tgz#d7fd68a0bf8bb3891408ea465e26ed6955822a1a"
-  integrity sha1-1/1ooL+Ls4kUCOpGXibtaVWCKho=
+  integrity sha512-V3qaPJEHY1Bl9F1nEY4thQV2fKkwS+I8Xpss4/91Hyi6JHagB7Ur6bROyVp4wqO74cPbF0ptgyyYh0L0Sky4Lw==
 
 enhanced-resolve@^0.9.1:
   version "0.9.1"
@@ -11711,9 +11706,9 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
 moment@^2.27.0:
-  version "2.29.2"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.2.tgz#00910c60b20843bcba52d37d58c628b47b1f20e4"
-  integrity sha512-UgzG4rvxYpN15jgCmVJwac49h9ly9NurikMWGPdVxm8GZD6XjkKPxDTjQQ43gtGgnV3X0cAyWDdP2Wexoquifg==
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
 
 mousetrap@^1.6.5:
   version "1.6.5"
@@ -13069,7 +13064,7 @@ postcss@^8.2.15, postcss@^8.3.5, postcss@^8.4.7:
 precond@0.2:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/precond/-/precond-0.2.3.tgz#aa9591bcaa24923f1e0f4849d240f47efc1075ac"
-  integrity sha1-qpWRvKokkj8eD0hJ0kD0fvwQdaw=
+  integrity sha512-QCYG84SgGyGzqJ/vlMsxeXd/pgL/I94ixdNFyh1PusWmTCyVfPJjZ1K1jvHtsbfnXQs2TSkEP2fR7QiMZAnKFQ==
 
 prelude-ls@^1.2.1:
   version "1.2.1"
@@ -13677,7 +13672,7 @@ rechoir@^0.7.0:
 reconnect-core@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/reconnect-core/-/reconnect-core-1.3.0.tgz#fbae52919a7877d844e3246d01a2f26701c833c8"
-  integrity sha1-+65SkZp4d9hE4yRtAaLyZwHIM8g=
+  integrity sha512-+gLKwmyRf2tjl6bLR03DoeWELzyN6LW9Xgr3vh7NXHHwPi0JC0N2TwPyf90oUEBkCRcD+bgQ+s3HORoG3nwHDg==
   dependencies:
     backoff "~2.5.0"
 
