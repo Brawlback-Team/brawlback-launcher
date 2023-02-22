@@ -1,8 +1,8 @@
+import { ConnectionStatus } from "@common/brawlback-js/types";
 import { colors } from "@common/colors";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import Button from "@mui/material/Button";
-// import { ConnectionStatus } from "@slippi/slippi-js";
 import moment from "moment";
 import React from "react";
 import TimeAgo from "react-timeago";

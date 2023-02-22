@@ -1,4 +1,5 @@
-//import { ConnectionEvent, ConnectionStatus, DolphinConnection, DolphinMessageType } from "@slippi/slippi-js";
+import { DolphinConnection, DolphinMessageType } from "@common/brawlback-js/dolphinConnection";
+import { ConnectionEvent, ConnectionStatus } from "@common/brawlback-js/types";
 import { EventEmitter } from "events";
 import _ from "lodash";
 import type { connection, Message } from "websocket";

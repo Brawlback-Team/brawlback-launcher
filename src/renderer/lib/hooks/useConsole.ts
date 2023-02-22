@@ -1,4 +1,4 @@
-import { ConnectionStatus } from "@slippi/slippi-js";
+import { ConnectionStatus } from "@common/brawlback-js/types";
 import create from "zustand";
 
 type StoreState = {

@@ -10,6 +10,9 @@
   SlpStreamEvent,
 } from "@slippi/slippi-js"; //
 */
+import { ConsoleConnection } from "@common/brawlback-js/consoleConnection";
+import type { ConnectionDetails } from "@common/brawlback-js/types";
+import { ConnectionEvent, ConnectionStatus, Ports } from "@common/brawlback-js/types";
 import { EventEmitter } from "events";
 import * as fs from "fs-extra";
 import path from "path";

@@ -1,4 +1,4 @@
-// import { Ports } from "@slippi/slippi-js";
+import { Ports } from "@common/brawlback-js/types";
 import React from "react";
 
 import { InfoBlock } from "@/components/InfoBlock";
