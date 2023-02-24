@@ -2,13 +2,12 @@ import type { DolphinManager } from "@dolphin/manager";
 import { DolphinLaunchType } from "@dolphin/types";
 import { ipcMain } from "electron";
 import { autoUpdater } from "electron-updater";
-import path from "path";
 
 import {
-  ipc_getModList,
   ipc_addNewConnection,
   ipc_deleteConnection,
   ipc_editConnection,
+  ipc_getModList,
   ipc_setAutoUpdateLauncher,
   ipc_setExtraSlpPaths,
   ipc_setIsoPath,
@@ -16,6 +15,7 @@ import {
   ipc_setNetplayDolphinPath,
   ipc_setPlaybackDolphinPath,
   ipc_setRootSlpPath,
+  ipc_setSelectedMod,
   ipc_setSpectateSlpPath,
   ipc_setThemeMode,
   ipc_setUseMonthlySubfolders,
@@ -41,20 +41,24 @@ export default function setupSettingsIpc({
 
   ipc_getModList.main!.handle(async () => {
     return settingsManager.getModList();
-  })
+  });
+
+  ipc_setSelectedMod.main!.handle(async ({ id }) => {
+    await settingsManager.setSelectedMod(id);
+    return { success: true };
+  });
 
   ipc_setThemeMode.main!.handle(async ({ mode }) => {
     await settingsManager.setThemeMode(mode);
     return { success: true };
-  })
+  });
 
   ipc_setIsoPath.main!.handle(async ({ isoPath }) => {
     await settingsManager.setIsoPath(isoPath);
     if (isoPath) {
-      const gameDir = path.dirname(isoPath);
       const netplayInstall = dolphinManager.getInstallation(DolphinLaunchType.NETPLAY);
       const playbackInstall = dolphinManager.getInstallation(DolphinLaunchType.PLAYBACK);
-      await Promise.all([netplayInstall.addGamePath(gameDir), playbackInstall.addGamePath(gameDir)]);
+      await Promise.all([netplayInstall.addGamePath(isoPath), playbackInstall.addGamePath(isoPath)]);
     }
     return { success: true };
   });

@@ -1,6 +1,6 @@
 import { ipcMain } from "electron";
 
-import { ipc_addNewMod, ipc_deleteMod } from "./ipc";
+import { ipc_addNewMod, ipc_deleteMod, ipc_select_mod } from "./ipc";
 import type { ModsManager } from "./modsManager";
 
 export default function setupModsIpc({ modsManager }: { modsManager: ModsManager }) {
@@ -16,6 +16,11 @@ export default function setupModsIpc({ modsManager }: { modsManager: ModsManager
 
   ipc_deleteMod.main!.handle(async ({ id }) => {
     await modsManager.deleteMod(id);
+    return { success: true };
+  });
+
+  ipc_select_mod.main!.handle(async ({ id }) => {
+    await modsManager.setSelectedMod(id);
     return { success: true };
   });
 }

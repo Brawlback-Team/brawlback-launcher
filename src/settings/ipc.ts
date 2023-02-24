@@ -1,11 +1,13 @@
+import type { PaletteMode } from "@mui/material";
 import type { EmptyPayload, SuccessPayload } from "utils/ipc";
 import { _, makeEndpoint } from "utils/ipc";
 
-import type { PaletteMode } from "@mui/material";
-import type { AppSettings, StoredConnection, Mod } from "./types";
+import type { AppSettings, Mod, StoredConnection } from "./types";
 
 // Handlers
 export const ipc_getModList = makeEndpoint.main("getModList", <EmptyPayload>_, <Mod[]>_);
+
+export const ipc_setSelectedMod = makeEndpoint.main("setSelectedMod", <{ id: number }>_, <SuccessPayload>_);
 
 export const ipc_setThemeMode = makeEndpoint.main("setThemeMode", <{ mode: PaletteMode }>_, <SuccessPayload>_);
 

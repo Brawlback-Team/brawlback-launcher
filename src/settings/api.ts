@@ -1,4 +1,5 @@
 /* eslint-disable import/no-default-export */
+import type { PaletteMode } from "@mui/material";
 import { ipcRenderer } from "electron";
 
 import {
@@ -19,8 +20,7 @@ import {
   ipc_settingsUpdatedEvent,
   ipc_setUseMonthlySubfolders,
 } from "./ipc";
-import type { AppSettings, StoredConnection, Mod } from "./types";
-import type { PaletteMode } from "@mui/material";
+import type { AppSettings, Mod, StoredConnection } from "./types";
 
 export default {
   getAppSettingsSync() {

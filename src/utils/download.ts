@@ -23,7 +23,7 @@ export async function download(options: {
   }
 
   // Make sure the folder exists
-  await fs.ensureDir(dirname(destinationFile));
+  fs.ensureDirSync(dirname(destinationFile));
 
   const usesHttps = uri.protocol.startsWith("https");
   const { get } = usesHttps ? await import("https") : await import("http");

@@ -15,10 +15,10 @@ import { useBroadcast } from "./useBroadcast";
 import { useBroadcastList, useBroadcastListStore } from "./useBroadcastList";
 import { useConsoleDiscoveryStore } from "./useConsoleDiscovery";
 import { useIsoVerification } from "./useIsoVerification";
+import { useMods } from "./useMods";
 import { useReplayBrowserNavigation } from "./useReplayBrowserList";
 import { useSettings } from "./useSettings";
 import { useSettingsModal } from "./useSettingsModal";
-import { useMods } from "./useMods";
 
 const log = window.electron.log;
 

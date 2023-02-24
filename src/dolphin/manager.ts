@@ -1,7 +1,6 @@
 import type { SettingsManager } from "@settings/settingsManager";
 import electronLog from "electron-log";
 import { Observable, Subject } from "observable-fns";
-import path from "path";
 import { fileExists } from "utils/fileExists";
 
 import { DolphinInstallation } from "./install/installation";
@@ -34,8 +33,7 @@ export class DolphinManager {
     });
     const isoPath = this.settingsManager.get().settings.isoPath;
     if (isoPath) {
-      const gameDir = path.dirname(isoPath);
-      await dolphinInstall.addGamePath(gameDir);
+      await dolphinInstall.addGamePath(isoPath);
     }
   }
 
@@ -177,8 +175,7 @@ export class DolphinManager {
 
     const isoPath = this.settingsManager.get().settings.isoPath;
     if (isoPath) {
-      const gameDir = path.dirname(isoPath);
-      await installation.addGamePath(gameDir);
+      await installation.addGamePath(isoPath);
     }
 
     this._onComplete(launchType);

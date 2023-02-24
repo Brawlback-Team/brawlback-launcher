@@ -1,4 +1,4 @@
-import { addGamePath, setSlippiSettings } from "@dolphin/config/config";
+import { addDefaultIso, addGamePath, setSlippiSettings } from "@dolphin/config/config";
 import { IniFile } from "@dolphin/config/iniFile";
 import { findDolphinExecutable } from "@dolphin/util";
 import { spawnSync } from "child_process";
@@ -29,7 +29,8 @@ export class DolphinInstallation {
       }
       case "linux": {
         const configPath = path.join(os.homedir(), ".config");
-        const userFolderName = this.dolphinLaunchType === DolphinLaunchType.NETPLAY ? "SlippiOnline" : "SlippiPlayback";
+        const userFolderName =
+          this.dolphinLaunchType === DolphinLaunchType.NETPLAY ? "BrawlbackOnline" : "BrawlbackPlayback";
         return path.join(configPath, userFolderName);
       }
       default:
@@ -147,10 +148,17 @@ export class DolphinInstallation {
     }
   }
 
-  public async addGamePath(gameDir: string): Promise<void> {
+  public getIniFilePath() {
+    const iniPath = path.join(this.userFolder, "Config", "Dolphin.ini");
+    fs.existsSync(iniPath);
+    return iniPath;
+  }
+
+  public async addGamePath(isoPath: string): Promise<void> {
     const iniPath = path.join(this.userFolder, "Config", "Dolphin.ini");
     const iniFile = await IniFile.init(iniPath);
-    await addGamePath(iniFile, gameDir);
+    await addDefaultIso(iniFile, isoPath);
+    await addGamePath(iniFile, path.dirname(isoPath));
   }
 
   public async updateSettings(options: Partial<{ useMonthlySubfolders: boolean; replayPath: string }>): Promise<void> {

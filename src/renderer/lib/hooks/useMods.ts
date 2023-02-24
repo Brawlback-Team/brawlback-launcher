@@ -4,6 +4,7 @@ import { combine } from "zustand/middleware";
 
 // get mods config from settings file
 const initialState: ModConfig = window.electron.mods.getModsConfigSync();
+let selectedMod = window.electron.settings.getAppSettingsSync().settings.selectedMod;
 console.log("initial state: ", initialState);
 
 export const useMods = create(
@@ -18,7 +19,8 @@ export const useMods = create(
 );
 
 export const useModsList = () => {
-  const modsList = useMods((store) => store.mods);
+  const modSettings = useMods((store) => store);
+  const modsList = modSettings.mods;
   const addMod = async (modVals: Mod) => {
     await window.electron.mods.addNewMod(modVals);
   };
@@ -29,5 +31,13 @@ export const useModsList = () => {
       await window.electron.mods.deleteMod(index);
     }
   };
-  return [modsList, addMod, deleteMod] as const;
+  const selectMod = async (index: number) => {
+    initialState.selectedMod = index;
+    selectedMod = index;
+    await window.electron.mods.setSelectedMod(index);
+  };
+  const getSelectedMod = () => {
+    return selectedMod;
+  };
+  return [modsList, addMod, deleteMod, selectMod, getSelectedMod] as const;
 };

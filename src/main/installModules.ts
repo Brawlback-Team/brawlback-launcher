@@ -13,7 +13,7 @@ import setupMainIpc from "./setup";
 export function installModules() {
   const settingsManager = new SettingsManager();
   const dolphinManager = new DolphinManager(settingsManager);
-  const modsManager = new ModsManager();
+  const modsManager = new ModsManager(dolphinManager);
   setupDolphinIpc({ dolphinManager });
   setupBroadcastIpc({ settingsManager, dolphinManager });
   setupReplaysIpc();
@@ -21,5 +21,5 @@ export function installModules() {
   setupConsoleIpc({ dolphinManager });
   setupMainIpc();
   setupModsIpc({ modsManager });
-  return { dolphinManager, settingsManager };
+  return { dolphinManager, settingsManager, modsManager };
 }

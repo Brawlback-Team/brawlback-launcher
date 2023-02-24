@@ -1,19 +1,24 @@
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { IconButton, Typography } from "@mui/material";
+import { IconButton } from "@mui/material";
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { useState } from "react";
+import React, { useState } from "react";
 
-import { useMods } from "@/lib/hooks/useMods";
+import { useDolphinActions } from "@/lib/dolphin/useDolphinActions";
+import { useMods, useModsList } from "@/lib/hooks/useMods";
+import { useServices } from "@/services";
 
 const PlayButton = () => {
+  const { dolphinService } = useServices();
+  const { launchNetplay } = useDolphinActions(dolphinService);
   const [menuAnchor, setAnchor] = useState<null | HTMLElement>(null);
   const modList = useMods((store) => store.mods);
+  const [_modsList, _addMod, _deleteMod, selectMod, getSelectedMod] = useModsList();
 
-  const onChangeMod = (_: React.MouseEvent<HTMLLIElement, MouseEvent>, index: number) => {
+  const onChangeMod = async (index: number) => {
     //dispatch({type: 'SELECT_LAUNCHER', index: index})
-    console.log(index);
+    await selectMod(index);
     setAnchor(null);
   };
 
@@ -21,6 +26,9 @@ const PlayButton = () => {
     // window.api.send("runDolphin").then((data) => {
     //   console.log(data);
     // });
+    // In case settings are changed before running
+    await selectMod(getSelectedMod());
+    launchNetplay(false);
     console.log("play");
   };
 
@@ -32,7 +40,7 @@ const PlayButton = () => {
       >
         <PlayArrowIcon sx={{ fontSize: 100 }}></PlayArrowIcon>
       </IconButton>
-      {modList.length > 0 && 
+      {modList.length > 0 && (
         <Box
           sx={{
             borderRadius: "50%",
@@ -45,15 +53,17 @@ const PlayButton = () => {
             left: 70,
             filter: "drop-shadow(0px 4px 5px #000000)",
             fontWeight: "bold",
-            textAlign: "center"
+            textAlign: "center",
           }}
           onClick={(event) => {
             setAnchor(event.currentTarget);
           }}
         >
-          <Box component="p" sx={{width: "100%", lineHeight: 1}}>{modList[0].name.substring(0, 2)}</Box>
+          <Box component="p" sx={{ width: "100%", lineHeight: 1 }}>
+            {modList[getSelectedMod()].name.substring(0, 2)}
+          </Box>
         </Box>
-      }
+      )}
       <Menu
         anchorEl={menuAnchor}
         open={menuAnchor != null}
@@ -62,7 +72,7 @@ const PlayButton = () => {
         }}
       >
         {modList.map((value, index) => (
-          <MenuItem key={index} onClick={(event) => onChangeMod(event, index)}>
+          <MenuItem key={index} onClick={async (_event) => await onChangeMod(index)}>
             {value.name}
           </MenuItem>
         ))}

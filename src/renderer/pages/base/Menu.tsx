@@ -70,12 +70,12 @@ export default function Menu() {
           selected={currentUrl.pathname === "/"}
           onClick={(ev) => handleButtonClick(ev, menuOption.Home)}
         >
-          <ListItemText sx={{fontWeight: "bold"}} primary="Home" />
+          <ListItemText sx={{ fontWeight: "bold" }} primary="Home" />
         </ListItem>
         <Divider />
 
         <ListItem button onClick={() => handleOpenReplayMenu(!openReplayMenu)}>
-          <ListItemText sx={{fontWeight: "bold"}} primary="Replays" />
+          <ListItemText sx={{ fontWeight: "bold" }} primary="Replays" />
           {openReplayMenu ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
         <Divider />
@@ -106,7 +106,7 @@ export default function Menu() {
           selected={currentUrl.pathname === "/settings"}
           onClick={(ev) => handleButtonClick(ev, menuOption.Settings)}
         >
-          <ListItemText sx={{fontWeight: "bold"}} primary="Settings" />
+          <ListItemText sx={{ fontWeight: "bold" }} primary="Settings" />
         </ListItem>
       </List>
     </Drawer>
