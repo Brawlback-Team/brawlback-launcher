@@ -15,7 +15,6 @@ import { useBroadcast } from "./useBroadcast";
 import { useBroadcastList, useBroadcastListStore } from "./useBroadcastList";
 import { useConsoleDiscoveryStore } from "./useConsoleDiscovery";
 import { useIsoVerification } from "./useIsoVerification";
-import { useMods } from "./useMods";
 import { useReplayBrowserNavigation } from "./useReplayBrowserList";
 import { useSettings } from "./useSettings";
 import { useSettingsModal } from "./useSettingsModal";
@@ -84,11 +83,6 @@ export const useAppListeners = () => {
   React.useEffect(() => {
     return window.electron.settings.onSettingsUpdated(updateSettings);
   }, [updateSettings]);
-
-  const updateMods = useMods((store) => store.updateMods);
-  React.useEffect(() => {
-    return window.electron.mods.onModsListUpdated(updateMods);
-  }, [updateMods]);
 
   // Listen to when the list of broadcasting users has changed
   const updateBroadcastingList = useBroadcastListStore((store) => store.setItems);

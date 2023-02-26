@@ -4,7 +4,9 @@ import { ipcRenderer } from "electron";
 
 import {
   ipc_addNewConnection,
+  ipc_addNewMod,
   ipc_deleteConnection,
+  ipc_deleteMod,
   ipc_editConnection,
   ipc_getModList,
   ipc_openSettingsModalEvent,
@@ -29,6 +31,12 @@ export default {
   async getModsList(): Promise<Mod[]> {
     const { result } = await ipc_getModList.renderer!.trigger({});
     return result;
+  },
+  async addNewMod(mod: Mod): Promise<void> {
+    await ipc_addNewMod.renderer!.trigger({ mod });
+  },
+  async deleteMod(id: number): Promise<void> {
+    await ipc_deleteMod.renderer!.trigger({ id });
   },
   onSettingsUpdated(handle: (settings: AppSettings) => void) {
     const { destroy } = ipc_settingsUpdatedEvent.renderer!.handle(async (settings) => {

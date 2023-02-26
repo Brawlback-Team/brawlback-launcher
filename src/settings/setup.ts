@@ -5,7 +5,9 @@ import { autoUpdater } from "electron-updater";
 
 import {
   ipc_addNewConnection,
+  ipc_addNewMod,
   ipc_deleteConnection,
+  ipc_deleteMod,
   ipc_editConnection,
   ipc_getModList,
   ipc_setAutoUpdateLauncher,
@@ -15,7 +17,6 @@ import {
   ipc_setNetplayDolphinPath,
   ipc_setPlaybackDolphinPath,
   ipc_setRootSlpPath,
-  ipc_setSelectedMod,
   ipc_setSpectateSlpPath,
   ipc_setThemeMode,
   ipc_setUseMonthlySubfolders,
@@ -43,8 +44,13 @@ export default function setupSettingsIpc({
     return settingsManager.getModList();
   });
 
-  ipc_setSelectedMod.main!.handle(async ({ id }) => {
-    await settingsManager.setSelectedMod(id);
+  ipc_addNewMod.main!.handle(async ({ mod }) => {
+    await settingsManager.addNewMod(mod);
+    return { success: true };
+  });
+
+  ipc_deleteMod.main!.handle(async ({ id }) => {
+    await settingsManager.deleteMod(id);
     return { success: true };
   });
 

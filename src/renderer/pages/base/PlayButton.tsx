@@ -6,16 +6,14 @@ import MenuItem from "@mui/material/MenuItem";
 import React, { useState } from "react";
 
 import { useDolphinActions } from "@/lib/dolphin/useDolphinActions";
-import { useMods, useModsList } from "@/lib/hooks/useMods";
+import { useModsList } from "@/lib/hooks/useMods";
 import { useServices } from "@/services";
 
 const PlayButton = () => {
   const { dolphinService } = useServices();
   const { launchNetplay } = useDolphinActions(dolphinService);
   const [menuAnchor, setAnchor] = useState<null | HTMLElement>(null);
-  const modList = useMods((store) => store.mods);
-  const [_modsList, _addMod, _deleteMod, selectMod, getSelectedMod] = useModsList();
-
+  const [modList, _addMod, _deleteMod, selectMod, getSelectedMod] = useModsList();
   const onChangeMod = async (index: number) => {
     //dispatch({type: 'SELECT_LAUNCHER', index: index})
     await selectMod(index);
@@ -28,7 +26,7 @@ const PlayButton = () => {
     // });
     // In case settings are changed before running
     await selectMod(getSelectedMod());
-    launchNetplay(false);
+    launchNetplay();
     console.log("play");
   };
 

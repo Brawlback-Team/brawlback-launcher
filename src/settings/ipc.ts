@@ -7,7 +7,9 @@ import type { AppSettings, Mod, StoredConnection } from "./types";
 // Handlers
 export const ipc_getModList = makeEndpoint.main("getModList", <EmptyPayload>_, <Mod[]>_);
 
-export const ipc_setSelectedMod = makeEndpoint.main("setSelectedMod", <{ id: number }>_, <SuccessPayload>_);
+export const ipc_addNewMod = makeEndpoint.main("addNewMod", <{ mod: Mod }>_, <SuccessPayload>_);
+
+export const ipc_deleteMod = makeEndpoint.main("deleteMod", <{ id: number }>_, <SuccessPayload>_);
 
 export const ipc_setThemeMode = makeEndpoint.main("setThemeMode", <{ mode: PaletteMode }>_, <SuccessPayload>_);
 

@@ -1,8 +1,11 @@
 import type { SettingsManager } from "@settings/settingsManager";
 import electronLog from "electron-log";
 import { Observable, Subject } from "observable-fns";
+import path from "path";
 import { fileExists } from "utils/fileExists";
 
+import { addElfPath, addSdCardPath } from "./config/config";
+import { IniFile } from "./config/iniFile";
 import { DolphinInstallation } from "./install/installation";
 import { DolphinInstance, PlaybackDolphinInstance } from "./instance";
 import type { DolphinEvent, ReplayCommunication } from "./types";
@@ -179,6 +182,22 @@ export class DolphinManager {
     }
 
     this._onComplete(launchType);
+  }
+
+  public async setMod(id: number): Promise<void> {
+    const modList = this.settingsManager.get().mods;
+    const iniFilePaths = [
+      this.getInstallation(DolphinLaunchType.PLAYBACK).getIniFilePath(),
+      this.getInstallation(DolphinLaunchType.NETPLAY).getIniFilePath(),
+    ];
+    if (id < modList.length) {
+      await this.settingsManager.selectMod(id);
+      for (const iniFilePath of iniFilePaths) {
+        const iniFile = await IniFile.init(iniFilePath);
+        await addElfPath(iniFile, path.dirname(modList[id].elfPath));
+        await addSdCardPath(iniFile, modList[id].sdCardPath);
+      }
+    }
   }
 
   private async _getIsoPath(): Promise<string | undefined> {

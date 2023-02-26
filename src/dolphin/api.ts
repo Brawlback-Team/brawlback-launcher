@@ -1,5 +1,4 @@
 /* eslint-disable import/no-default-export */
-
 import {
   ipc_checkDesktopAppDolphin,
   ipc_checkPlayKeyExists,
@@ -11,6 +10,7 @@ import {
   ipc_launchNetplayDolphin,
   ipc_reinstallDolphin,
   ipc_removePlayKeyFile,
+  ipc_set_mod,
   ipc_storePlayKeyFile,
   ipc_viewSlpReplay,
 } from "./ipc";
@@ -24,6 +24,9 @@ import type {
 } from "./types";
 
 const dolphinApi: DolphinService = {
+  async setMod(id: number) {
+    await ipc_set_mod.renderer!.trigger({ id });
+  },
   async downloadDolphin(dolphinType: DolphinLaunchType) {
     await ipc_downloadDolphin.renderer!.trigger({ dolphinType });
   },
@@ -49,8 +52,8 @@ const dolphinApi: DolphinService = {
   async viewSlpReplay(files: ReplayQueueItem[]): Promise<void> {
     await ipc_viewSlpReplay.renderer!.trigger({ files });
   },
-  async launchNetplayDolphin(options: { bootToCss?: boolean }): Promise<void> {
-    await ipc_launchNetplayDolphin.renderer!.trigger(options);
+  async launchNetplayDolphin(): Promise<void> {
+    await ipc_launchNetplayDolphin.renderer!.trigger({});
   },
   async checkDesktopAppDolphin() {
     const { result } = await ipc_checkDesktopAppDolphin.renderer!.trigger({});

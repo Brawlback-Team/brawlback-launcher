@@ -27,6 +27,19 @@ export class SettingsManager {
         restoredSettings.settings.isoPath = null;
       }
     }
+
+    // check to make launcher .elf path and sd card path exist\
+    if (restoredSettings.mods) {
+      restoredSettings.mods.filter((mod: Partial<Mod>) => {
+        if (mod.elfPath && mod.sdCardPath) {
+          if (fs.existsSync(mod.elfPath) && fs.existsSync(mod.sdCardPath)) {
+            return true;
+          }
+        }
+        return false;
+      });
+    }
+
     this.appSettings = restoredSettings;
   }
 
@@ -58,8 +71,21 @@ export class SettingsManager {
     return this.get().mods;
   }
 
-  public setSelectedMod(index: number): Promise<void> {
-    return this._set("settings.selectedMod", index);
+  public async addNewMod(mod: Mod): Promise<void> {
+    const modList = this.get().mods;
+    modList.push(mod);
+    await this._set("mods", modList);
+  }
+  public async deleteMod(id: number): Promise<void> {
+    const modList = this.get().mods;
+    if (id < modList.length) {
+      modList.splice(id, 1);
+      await this._set("mods", modList);
+    }
+  }
+
+  public async selectMod(index: number): Promise<void> {
+    await this._set("settings.selectedMod", index);
   }
 
   public async setIsoPath(isoPath: string | null): Promise<void> {

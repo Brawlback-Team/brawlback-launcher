@@ -1,7 +1,6 @@
 import broadcastApi from "@broadcast/api";
 import consoleApi from "@console/api";
 import dolphinApi from "@dolphin/api";
-import modsApi from "@mods/api";
 import replaysApi from "@replays/api";
 import settingsApi from "@settings/api";
 import { clipboard, contextBridge, shell } from "electron";
@@ -17,7 +16,6 @@ const api = {
   broadcast: broadcastApi,
   dolphin: dolphinApi,
   replays: replaysApi,
-  mods: modsApi,
   path: {
     join: path.join,
   },

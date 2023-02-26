@@ -83,7 +83,7 @@ export const Header: React.FC<HeaderProps> = ({ menuItems }) => {
         return;
       }
 
-      launchNetplay(offlineOnly ?? false);
+      launchNetplay();
 
       return;
     },

@@ -18,6 +18,7 @@ export type Mod = {
   elfPath: string; // path for launcher of the mod
   sdCardPath: string; // path for sd card with codes for specific mod
   name: string;
+  lylatID?: string;
 };
 
 export type AppSettings = {

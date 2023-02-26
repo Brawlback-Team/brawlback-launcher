@@ -89,8 +89,9 @@ export interface DolphinService {
   checkPlayKeyExists(key: PlayKey): Promise<boolean>;
   removePlayKeyFile(): Promise<void>;
   viewSlpReplay(files: ReplayQueueItem[]): Promise<void>;
-  launchNetplayDolphin(options: { bootToCss?: boolean }): Promise<void>;
+  launchNetplayDolphin(): Promise<void>;
   checkDesktopAppDolphin(): Promise<{ dolphinPath: string; exists: boolean }>;
   importDolphinSettings(options: { toImportDolphinPath: string; dolphinType: DolphinLaunchType }): Promise<void>;
+  setMod(index: number): Promise<void>;
   onEvent<T extends DolphinEventType>(eventType: T, handle: (event: DolphinEventMap[T]) => void): () => void;
 }
