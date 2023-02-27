@@ -28,19 +28,24 @@ export const defaultAppSettings: AppSettings = {
     launchMeleeOnPlay: true,
     autoUpdateLauncher: true,
     selectedMod: 0,
+    defaultModsDir: modsDir,
   },
   mods: [
     {
       name: "vBrawl",
-      elfPath: path.join(modsDir, "vBrawl", "vBrawl Launcher.elf"),
+      elfPath: path.join(modsDir, "vBrawl", "Brawl Netplay V3.elf"),
       sdCardPath: path.join(modsDir, "vBrawl", "sd.raw"),
       lylatID: "lylat-vBrawl-id",
+      default: true,
+      version: 3.0,
     },
     {
       name: "P+",
       elfPath: path.join(modsDir, "Project +", "Project + Launcher.elf"),
       sdCardPath: path.join(modsDir, "Project +", "sd.raw"),
       lylatID: "lylat-pplus-id",
+      default: true,
+      version: 1.0,
     },
   ],
 };

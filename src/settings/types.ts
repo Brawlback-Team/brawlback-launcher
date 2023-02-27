@@ -19,7 +19,14 @@ export type Mod = {
   sdCardPath: string; // path for sd card with codes for specific mod
   name: string;
   lylatID?: string;
+  version?: number;
+  default: boolean;
 };
+
+export enum DefaultMods {
+  ProjectPlus = "P+",
+  vBrawl = "vBrawl",
+}
 
 export type AppSettings = {
   previousVersion?: string;
@@ -37,6 +44,7 @@ export type AppSettings = {
     launchMeleeOnPlay: boolean; // Whether to launch dolphin app or launch game (from slippi)
     autoUpdateLauncher: boolean; // (from slippi)
     selectedMod: number; // index of last played mod to be auto selected
+    defaultModsDir: string;
   };
   mods: Mod[];
 };

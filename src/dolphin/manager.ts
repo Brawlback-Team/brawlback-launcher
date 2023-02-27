@@ -1,5 +1,7 @@
 import type { SettingsManager } from "@settings/settingsManager";
+import type { DefaultMods } from "@settings/types";
 import electronLog from "electron-log";
+import { ModInstallation } from "mod/installation";
 import { Observable, Subject } from "observable-fns";
 import path from "path";
 import { fileExists } from "utils/fileExists";
@@ -198,6 +200,19 @@ export class DolphinManager {
         await addSdCardPath(iniFile, modList[id].sdCardPath);
       }
     }
+  }
+
+  public async installMod(mod: DefaultMods): Promise<void> {
+    const modsDir = this.settingsManager.get().settings.defaultModsDir;
+    const modInstallation = new ModInstallation(mod, modsDir);
+    await modInstallation.validate({
+      onProgress(_current, _total) {
+        null;
+      },
+      onComplete() {
+        null;
+      },
+    });
   }
 
   private async _getIsoPath(): Promise<string | undefined> {

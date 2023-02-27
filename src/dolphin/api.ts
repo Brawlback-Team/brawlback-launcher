@@ -1,10 +1,13 @@
 /* eslint-disable import/no-default-export */
+import type { DefaultMods } from "@settings/types";
+
 import {
   ipc_checkDesktopAppDolphin,
   ipc_checkPlayKeyExists,
   ipc_clearDolphinCache,
   ipc_configureDolphin,
   ipc_dolphinEvent,
+  ipc_downloadDefaultMod,
   ipc_downloadDolphin,
   ipc_importDolphinSettings,
   ipc_launchNetplayDolphin,
@@ -24,6 +27,9 @@ import type {
 } from "./types";
 
 const dolphinApi: DolphinService = {
+  async downloadDefaultMod(mod: DefaultMods) {
+    await ipc_downloadDefaultMod.renderer!.trigger({ mod });
+  },
   async setMod(id: number) {
     await ipc_set_mod.renderer!.trigger({ id });
   },

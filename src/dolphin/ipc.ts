@@ -1,9 +1,16 @@
+import type { DefaultMods } from "@settings/types";
 import type { EmptyPayload, SuccessPayload } from "utils/ipc";
 import { _, makeEndpoint } from "utils/ipc";
 
 import type { DolphinEvent, DolphinLaunchType, PlayKey, ReplayQueueItem } from "./types";
 
 // Handlers
+
+export const ipc_downloadDefaultMod = makeEndpoint.main(
+  "downloadDefaultMod",
+  <{ mod: DefaultMods }>_,
+  <SuccessPayload>_,
+);
 
 export const ipc_downloadDolphin = makeEndpoint.main(
   "downloadDolphin",

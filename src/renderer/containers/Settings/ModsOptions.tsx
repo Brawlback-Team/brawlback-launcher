@@ -55,8 +55,8 @@ const ModDisplay: React.FC<ModDisplayProps> = ({ mod, index, onDelete, onEdit }:
         <Typography sx={{ marginLeft: "5px" }} variant="subtitle1">
           {mod.name}
         </Typography>
-        <EditIcon onClick={() => onEdit(index)} />
-        <DeleteIcon onClick={() => onDelete(index)} />
+        {!mod.default && <EditIcon onClick={() => onEdit(index)} />}
+        {!mod.default && <DeleteIcon onClick={() => onDelete(index)} />}
       </Box>
       <Box sx={{ display: "flex", alignItems: "row" }}>
         <Box sx={{ width: "50%", margin: "10px" }}>
@@ -88,7 +88,7 @@ export const ModsOptions = () => {
   const [sdCardPath, setSDCardPath] = useState("");
 
   const handleAddMod = async () => {
-    await addMod({ name: modName, sdCardPath: sdCardPath, elfPath: launcherPath });
+    await addMod({ name: modName, sdCardPath: sdCardPath, elfPath: launcherPath, default: false });
     setOpenDialog(false);
   };
   return (
@@ -134,7 +134,13 @@ export const ModsOptions = () => {
         <Box>
           <NoteAddIcon onClick={() => setOpenDialog(true)} />
           {modList.map((val, index) => (
-            <ModDisplay key={index} mod={val} index={index} onDelete={deleteMod} onEdit={(id) => console.log(id)} />
+            <ModDisplay
+              key={index}
+              mod={val}
+              index={index}
+              onDelete={val.default ? () => null : deleteMod}
+              onEdit={(id) => console.log(id)}
+            />
           ))}
           <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
             <DialogTitle>Add Mod</DialogTitle>

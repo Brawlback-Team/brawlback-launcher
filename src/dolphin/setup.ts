@@ -11,6 +11,7 @@ import {
   ipc_clearDolphinCache,
   ipc_configureDolphin,
   ipc_dolphinEvent,
+  ipc_downloadDefaultMod,
   ipc_downloadDolphin,
   ipc_importDolphinSettings,
   ipc_launchNetplayDolphin,
@@ -35,6 +36,11 @@ export default function setupDolphinIpc({ dolphinManager }: { dolphinManager: Do
 
   ipc_downloadDolphin.main!.handle(async ({ dolphinType }) => {
     await dolphinManager.installDolphin(dolphinType);
+    return { success: true };
+  });
+
+  ipc_downloadDefaultMod.main!.handle(async ({ mod }) => {
+    await dolphinManager.installMod(mod);
     return { success: true };
   });
 

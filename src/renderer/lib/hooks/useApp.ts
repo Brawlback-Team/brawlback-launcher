@@ -1,4 +1,5 @@
 import { DolphinLaunchType } from "@dolphin/types";
+import { DefaultMods } from "@settings/types";
 import create from "zustand";
 import { combine } from "zustand/middleware";
 
@@ -91,6 +92,12 @@ export const useAppInitialization = () => {
             err instanceof Error ? err.message : JSON.stringify(err)
           }`,
         );
+      });
+    });
+    [DefaultMods.vBrawl, DefaultMods.ProjectPlus].map(async (m) => {
+      return dolphinService.downloadDefaultMod(m).catch((err) => {
+        log.error(err);
+        showError(`Failed to install ${m} Mod. Error: ${err instanceof Error ? err.message : JSON.stringify(err)}`);
       });
     });
 
