@@ -30,14 +30,16 @@ export class SettingsManager {
 
     // check to make launcher .elf path and sd card path exist\
     if (restoredSettings.mods) {
-      restoredSettings.mods.filter((mod: Partial<Mod>) => {
-        if (mod.elfPath && mod.sdCardPath) {
-          if (fs.existsSync(mod.elfPath) && fs.existsSync(mod.sdCardPath)) {
-            return true;
+      if (restoredSettings.mods.length > 0) {
+        restoredSettings.mods.filter((mod: Partial<Mod>) => {
+          if (mod.elfPath && mod.sdCardPath) {
+            if (fs.existsSync(mod.elfPath) && fs.existsSync(mod.sdCardPath)) {
+              return true;
+            }
           }
-        }
-        return false;
-      });
+          return false;
+        });
+      }
     }
 
     this.appSettings = restoredSettings;

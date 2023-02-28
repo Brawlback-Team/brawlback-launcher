@@ -78,9 +78,9 @@ export class ModInstallation {
     return metadataVersion < latestVersion;
   }
 
-  private async _uninstallMod() {
-    await fs.remove(path.join(this.defaultModsDir, this.mod.toString()));
-  }
+  // private async _uninstallMod() {
+  //   await fs.remove(path.join(this.defaultModsDir, this.mod.toString()));
+  // }
 
   private async _installMod(assetPath: string, downloadInfo: FetchModLatestVersionResponse) {
     await installMod({
