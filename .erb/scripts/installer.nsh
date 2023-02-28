@@ -20,7 +20,7 @@ var InstallType
     !insertmacro MUI_HEADER_TEXT "Select components to install" ""
     nsDialogs::Create /NOUNLOAD 1018
     Pop $0
-    ${NSD_CreateRadioButton} 0 50u 100% 10u "Only install Slippi Launcher"
+    ${NSD_CreateRadioButton} 0 50u 100% 10u "Only install Brawlback Launcher"
     pop $1
     ${NSD_CreateRadioButton} 0 70u 100% 10u "Also install GameCube adapter drivers (optional)"
     pop $2
@@ -52,15 +52,15 @@ var InstallType
 !macroend
 
 !macro customInstall
-  ; Add slippi URI Handling
-  DetailPrint "Register slippi URI Handler"
-  DeleteRegKey HKCR "slippi"
-  WriteRegStr HKCR "slippi" "" "URL:slippi"
-  WriteRegStr HKCR "slippi" "URL Protocol" ""
-  WriteRegStr HKCR "slippi\DefaultIcon" "" "$INSTDIR\${APP_EXECUTABLE_FILENAME}"
-  WriteRegStr HKCR "slippi\shell" "" ""
-  WriteRegStr HKCR "slippi\shell\Open" "" ""
-  WriteRegStr HKCR "slippi\shell\Open\command" "" "$\"$INSTDIR\${APP_EXECUTABLE_FILENAME}$\" $\"%1$\""
+  ; Add brawlback URI Handling
+  DetailPrint "Register brawlback URI Handler"
+  DeleteRegKey HKCR "brawlback"
+  WriteRegStr HKCR "brawlback" "" "URL:brawlback"
+  WriteRegStr HKCR "brawlback" "URL Protocol" ""
+  WriteRegStr HKCR "brawlback\DefaultIcon" "" "$INSTDIR\${APP_EXECUTABLE_FILENAME}"
+  WriteRegStr HKCR "brawlback\shell" "" ""
+  WriteRegStr HKCR "brawlback\shell\Open" "" ""
+  WriteRegStr HKCR "brawlback\shell\Open\command" "" "$\"$INSTDIR\${APP_EXECUTABLE_FILENAME}$\" $\"%1$\""
 
   ; Check if we should also install the GC drivers
   ${If} $InstallType == INSTALL

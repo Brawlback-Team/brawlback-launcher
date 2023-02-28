@@ -29,7 +29,7 @@ export const BasicFooter = styled.div`
 export const Footer: React.FC = () => {
   return (
     <Outer>
-      <Social title="Follow Project Brawlback on Twitter" url={`https://twitter.com/${socials.twitterId}`}>
+      <Social title="Follow Brawlback Team on Twitter" url={`https://twitter.com/${socials.twitterId}`}>
         <TwitterIcon />
       </Social>
       <Social title="Join the Discord" url={socials.discordUrl}>
