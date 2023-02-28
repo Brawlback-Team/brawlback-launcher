@@ -8,7 +8,7 @@ function getDefaultRootSlpPath(): string {
   if (process.platform === "win32") {
     root = app.getPath("documents");
   }
-  return path.join(root, "Slippi");
+  return path.join(root, "Brawlback");
 }
 
 const modsDir = path.join(app.getPath("userData"), "mods");
