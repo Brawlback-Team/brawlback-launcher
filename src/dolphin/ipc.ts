@@ -53,7 +53,7 @@ export const ipc_checkDesktopAppDolphin = makeEndpoint.main(
   <{ dolphinPath: string; exists: boolean }>_,
 );
 
-// toImportDolphin path must point to a "Slippi Dolphin.{exe,app}"
+// toImportDolphin path must point to a "Brawlback Dolphin.{exe,app}"
 export const ipc_importDolphinSettings = makeEndpoint.main(
   "importDolphinSettings",
   <{ toImportDolphinPath: string; dolphinType: DolphinLaunchType }>_,

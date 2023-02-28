@@ -38,7 +38,7 @@ export type ConsoleConnectionOptions = typeof consoleConnectionOptions;
  * Basic usage example:
  *
  * ```javascript
- * const { ConsoleConnection } = require("@slippi/slippi-js");
+ * const { ConsoleConnection } = require("@common/brawlback-js");
  *
  * const connection = new ConsoleConnection();
  * connection.connect("localhost", 667); // You should set these values appropriately

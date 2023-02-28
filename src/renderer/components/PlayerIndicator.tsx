@@ -1,5 +1,6 @@
-import { css } from "@emotion/react";
 // import type { PlayerType } from "@slippi/slippi-js";
+import type { PlayerType } from "@common/brawlback-js";
+import { css } from "@emotion/react";
 import _ from "lodash";
 import React from "react";
 

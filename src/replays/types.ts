@@ -1,12 +1,12 @@
-//import type { GameStartType, MetadataType } from "@slippi/slippi-js";
+import type { GameStartType, MetadataType } from "@common/brawlback-js";
 
 export interface FileResult {
   name: string;
   fullPath: string;
-  //settings: GameStartType;
+  settings: GameStartType;
   startTime: string | null;
   lastFrame: number | null;
-  //metadata: MetadataType | null;
+  metadata: MetadataType | null;
 }
 
 export interface FolderResult {

@@ -1,4 +1,4 @@
-//import type { DolphinMessageType } from "@slippi/slippi-js";
+import type { DolphinMessageType } from "@common/brawlback-js";
 
 export interface BroadcasterItem {
   broadcaster: {

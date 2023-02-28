@@ -1,4 +1,4 @@
-// import type { ConsoleConnection, SlpFileWriter } from "@slippi/slippi-js";
+import type { ConsoleConnection } from "@common/brawlback-js";
 
 import type { AutoSwitcher } from "./autoSwitcher";
 import type { ConsoleRelay } from "./consoleRelay";

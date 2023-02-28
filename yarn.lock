@@ -2299,6 +2299,11 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
+"@shelacek/ubjson@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@shelacek/ubjson/-/ubjson-1.1.1.tgz#949d9e6fb5cf2ada4197de6f8430fa7894d61ed4"
+  integrity sha512-2Vi46ct3IWzh8eAz9IZ0NulIRtJbGgJDppatJvufB0fHwasRSfklBoQrVrCutF24fSuRvTvZVebjtcIHOxvzWw==
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
