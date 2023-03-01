@@ -1,10 +1,11 @@
 //import { characters as charUtils, stages as stageUtils } from "@slippi/slippi-js";
 
-import unknownCharacterIcon from "@/styles/images/unknown.png";
+//import unknownCharacterIcon from "@/styles/images/unknown.png";
 
-const characterIcons = require.context("../styles/images/characters", true);
-const stageIcons = require.context("../styles/images/stages");
+const _characterIcons = require.context("../styles/images/characters", true);
+const _stageIcons = require.context("../styles/images/stages");
 
+/*
 export const getCharacterIcon = (characterId: number | null, characterColor: number | null = 0): string => {
   if (characterId !== null) {
     const characterInfo = charUtils.getCharacterInfo(characterId);
@@ -21,7 +22,9 @@ export const getCharacterIcon = (characterId: number | null, characterColor: num
   }
   return unknownCharacterIcon;
 };
+*/
 
+/*
 export const getStageImage = (stageId: number): string => {
   const stageInfo = stageUtils.getStageInfo(stageId);
   if (stageInfo.id !== stageUtils.UnknownStage.id) {
@@ -33,6 +36,7 @@ export const getStageImage = (stageId: number): string => {
   }
   return "";
 };
+*/
 
 export const toOrdinal = (i: number): string => {
   const j = i % 10,

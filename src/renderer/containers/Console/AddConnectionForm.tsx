@@ -1,3 +1,4 @@
+import { Ports } from "@common/brawlback-js";
 import { colors } from "@common/colors";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -7,7 +8,6 @@ import Collapse from "@mui/material/Collapse";
 import FormHelperText from "@mui/material/FormHelperText";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-// import { Ports } from "@slippi/slippi-js";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -132,7 +132,7 @@ export const AddConnectionForm: React.FC<AddConnectionFormProps> = ({ defaultVal
           >
             <Notice>
               <WarningIcon />
-              Only modify these values if you know what you're doing.
+              Only modify these values if you know what you are doing.
             </Notice>
             <Toggle
               value={enableAutoSwitcher}

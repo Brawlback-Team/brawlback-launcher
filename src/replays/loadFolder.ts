@@ -2,8 +2,8 @@ import { exists } from "@common/exists";
 import * as fs from "fs-extra";
 import path from "path";
 
-import { loadFile } from "./loadFile";
-import type { FileLoadResult, FileResult } from "./types";
+//import { loadFile } from "./loadFile";
+import type { FileLoadResult } from "./types";
 
 export async function loadFolder(
   folder: string,
@@ -33,9 +33,10 @@ export async function loadFolder(
     };
   }
 
-  let fileValidCount = 0;
+  const fileValidCount = 0;
   callback(0, total);
 
+  /*
   const process = async (path: string) => {
     return new Promise<FileResult | null>((resolve) => {
       setImmediate(async () => {
@@ -50,10 +51,11 @@ export async function loadFolder(
       });
     });
   };
+  */
 
   const slpGamesPromise = Promise.all(
-    fullSlpPaths.map((fullPath) => {
-      return process(fullPath);
+    fullSlpPaths.map((_fullPath) => {
+      //return process(fullPath);
     }),
   );
   const fileSizesPromise = Promise.all(

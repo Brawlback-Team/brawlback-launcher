@@ -61,7 +61,7 @@ export const BuildInfo: React.FC<BuildInfoProps> = ({ className, enableAdvancedU
               text-decoration: underline;
               cursor: pointer;
             `}
-            href={`https://github.com/project-slippi/slippi-launcher/commit/${commitHash}`}
+            href={`https://github.com/brawlback-team/brawlback-launcher/commit/${commitHash}`}
           >
             {commitHash}
           </A>

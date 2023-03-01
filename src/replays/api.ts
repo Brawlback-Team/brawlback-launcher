@@ -1,6 +1,5 @@
 /* eslint-disable import/no-default-export */
 import {
-  ipc_calculateGameStats,
   ipc_initializeFolderTree,
   ipc_loadProgressUpdatedEvent,
   ipc_loadReplayFolder,
@@ -20,10 +19,6 @@ export default {
   },
   async selectTreeFolder(folderPath: string) {
     const { result } = await ipc_selectTreeFolder.renderer!.trigger({ folderPath });
-    return result;
-  },
-  async calculateGameStats(filePath: string) {
-    const { result } = await ipc_calculateGameStats.renderer!.trigger({ filePath });
     return result;
   },
   onReplayLoadProgressUpdate(handle: (progress: Progress) => void) {

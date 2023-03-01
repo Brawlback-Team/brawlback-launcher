@@ -3,12 +3,13 @@
 // when in Node worker context.
 
 import type { ModuleMethods } from "threads/dist/types/master";
-import { Observable, Subject } from "threads/observable";
-import { expose } from "threads/worker";
+import type { Observable } from "threads/observable";
+import { Subject } from "threads/observable";
 
-import { MirrorManager } from "./mirrorManager";
+//import { expose } from "threads/worker";
+//import { MirrorManager } from "./mirrorManager";
 import type { ConsoleMirrorStatusUpdate, MirrorConfig } from "./types";
-import { MirrorEvent } from "./types";
+//import { MirrorEvent } from "./types";
 
 interface Methods {
   dispose: () => Promise<void>;
@@ -24,14 +25,15 @@ interface Methods {
 
 export type WorkerSpec = ModuleMethods & Methods;
 
-const mirrorManager = new MirrorManager();
+//const mirrorManager = new MirrorManager();
 
-const logSubject = new Subject<string>();
-const errorSubject = new Subject<Error | string>();
-const mirrorDetailsSubject = new Subject<{ playbackId: string; filePath: string; isRealtime: boolean }>();
-const mirrorStatusSubject = new Subject<{ ip: string; info: Partial<ConsoleMirrorStatusUpdate> }>();
+const _logSubject = new Subject<string>();
+const _errorSubject = new Subject<Error | string>();
+const _mirrorDetailsSubject = new Subject<{ playbackId: string; filePath: string; isRealtime: boolean }>();
+const _mirrorStatusSubject = new Subject<{ ip: string; info: Partial<ConsoleMirrorStatusUpdate> }>();
 
 // Forward the events to the renderer
+/*
 mirrorManager.on(MirrorEvent.LOG, async (msg: string) => {
   logSubject.next(msg);
 });
@@ -50,7 +52,9 @@ mirrorManager.on(
     mirrorStatusSubject.next(statusUpdate);
   },
 );
+*/
 
+/*
 const methods: WorkerSpec = {
   async dispose(): Promise<void> {
     // Clean up worker
@@ -86,5 +90,6 @@ const methods: WorkerSpec = {
     return Observable.from(mirrorStatusSubject);
   },
 };
+*/
 
-expose(methods);
+//expose(methods);

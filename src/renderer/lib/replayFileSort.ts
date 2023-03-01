@@ -1,7 +1,7 @@
 import type { FileResult } from "@replays/types";
-// import { Frames } from "@slippi/slippi-js";
-import compareFunc from "compare-func";
 
+// import { Frames } from "@slippi/slippi-js";
+//import compareFunc from "compare-func";
 import { extractAllPlayerNames, namesMatch } from "@/lib/matchNames";
 
 // The minimum duration of games when filtering out short games
@@ -17,6 +17,7 @@ export enum SortDirection {
   DESC = "DESC",
 }
 
+/*
 export function replayFileSort(
   key: ReplaySortOption,
   direction: SortDirection,
@@ -42,8 +43,9 @@ export function replayFileSort(
     return 0;
   };
 }
+*/
 
-const sortByValue = (key: ReplaySortOption): ((val: FileResult) => any) => {
+/*const sortByValue = (key: ReplaySortOption): ((val: FileResult) => any) => {
   return (file) => {
     switch (key) {
       case ReplaySortOption.GAME_DURATION: {
@@ -55,8 +57,9 @@ const sortByValue = (key: ReplaySortOption): ((val: FileResult) => any) => {
     }
   };
 };
+*/
 
-const defaultSortOrder: Array<{
+const _defaultSortOrder: Array<{
   key: ReplaySortOption;
   direction: SortDirection;
 }> = [

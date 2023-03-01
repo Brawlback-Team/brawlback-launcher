@@ -1,7 +1,7 @@
-//import type { StatsType } from "@slippi/slippi-js";
+//import type { StatsType } from "@common/brawlback-js";
 import { _, makeEndpoint } from "utils/ipc";
 
-import type { FileLoadResult, FileResult, FolderResult, Progress } from "./types";
+import type { FileLoadResult, FolderResult, Progress } from "./types";
 
 // Handlers
 
@@ -17,12 +17,6 @@ export const ipc_selectTreeFolder = makeEndpoint.main(
   "selectTreeFolder",
   <{ folderPath: string }>_,
   <readonly FolderResult[]>_,
-);
-
-export const ipc_calculateGameStats = makeEndpoint.main(
-  "calculateGameStats",
-  <{ filePath: string }>_,
-  <{ file: FileResult; stats: StatsType | null }>_,
 );
 
 // Events
