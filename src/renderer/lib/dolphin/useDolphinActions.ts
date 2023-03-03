@@ -54,17 +54,14 @@ export const useDolphinActions = (dolphinService: DolphinService) => {
     [dolphinService, showError],
   );
 
-  const launchNetplay = useCallback(
-    (bootToCss: boolean) => {
-      if (getInstallStatus(DolphinLaunchType.NETPLAY) !== DolphinStatus.READY) {
-        showError("Dolphin is updating. Try again later.");
-        return;
-      }
+  const launchNetplay = useCallback(() => {
+    if (getInstallStatus(DolphinLaunchType.NETPLAY) !== DolphinStatus.READY) {
+      showError("Dolphin is updating. Try again later.");
+      return;
+    }
 
-      dolphinService.launchNetplayDolphin({ bootToCss }).catch(showError);
-    },
-    [getInstallStatus, dolphinService, showError],
-  );
+    dolphinService.launchNetplayDolphin().catch(showError);
+  }, [getInstallStatus, dolphinService, showError]);
 
   const viewReplays = useCallback(
     (...files: ReplayQueueItem[]) => {

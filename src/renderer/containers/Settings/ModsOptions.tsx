@@ -1,5 +1,4 @@
 import { IsoValidity } from "@common/types";
-import type { Mod } from "@mods/types";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -17,6 +16,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import type { Mod } from "@settings/types";
 import { useState } from "react";
 
 import { PathInput } from "@/components/PathInput";
@@ -55,8 +55,8 @@ const ModDisplay: React.FC<ModDisplayProps> = ({ mod, index, onDelete, onEdit }:
         <Typography sx={{ marginLeft: "5px" }} variant="subtitle1">
           {mod.name}
         </Typography>
-        <EditIcon onClick={() => onEdit(index)} />
-        <DeleteIcon onClick={() => onDelete(index)} />
+        {!mod.default && <EditIcon onClick={() => onEdit(index)} />}
+        {!mod.default && <DeleteIcon onClick={() => onDelete(index)} />}
       </Box>
       <Box sx={{ display: "flex", alignItems: "row" }}>
         <Box sx={{ width: "50%", margin: "10px" }}>
@@ -88,7 +88,7 @@ export const ModsOptions = () => {
   const [sdCardPath, setSDCardPath] = useState("");
 
   const handleAddMod = async () => {
-    await addMod({ name: modName, sdCardPath: sdCardPath, elfPath: launcherPath });
+    await addMod({ name: modName, sdCardPath: sdCardPath, elfPath: launcherPath, default: false });
     setOpenDialog(false);
   };
   return (
@@ -134,12 +134,18 @@ export const ModsOptions = () => {
         <Box>
           <NoteAddIcon onClick={() => setOpenDialog(true)} />
           {modList.map((val, index) => (
-            <ModDisplay key={index} mod={val} index={index} onDelete={deleteMod} onEdit={(id) => console.log(id)} />
+            <ModDisplay
+              key={index}
+              mod={val}
+              index={index}
+              onDelete={val.default ? () => null : deleteMod}
+              onEdit={(id) => console.log(id)}
+            />
           ))}
           <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
             <DialogTitle>Add Mod</DialogTitle>
             <DialogContent>
-              <DialogContentText>add a new mod</DialogContentText>
+              <DialogContentText>Add a new Mod</DialogContentText>
               <TextField
                 margin="dense"
                 id="name"
@@ -149,7 +155,7 @@ export const ModsOptions = () => {
                 variant="standard"
                 onChange={(ev) => setModName(ev.target.value)}
               />
-              <TextField
+              {/* <TextField
                 margin="dense"
                 id="launcher"
                 label="launcher"
@@ -157,8 +163,25 @@ export const ModsOptions = () => {
                 fullWidth
                 variant="standard"
                 onChange={(ev) => setLauncherPath(ev.target.value)}
-              />
-              <TextField
+              /> */}
+              <Box>
+                <Box style={{ marginTop: 5 }}>Launcher Path</Box>
+                <input
+                  type="file"
+                  accept=".elf"
+                  onChange={(e) => {
+                    const files = e.target.files;
+                    if (files) {
+                      const item = files.item(0);
+                      if (item) {
+                        setLauncherPath(item.path);
+                      }
+                    }
+                  }}
+                />
+              </Box>
+
+              {/* <TextField
                 margin="dense"
                 id="sd-path"
                 label="sd"
@@ -166,11 +189,27 @@ export const ModsOptions = () => {
                 fullWidth
                 variant="standard"
                 onChange={(ev) => setSDCardPath(ev.target.value)}
-              />
+              /> */}
+              <Box>
+                <Box style={{ marginTop: 5 }}>Launcher Path</Box>
+                <input
+                  type="file"
+                  accept=".raw"
+                  onChange={(e) => {
+                    const files = e.target.files;
+                    if (files) {
+                      const item = files.item(0);
+                      if (item) {
+                        setSDCardPath(item.path);
+                      }
+                    }
+                  }}
+                />
+              </Box>
             </DialogContent>
             <DialogActions>
               <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
-              <Button onClick={handleAddMod}>Subscribe</Button>
+              <Button onClick={async () => await handleAddMod()}>Add</Button>
             </DialogActions>
           </Dialog>
         </Box>

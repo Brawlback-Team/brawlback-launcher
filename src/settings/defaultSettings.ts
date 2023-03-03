@@ -8,13 +8,15 @@ function getDefaultRootSlpPath(): string {
   if (process.platform === "win32") {
     root = app.getPath("documents");
   }
-  return path.join(root, "Slippi");
+  return path.join(root, "Brawlback");
 }
+
+const modsDir = path.join(app.getPath("userData"), "mods");
 
 export const defaultAppSettings: AppSettings = {
   connections: [],
   settings: {
-    theme: nativeTheme.shouldUseDarkColors ? 'dark' : 'light',
+    theme: nativeTheme.shouldUseDarkColors ? "dark" : "light",
     isoPath: null,
     rootSlpPath: getDefaultRootSlpPath(),
     useMonthlySubfolders: false,
@@ -25,18 +27,25 @@ export const defaultAppSettings: AppSettings = {
     dolphinPath: "path/to/dolphin",
     launchMeleeOnPlay: true,
     autoUpdateLauncher: true,
-    selectedMod: 0
+    selectedMod: 0,
+    defaultModsDir: modsDir,
   },
   mods: [
     {
-      elfPath: 'path/to/launcher.elf',
-      sdCardPath: 'path/to/sd.raw',
-      name: 'P+'
+      name: "vBrawl",
+      elfPath: path.join(modsDir, "vBrawl", "Brawl Netplay V3.elf"),
+      sdCardPath: path.join(modsDir, "vBrawl", "sd.raw"),
+      lylatID: "lylat-vBrawl-id",
+      default: true,
+      version: 3.0,
     },
     {
-      elfPath: 'path/to/launcher.elf',
-      sdCardPath: 'path/to/sd.raw',
-      name: 'vBrawl'
-    }
-  ]
+      name: "P+",
+      elfPath: path.join(modsDir, "Project +", "Project + Launcher.elf"),
+      sdCardPath: path.join(modsDir, "Project +", "sd.raw"),
+      lylatID: "lylat-pplus-id",
+      default: true,
+      version: 1.0,
+    },
+  ],
 };

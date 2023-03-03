@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
 import Help from "@mui/icons-material/Help";
+import type { PaletteMode } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
@@ -16,7 +17,6 @@ import { useIsoVerification } from "@/lib/hooks/useIsoVerification";
 import { useIsoPath, useLaunchMeleeOnPlay, useThemeMode } from "@/lib/hooks/useSettings";
 
 import { SettingItem } from "./SettingItem";
-import { PaletteMode } from "@mui/material";
 
 const renderValidityStatus = (isoValidity: IsoValidity) => {
   switch (isoValidity) {

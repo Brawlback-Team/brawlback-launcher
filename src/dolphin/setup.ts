@@ -11,18 +11,20 @@ import {
   ipc_clearDolphinCache,
   ipc_configureDolphin,
   ipc_dolphinEvent,
+  ipc_downloadDefaultMod,
   ipc_downloadDolphin,
   ipc_importDolphinSettings,
   ipc_launchNetplayDolphin,
   ipc_reinstallDolphin,
   ipc_removePlayKeyFile,
+  ipc_set_mod,
   ipc_storePlayKeyFile,
   ipc_viewSlpReplay,
 } from "./ipc";
 import type { DolphinManager } from "./manager";
 import { deletePlayKeyFile, findPlayKey, writePlayKeyFile } from "./playkey";
 import { DolphinLaunchType } from "./types";
-import { findDolphinExecutable, updateBootToCssCode } from "./util";
+import { findDolphinExecutable } from "./util";
 
 const isMac = process.platform === "darwin";
 const isLinux = process.platform === "linux";
@@ -34,6 +36,11 @@ export default function setupDolphinIpc({ dolphinManager }: { dolphinManager: Do
 
   ipc_downloadDolphin.main!.handle(async ({ dolphinType }) => {
     await dolphinManager.installDolphin(dolphinType);
+    return { success: true };
+  });
+
+  ipc_downloadDefaultMod.main!.handle(async ({ mod }) => {
+    await dolphinManager.installMod(mod);
     return { success: true };
   });
 
@@ -88,10 +95,8 @@ export default function setupDolphinIpc({ dolphinManager }: { dolphinManager: Do
     return { success: true };
   });
 
-  ipc_launchNetplayDolphin.main!.handle(async ({ bootToCss }) => {
+  ipc_launchNetplayDolphin.main!.handle(async () => {
     // Boot straight to CSS if necessary
-    const installation = dolphinManager.getInstallation(DolphinLaunchType.NETPLAY);
-    await updateBootToCssCode(installation, { enable: Boolean(bootToCss) });
 
     // Actually launch Dolphin
     await dolphinManager.launchNetplayDolphin();
@@ -132,6 +137,11 @@ export default function setupDolphinIpc({ dolphinManager }: { dolphinManager: Do
     const dolphinExecutablePath = await findDolphinExecutable(DolphinLaunchType.NETPLAY, dolphinFolderPath);
 
     return { dolphinPath: dolphinExecutablePath, exists: exists };
+  });
+
+  ipc_set_mod.main!.handle(async ({ id }) => {
+    await dolphinManager.setMod(id);
+    return { success: true };
   });
 
   return { dolphinManager };

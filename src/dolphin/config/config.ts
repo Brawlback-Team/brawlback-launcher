@@ -10,6 +10,25 @@ export async function addGamePath(iniFile: IniFile, gameDir: string): Promise<vo
   await iniFile.save();
 }
 
+export async function addElfPath(iniFile: IniFile, elfDir: string): Promise<void> {
+  const generalSection = iniFile.getOrCreateSection("General");
+  generalSection.set("ISOPaths", "2");
+  generalSection.set("ISOPath1", elfDir);
+  await iniFile.save();
+}
+
+export async function addSdCardPath(iniFile: IniFile, sdPath: string): Promise<void> {
+  const generalSection = iniFile.getOrCreateSection("General");
+  generalSection.set("WiiSDCardPath", sdPath);
+  await iniFile.save();
+}
+
+export async function addDefaultIso(iniFile: IniFile, gameDir: string): Promise<void> {
+  const coreSection = iniFile.getOrCreateSection("Core");
+  coreSection.set("DefaultISO", gameDir);
+  await iniFile.save();
+}
+
 export async function setSlippiSettings(
   iniFile: IniFile,
   options: Partial<{

@@ -1,9 +1,12 @@
 /* eslint-disable import/no-default-export */
+import type { PaletteMode } from "@mui/material";
 import { ipcRenderer } from "electron";
 
 import {
   ipc_addNewConnection,
+  ipc_addNewMod,
   ipc_deleteConnection,
+  ipc_deleteMod,
   ipc_editConnection,
   ipc_getModList,
   ipc_openSettingsModalEvent,
@@ -19,8 +22,7 @@ import {
   ipc_settingsUpdatedEvent,
   ipc_setUseMonthlySubfolders,
 } from "./ipc";
-import type { AppSettings, StoredConnection, Mod } from "./types";
-import type { PaletteMode } from "@mui/material";
+import type { AppSettings, Mod, StoredConnection } from "./types";
 
 export default {
   getAppSettingsSync() {
@@ -29,6 +31,12 @@ export default {
   async getModsList(): Promise<Mod[]> {
     const { result } = await ipc_getModList.renderer!.trigger({});
     return result;
+  },
+  async addNewMod(mod: Mod): Promise<void> {
+    await ipc_addNewMod.renderer!.trigger({ mod });
+  },
+  async deleteMod(id: number): Promise<void> {
+    await ipc_deleteMod.renderer!.trigger({ id });
   },
   onSettingsUpdated(handle: (settings: AppSettings) => void) {
     const { destroy } = ipc_settingsUpdatedEvent.renderer!.handle(async (settings) => {
