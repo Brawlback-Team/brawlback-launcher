@@ -6,6 +6,16 @@ const defaultTheme = createTheme({
   palette: {
     primary: { main: "#4CEBB4" },
   },
+  //typography: {
+  //  fontFamily: "Maven Pro",
+  // fontSize: 50,
+  //h1: {
+  // fontFamily: rubikFont,
+  //},
+  //     caption: {
+  //       opacity: 0.6,
+  //     },
+  //},
 });
 
 const getThemeOptions = (mode: PaletteMode) => ({
@@ -37,6 +47,9 @@ const getThemeOptions = (mode: PaletteMode) => ({
             default: "#414242",
             paper: "#595A5A",
           },
+          // Theme for Based fonts
+
+          // Theme for Cringe fonts
         }),
   },
   // CSS Class Overrides for both themes

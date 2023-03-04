@@ -1,12 +1,12 @@
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
+import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -60,55 +60,59 @@ export default function Menu() {
       anchor="left"
       PaperProps={{ elevation: 9 }}
     >
-      <Box sx={{ textAlign: "center", marginBottom: "25px" }}>
-        <img src={BrawlbackLogo} width={150} height={150} />
+      <Box sx={{ textAlign: "center", marginBottom: "5px" }}>
+        <img src={BrawlbackLogo} width={200} height={200} />
       </Box>
-
-      <List>
-        <ListItem
-          button
-          selected={currentUrl.pathname === "/"}
-          onClick={(ev) => handleButtonClick(ev, menuOption.Home)}
-        >
-          <ListItemText sx={{ fontWeight: "bold" }} primary="Home" />
-        </ListItem>
-        <Divider />
-
-        <ListItem button onClick={() => handleOpenReplayMenu(!openReplayMenu)}>
-          <ListItemText sx={{ fontWeight: "bold" }} primary="Replays" />
-          {openReplayMenu ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Divider />
-        <Collapse in={openReplayMenu} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItem
-              button
-              sx={{ paddingLeft: 0, marginLeft: 4, borderLeft: 1 }}
-              selected={currentUrl.pathname === "/replays" && currentUrl.search === "?P+"}
-              onClick={(ev) => handleButtonClick(ev, menuOption.ReplaysPPlus)}
-            >
-              <ListItemText sx={{ paddingLeft: 1, fontWeight: "bold" }} primary="P+" />
-            </ListItem>
-            <ListItem
-              button
-              sx={{ paddingLeft: 0, marginLeft: 4, borderLeft: 1 }}
-              selected={currentUrl.pathname === "/replays" && currentUrl.search === "?vBrawl"}
-              onClick={(ev) => handleButtonClick(ev, menuOption.ReplaysBrawl)}
-            >
-              <ListItemText sx={{ paddingLeft: 1, fontWeight: "bold" }} primary="vBrawl" />
-            </ListItem>
-          </List>
+      <Typography sx={{ fontSize: 22, marginLeft: "5px" }} variant="subtitle1">
+        <List>
+          <ListItem
+            button
+            selected={currentUrl.pathname === "/"}
+            onClick={(ev) => handleButtonClick(ev, menuOption.Home)}
+          >
+            {" "}
+            <Typography sx={{ fontSize: 22, fontFamily: "Mulish" }}>Home</Typography>
+          </ListItem>
           <Divider />
-        </Collapse>
-
-        <ListItem
-          button
-          selected={currentUrl.pathname === "/settings"}
-          onClick={(ev) => handleButtonClick(ev, menuOption.Settings)}
-        >
-          <ListItemText sx={{ fontWeight: "bold" }} primary="Settings" />
-        </ListItem>
-      </List>
+          <ListItem button onClick={() => handleOpenReplayMenu(!openReplayMenu)}>
+            <Typography sx={{ fontSize: 22, fontFamily: "Mulish" }}>Replays</Typography>
+            {openReplayMenu ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Divider />
+          <Collapse in={openReplayMenu} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItem
+                button
+                sx={{ paddingLeft: 0, marginLeft: 4, borderLeft: 1 }}
+                selected={currentUrl.pathname === "/replays" && currentUrl.search === "?P+"}
+                onClick={(ev) => handleButtonClick(ev, menuOption.ReplaysPPlus)}
+              >
+                <Typography sx={{ fontSize: 22, paddingLeft: 1, fontWeight: "bold", fontFamily: "Mulish" }}>
+                  P+
+                </Typography>
+              </ListItem>
+              <ListItem
+                button
+                sx={{ paddingLeft: 0, marginLeft: 4, borderLeft: 1 }}
+                selected={currentUrl.pathname === "/replays" && currentUrl.search === "?vBrawl"}
+                onClick={(ev) => handleButtonClick(ev, menuOption.ReplaysBrawl)}
+              >
+                <Typography sx={{ fontSize: 22, paddingLeft: 1, fontWeight: "bold", fontFamily: "Mulish" }}>
+                  vBrawl
+                </Typography>
+              </ListItem>
+            </List>
+            <Divider />
+          </Collapse>
+          <ListItem
+            button
+            selected={currentUrl.pathname === "/settings"}
+            onClick={(ev) => handleButtonClick(ev, menuOption.Settings)}
+          >
+            <Typography sx={{ fontSize: 22, fontWeight: "bold", fontFamily: "Mulish" }}>Settings</Typography>
+          </ListItem>
+        </List>
+      </Typography>
     </Drawer>
   );
 }

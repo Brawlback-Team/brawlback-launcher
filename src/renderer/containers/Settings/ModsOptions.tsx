@@ -4,7 +4,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ErrorIcon from "@mui/icons-material/Error";
 import Help from "@mui/icons-material/Help";
-import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -132,7 +131,9 @@ export const ModsOptions = () => {
       {/* MOD LIST */}
       <SettingItem name="Mods List" description="Add or Remove Lylat enabled mods here">
         <Box>
-          <NoteAddIcon onClick={() => setOpenDialog(true)} />
+          <Button sx={{ margin: "10px" }} variant="outlined" onClick={() => setOpenDialog(true)}>
+            ADD NEW MOD
+          </Button>
           {modList.map((val, index) => (
             <ModDisplay
               key={index}
