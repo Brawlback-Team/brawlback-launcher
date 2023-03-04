@@ -21,7 +21,7 @@ const AppBase = () => {
         </Container>
 
         {/* Play Button and Mod Switcher */}
-        <Box sx={{ position: "fixed", bottom: 50, right: 50 }}>
+        <Box sx={{ position: "fixed", bottom: 60, right: 60 }}>
           <PlayButton />
         </Box>
       </Box>

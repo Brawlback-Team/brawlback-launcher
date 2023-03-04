@@ -41,6 +41,7 @@ const PlayButton = () => {
       {modList.length > 0 && (
         <Box
           sx={{
+            filter: "drop-shadow(0px 7px 5px #000000)",
             borderRadius: "50%",
             width: 45,
             height: 45,
@@ -49,7 +50,6 @@ const PlayButton = () => {
             position: "absolute",
             top: 65,
             left: 70,
-            filter: "drop-shadow(0px 4px 5px #000000)",
             fontWeight: "bold",
             textAlign: "center",
           }}
@@ -57,11 +57,12 @@ const PlayButton = () => {
             setAnchor(event.currentTarget);
           }}
         >
-          <Box component="p" sx={{ width: "100%", lineHeight: 1 }}>
+          <IconButton component="p" sx={{ width: "100%", lineHeight: 1 }}>
             {modList[getSelectedMod()].name.substring(0, 2)}
-          </Box>
+          </IconButton>
         </Box>
       )}
+
       <Menu
         anchorEl={menuAnchor}
         open={menuAnchor != null}

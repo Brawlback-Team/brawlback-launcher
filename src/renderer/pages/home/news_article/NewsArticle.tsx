@@ -44,7 +44,7 @@ export const NewsArticle = React.memo(function NewsArticle({ item }: { item: New
             <MarkdownContent
               content={body}
               css={css`
-                color: #ccc;
+                color: textSecondary;
                 max-width: 700px;
               `}
             />
