@@ -42,10 +42,10 @@ const getThemeOptions = (mode: PaletteMode) => ({
             primary: "#FFFFFF",
             secondary: "#DDDDDD",
           },
-          divider: "#FFFFFF",
+          divider: "#DDDDDD",
           background: {
-            default: "#414242",
-            paper: "#595A5A",
+            default: "#313232",
+            paper: "#2e2c28",
           },
           // Theme for Based fonts
 
